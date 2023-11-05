@@ -94,6 +94,7 @@ public void AdjustBalance(int Balance){
     public int getBass() {
         return Bass;
     }
+
     //Metoda pentru a afisa informatiile despre soundbar//
     public void infoSoundBar(){
         System.out.println("Info soundbar:");
