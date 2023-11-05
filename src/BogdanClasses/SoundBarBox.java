@@ -1,49 +1,38 @@
 package BogdanClasses;
 
 public class SoundBarBox {
-    private int volume;
-    private boolean isOn;
+    private int Volume;
+    private int BassLevel=30;
+    private boolean isPoweredOn=false;
+    private int balance=50;
 
     public SoundBarBox() {
-        this.volume = 50; // setează volumul inițial la 50
-        this.isOn = false; // soundbar-ul este oprit când este creat
+        this.volume = 10; // setez volumul initial la 10
+        this.isPoweredOn = false; // soundbar-ul este oprit atunci cand este creat
     }
 
-    // Constructor cu parametri
-    public SoundBarBox(int initialVolume, boolean initialOnState) {
-        if (initialVolume >= 0 && initialVolume <= 100) {
-            this.volume = initialVolume;
-        } else {
-            System.out.println("Volumul trebuie să fie între 0 și 100. Setat la 50 implicit.");
-            this.volume = 50;
+    //Metoda pentru a porni soundbar-ul//
+    public void PowerOn() {
+        isPoweredOn = true;
+        System.out.println("SoundBar-ul a fost pornit!");
+    }
+
+    //Metoda pentru a opri soundbar-ul//
+    public void PowerOff() {
+        isPoweredOn = false;
+        System.out.println("SoundBar-ul a fost oprit!");
+    }
+
+    //Metoda pentru a adjusta volumul soundbar-ului//
+public void AdjustVolume(int Volume){
+        if(Volume>=0&&Volume<=100) {
+            this.Volume = Volume;
+            System.out.println("Volumul soundbar-ului a fost setat la:" + Volume + ".");
         }
-
-        this.isOn = initialOnState;
-    }
-
-    public void powerOn() {
-        isOn = true;
-        System.out.println("SoundBar: Pornit");
-    }
-
-    public void powerOff() {
-        isOn = false;
-        System.out.println("SoundBar: Oprit");
-    }
-
-    public void setVolume(int volume) {
-        if (isOn) {
-            if (volume >= 0 && volume <= 100) {
-                this.volume = volume;
-                System.out.println("SoundBar: Volumul setat la " + volume);
-            } else {
-                System.out.println("SoundBar: Volumul trebuie să fie între 0 și 100");
-            }
-        } else {
-            System.out.println("SoundBar: Nu poți seta volumul când soundbar-ul este oprit");
+        else {
+            System.out.println("Volumul soundbar-ului trebuie sa fie intre 0 si 100.");
         }
-    }
-
+}
     public void playAudio(String audio) {
         if (isOn) {
             System.out.println("SoundBar: Redare audio - " + audio);
