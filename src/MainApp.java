@@ -104,8 +104,6 @@ public class MainApp {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String volume = volumeField.getText();
-                // Aici puteți adăuga logica pentru ajustarea volumului sistemului audio
-                // De exemplu, afișați nivelul de volum pe un panou sau trimiteți comenzi la dispozitivul real
             }
         });
 
@@ -129,8 +127,6 @@ public class MainApp {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String intensity = intensityField.getText();
-                // Aici puteți adăuga logica pentru ajustarea intensității iluminării
-                // De exemplu, afișați nivelul de intensitate pe un panou sau trimiteți comenzi la dispozitivul real
             }
         });
 
