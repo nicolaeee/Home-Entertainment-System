@@ -46,12 +46,10 @@ public class TvWithSpeakers {
 
     // Metoda pentru a porni sau opri sistemul de boxe
     public void toggleSpeakers() {
-        if (isSpeakersOn) {
-            isSpeakersOn = false;
-            System.out.println("Sistemul de boxe a fost oprit.");
+        if (isPoweredOn()) {
+            System.out.println("Sistemul de boxe a fost pornit/oprit.");
         } else {
-            isSpeakersOn = true;
-            System.out.println("Sistemul de boxe a fost pornit.");
+            System.out.println("Televizorul trebuie sa fie pornit pentru a controla sistemul de boxe.");
         }
     }
 
@@ -76,7 +74,7 @@ public class TvWithSpeakers {
     }
 
     // Metoda pentru a afisa informatiile despre TvWithSpeakers
-    public void displayTVInfo() {
+    public void TVInfo() {
         System.out.println("Info Televizor:");
         System.out.println("Pornit/Oprit: " + (isPoweredOn ? "Pornit" : "Oprit"));
         System.out.println("Volum: " + Volume);
