@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class HomeEntertainmentSystem {
     public static void main(String[] args) {
-        SoundBarBox soundBar = new SoundBarBox(); // Creez o instanta
 
+        //Testarea clasei SoundBarBox//
+        SoundBarBox soundBar = new SoundBarBox(); // Creez o instanta
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -85,4 +86,9 @@ public class HomeEntertainmentSystem {
             }
         }
     }
+
+    /**/
+
+
+
     }
