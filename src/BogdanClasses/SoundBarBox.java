@@ -1,8 +1,9 @@
 package BogdanClasses;
 
 public class SoundBarBox {
-    private int volume;
-    private boolean isOn;
+    private int Volume=10;
+    private int BassLevel=30;
+    private boolean isPoweredOn=false;
 
     public SoundBarBox() {
         this.volume = 50; // setează volumul inițial la 50
