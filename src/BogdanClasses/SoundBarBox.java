@@ -1,5 +1,5 @@
 package BogdanClasses;
 
-public class SoundBar {
+public class SoundBarBox {
 
 }
