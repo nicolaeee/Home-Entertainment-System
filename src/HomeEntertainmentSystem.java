@@ -1,5 +1,4 @@
-//Importarea claselor Nicu
-import  NicuClasses.SmartIluminatingSystem;
+//Importarea claselor
 import BogdanClasses.SoundBarBox;
 
 public class HomeEntertainmentSystem {
