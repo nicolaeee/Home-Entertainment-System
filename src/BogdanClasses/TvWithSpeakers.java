@@ -2,7 +2,7 @@ package BogdanClasses;
 
 public class TvWithSpeakers {
     private boolean isPoweredOn = false;
-    private int Volume = 50;
+    private int Volume = 20;
     private int Channel = 1;
     private boolean isSpeakersOn = false;
 

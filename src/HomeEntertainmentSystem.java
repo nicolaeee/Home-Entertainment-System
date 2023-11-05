@@ -9,7 +9,7 @@ public class HomeEntertainmentSystem {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Alege clasa pe care doresti sa o testezi:");
+            System.out.println("Alege clasa pe care vrei sa o testezi:");
             System.out.println("1. SoundBarBox");
             System.out.println("2. TvWithSpeakers");
             System.out.println("3. Iesire");
