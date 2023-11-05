@@ -24,7 +24,15 @@ public class SoundBarBox {
     }
 
     //Metoda pentru a adjusta volumul soundbar-ului//
-
+public void AdjustVolume(int Volume){
+        if(Volume>=0&&Volume<=100) {
+            this.Volume = Volume;
+            System.out.println("Volumul soundbar-ului a fost setat la:" + Volume + ".");
+        }
+        else {
+            System.out.println("Volumul soundbar-ului trebuie sa fie intre 0 si 100.");
+        }
+}
     public void playAudio(String audio) {
         if (isOn) {
             System.out.println("SoundBar: Redare audio - " + audio);
