@@ -5,136 +5,128 @@ import java.awt.event.ActionListener;
 
 public class MainApp {
     private JFrame frame;
-    private JPanel mainPanel;
-    private JButton tvButton;
-    private JButton soundSystemButton;
-    private JButton lightsButton;
+    private JButton powerButton;
+    private JButton volumeUpButton;
+    private JButton volumeDownButton;
+    private JButton bassButton;
+    private JButton balanceButton;
+    private JButton playButton;
+    private JButton muteButton;
+    private boolean isMuted = false;
 
     public MainApp() {
-        frame = new JFrame("Home Entertainment System");
+        frame = new JFrame("Control Sound Bar");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
-        frame.setLayout(new BorderLayout());
+        frame.setSize(400, 400);
+        frame.setLayout(new GridLayout(4, 2));
 
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(3, 1));
+        powerButton = new JButton("Pornire/Oprit");
+        volumeUpButton = new JButton("Creștere Volum");
+        volumeDownButton = new JButton("Scădere Volum");
+        bassButton = new JButton("Ajustare Bass");
+        balanceButton = new JButton("Ajustare Balanță");
+        playButton = new JButton("Redare Audio");
+        muteButton = new JButton("Mute");
 
-        tvButton = new JButton("Control Televizor");
-        soundSystemButton = new JButton("Control Sistem Audio");
-        lightsButton = new JButton("Control Iluminare");
+        final boolean[] isSoundBarOn = {false}; // Initializam off
 
-        tvButton.addActionListener(new ActionListener() {
+        powerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openTVControlWindow();
+                if (isSoundBarOn[0]) {
+                    isSoundBarOn[0] = false;
+                    powerButton.setText("Turn On");
+                } else {
+                    isSoundBarOn[0] = true;
+                    powerButton.setText("Turn Off");
+                }
             }
         });
 
-        soundSystemButton.addActionListener(new ActionListener() {
+        final int[] volumeLevel = {50}; // Nivelul initial al volumului
+
+        volumeUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openSoundSystemControlWindow();
+                if (isSoundBarOn[0]) {
+                    volumeLevel[0] += 5; // Creste volumul cu 5
+                }
             }
         });
 
-        lightsButton.addActionListener(new ActionListener() {
+        volumeDownButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openLightsControlWindow();
+                if (isSoundBarOn[0]) {
+                    if (volumeLevel[0] >= 5) {
+                        volumeLevel[0] -= 5;
+                        // Aici puteți seta nivelul de volum pe Sound Bar sau alte acțiuni relevante
+                        System.out.println("Volumul a fost redus la: " + volumeLevel[0]);
+                    } else {
+                        System.out.println("Volumul este deja la minim.");
+                    }
+                } else {
+                    System.out.println("Soundbar-ul este oprit.");
+                }
             }
         });
 
-        mainPanel.add(tvButton);
-        mainPanel.add(soundSystemButton);
-        mainPanel.add(lightsButton);
+        bassButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isSoundBarOn[0]) {
+                    // Implementați logica pentru ajustarea bass-ului
+                    System.out.println("Bass-ul a fost ajustat.");
+                } else {
+                    System.out.println("Soundbar-ul este oprit.");
+                }
+            }
+        });
 
-        frame.add(mainPanel, BorderLayout.CENTER);
+        balanceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isSoundBarOn[0]) {
+                    // Implementați logica pentru ajustarea balanței
+                    System.out.println("Balanta a fost ajustata.");
+                } else {
+                    System.out.println("Soundbar-ul este oprit.");
+                }
+            }
+        });
+
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isSoundBarOn[0]) {
+                    System.out.println("Audio redat.");
+                } else {
+                    System.out.println("Soundbar-ul este oprit.");
+                }
+            }
+        });
+
+        muteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isMuted) {
+                    muteButton.setText("Mute");
+                } else {
+                    muteButton.setText("Unmute");
+                }
+                isMuted = !isMuted;
+            }
+        });
+
+        frame.add(powerButton);
+        frame.add(volumeUpButton);
+        frame.add(volumeDownButton);
+        frame.add(bassButton);
+        frame.add(balanceButton);
+        frame.add(playButton);
+        frame.add(muteButton);
+
         frame.setVisible(true);
-    }
-
-    private void openTVControlWindow() {
-        JFrame tvFrame = new JFrame("Control Televizor");
-        tvFrame.setSize(400, 300);
-        tvFrame.setLayout(new GridLayout(3, 2));
-
-        JLabel channelLabel = new JLabel("Canal:");
-        JTextField channelField = new JTextField(10);
-        JButton changeChannelButton = new JButton("Schimbă Canal");
-
-        JLabel volumeLabel = new JLabel("Volum:");
-        JTextField volumeField = new JTextField(10);
-        JButton adjustVolumeButton = new JButton("Ajustează Volum");
-
-        changeChannelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String channel = channelField.getText();
-                JOptionPane.showMessageDialog(tvFrame, "Canalul a fost schimbat la: " + channel);
-            }
-        });
-
-        adjustVolumeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String volume = volumeField.getText();
-                JOptionPane.showMessageDialog(tvFrame, "Volumul a fost ajustat la: " + volume);
-            }
-        });
-
-        tvFrame.add(channelLabel);
-        tvFrame.add(channelField);
-        tvFrame.add(changeChannelButton);
-        tvFrame.add(volumeLabel);
-        tvFrame.add(volumeField);
-        tvFrame.add(adjustVolumeButton);
-
-        tvFrame.setVisible(true);
-    }
-
-    private void openSoundSystemControlWindow() {
-        JFrame soundSystemFrame = new JFrame("Control Sistem Audio");
-        soundSystemFrame.setSize(400, 300);
-        soundSystemFrame.setLayout(new GridLayout(3, 2));
-
-        JLabel volumeLabel = new JLabel("Volum:");
-        JTextField volumeField = new JTextField(10);
-        JButton adjustVolumeButton = new JButton("Ajustează Volum");
-
-        adjustVolumeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String volume = volumeField.getText();
-            }
-        });
-
-        soundSystemFrame.add(volumeLabel);
-        soundSystemFrame.add(volumeField);
-        soundSystemFrame.add(adjustVolumeButton);
-
-        soundSystemFrame.setVisible(true);
-    }
-
-    private void openLightsControlWindow() {
-        JFrame lightsFrame = new JFrame("Control Iluminare");
-        lightsFrame.setSize(400, 300);
-        lightsFrame.setLayout(new GridLayout(2, 2));
-
-        JLabel intensityLabel = new JLabel("Intensitate:");
-        JTextField intensityField = new JTextField(10);
-        JButton adjustIntensityButton = new JButton("Ajustează Intensitate");
-
-        adjustIntensityButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String intensity = intensityField.getText();
-            }
-        });
-
-        lightsFrame.add(intensityLabel);
-        lightsFrame.add(intensityField);
-        lightsFrame.add(adjustIntensityButton);
-
-        lightsFrame.setVisible(true);
     }
 
     public static void main(String[] args) {
@@ -146,4 +138,3 @@ public class MainApp {
         });
     }
 }
-
