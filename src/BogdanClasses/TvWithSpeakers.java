@@ -6,10 +6,27 @@ public class TvWithSpeakers {
     private int Channel = 1;
     private boolean isSpeakersOn = false;
 
+    //Construc fara argumente
     public TvWithSpeakers() {
         // Setez stare initiala Tv/Boxe
         isPoweredOn = false;
         isSpeakersOn = false;
+    }
+
+    // Constructor cu argumente
+    public TvWithSpeakers(boolean isPoweredOn, int volume, int channel, boolean isSpeakersOn) {
+        this.isPoweredOn = isPoweredOn;
+        this.Volume = volume;
+        this.Channel = channel;
+        this.isSpeakersOn = isSpeakersOn;
+    }
+
+    // Constructor de copiere
+    public TvWithSpeakers(TvWithSpeakers other) {
+        this.isPoweredOn = other.isPoweredOn;
+        this.Volume = other.Volume;
+        this.Channel = other.Channel;
+        this.isSpeakersOn = other.isSpeakersOn;
     }
 
     // Metoda pentru a porni televizorul
@@ -80,5 +97,16 @@ public class TvWithSpeakers {
         System.out.println("Volum: " + Volume);
         System.out.println("Canal: " + Channel);
         System.out.println("Stare Sistem de Boxe: " + (isSpeakersOn ? "Pornit" : "Oprit"));
+    }
+
+    // Redefinirea metodei toString pentru a afisa datele
+    @Override
+    public String toString() {
+        return "TvWithSpeakers { " +
+                "IsPoweredOn=" + isPoweredOn +
+                ", Volume=" + Volume +
+                ", Channel=" + Channel +
+                ", AreSpeakersOn=" + isSpeakersOn +
+                " }";
     }
 }

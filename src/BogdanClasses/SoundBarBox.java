@@ -12,7 +12,7 @@ public class SoundBarBox {
         this.isPoweredOn = false; // soundbar-ul este oprit atunci cand este creat
     }
 
-    // Constructor cu toate argumentele
+    // Constructor cu argumente
     public SoundBarBox(int Volume, int Bass, boolean isPoweredOn, int Balance) {
         this.Volume = Volume;
         this.Bass = Bass;

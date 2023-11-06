@@ -7,9 +7,9 @@ public class SoundBarBoxMain {
     public static void main(String[] args) {
 
         // Crearea si afisarea a cel puțin 3 instante din clasa SoundBarBox
-        SoundBarBox soundBar1 = new SoundBarBox(15, 40, true, 60);
-        SoundBarBox soundBar2 = new SoundBarBox(20, 50, true, 70);
-        SoundBarBox soundBar3 = new SoundBarBox(10, 30, false, 50);
+        SoundBarBox soundBar1 = new SoundBarBox(8, 40, true, 50);
+        SoundBarBox soundBar2 = new SoundBarBox(24, 50, true, 65);
+        SoundBarBox soundBar3 = new SoundBarBox(12, 30, false, 43);
 
         System.out.println("Instante:");
         System.out.println("SoundBar 1:");
