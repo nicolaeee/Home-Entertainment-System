@@ -6,9 +6,26 @@ public class SoundBarBox {
     private boolean isPoweredOn=false;
     private int Balance=50;
 
+    // Constructor fara argumente
     public SoundBarBox() {
         this.Volume = 10; // setez volumul initial la 10
         this.isPoweredOn = false; // soundbar-ul este oprit atunci cand este creat
+    }
+
+    // Constructor cu toate argumentele
+    public SoundBarBox(int Volume, int Bass, boolean isPoweredOn, int Balance) {
+        this.Volume = Volume;
+        this.Bass = Bass;
+        this.isPoweredOn = isPoweredOn;
+        this.Balance = Balance;
+    }
+
+    // Constructor de copiere
+    public SoundBarBox(SoundBarBox other) {
+        this.Volume = other.Volume;
+        this.Bass = other.Bass;
+        this.isPoweredOn = other.isPoweredOn;
+        this.Balance = other.Balance;
     }
 
     //Metoda pentru a porni soundbar-ul//
@@ -102,5 +119,15 @@ public void AdjustBalance(int Balance){
         System.out.println("Volum:"+Volume);
         System.out.println("Bass:"+Bass);
         System.out.println("Balanta:"+Balance);
+    }
+    // Redefinirea metodei toString pentru a afisa datele
+    @Override
+    public String toString() {
+        return "SoundBarBox { " +
+                "Volume=" + Volume +
+                ", Bass=" + Bass +
+                ", isPoweredOn=" + isPoweredOn +
+                ", Balance=" + Balance +
+                " }";
     }
 }

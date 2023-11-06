@@ -1,14 +1,40 @@
 import BogdanClasses.SoundBarBox;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class SoundBarBoxMain {
     public static void main(String[] args) {
 
-        //Testarea clasei SoundBarBox//
+        // Crearea si afisarea a cel puțin 3 instante din clasa SoundBarBox
+        SoundBarBox soundBar1 = new SoundBarBox(15, 40, true, 60);
+        SoundBarBox soundBar2 = new SoundBarBox(20, 50, true, 70);
+        SoundBarBox soundBar3 = new SoundBarBox(10, 30, false, 50);
+
+        System.out.println("Instante:");
+        System.out.println("SoundBar 1:");
+        soundBar1.infoSoundBar();
+        System.out.println("SoundBar 2:");
+        soundBar2.infoSoundBar();
+        System.out.println("SoundBar 3:");
+        soundBar3.infoSoundBar();
+
+        // Crearea unui vector cu cel putin 10 instante ale clasei SoundBarBox
+        SoundBarBox[] soundBars = new SoundBarBox[10];
+        for (int i = 0; i < 10; i++) {
+            soundBars[i] = new SoundBarBox(i * 10, i * 5, i % 2 == 0, i * 10 + 5);
+        }
+
+        // Afisarea instantelor din vector
+        System.out.println("Instante din vector:");
+        for (int i = 0; i < 10; i++) {
+            System.out.println("SoundBar " + (i + 1) + ":");
+            soundBars[i].infoSoundBar();
+        }
+
+        // Testarea clasei SoundBarBox
         SoundBarBox soundBar = new SoundBarBox(); // Creez o instanta
         Scanner scanner = new Scanner(System.in);
-
         while (true) {
             System.out.println("\nMeniu Soundbar:");
             System.out.println("1. Pornire/Oprire Soundbar");
@@ -16,7 +42,7 @@ public class SoundBarBoxMain {
             System.out.println("3. Ajustare Bass");
             System.out.println("4. Ajustare Balanta");
             System.out.println("5. Redare Audio");
-            System.out.println("6. Mute ");
+            System.out.println("6. Mute");
             System.out.println("7. Informatii soundbar");
             System.out.println("8. Iesire");
 
