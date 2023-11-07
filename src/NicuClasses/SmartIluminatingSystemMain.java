@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class SmartIluminatingSystemMain {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner IluminatingSystem = new Scanner(System.in);
 
         System.out.print("Introdu intensitatea inițială a luminii (0-100): ");
-        int initialIntensity = scanner.nextInt();
+        int initialIntensity = IluminatingSystem.nextInt();
 
         System.out.print("Este sistemul pornit? (true/false): ");
-        boolean initialOnState = scanner.nextBoolean();
+        boolean initialOnState = IluminatingSystem.nextBoolean();
 
         SmartIluminatingSystem system = new SmartIluminatingSystem(initialIntensity, initialOnState);
 
@@ -28,10 +28,10 @@ public class SmartIluminatingSystemMain {
         system.turnOn(); // Asigură-te că sistemul este pornit
 
         System.out.print("Introdu noua intensitate a luminii (0-100): ");
-        int newIntensity = scanner.nextInt();
+        int newIntensity = IluminatingSystem.nextInt();
         system.setIntensity(newIntensity);
         System.out.println("Intensitatea luminii: " + system.getIntensity());
 
-        scanner.close();
+        IluminatingSystem.close();
     }
 }
