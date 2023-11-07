@@ -25,7 +25,7 @@ public class SmartIluminatingSystemMain {
         IluminatingSystemParameters.turnOff();
         System.out.println("Este pornit: " + IluminatingSystemParameters.isTurnedOn());
 
-        // Testeazq metoda setIntensity
+
         IluminatingSystemParameters.turnOn(); // Asigura că sistemul este pornit
 
         System.out.print("Introdu noua intensitate a luminii (0-100): ");
