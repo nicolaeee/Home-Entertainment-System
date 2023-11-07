@@ -1,3 +1,5 @@
+package BogdanClasses;
+
 import BogdanClasses.SoundBarBox;
 
 import java.util.Scanner;

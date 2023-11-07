@@ -1,15 +1,13 @@
 package BogdanClasses;
 
 public class SoundBarBox {
-    private int Volume;
+    private int Volume=10;
     private int Bass=30;
     private boolean isPoweredOn=false;
     private int Balance=50;
 
     // Constructor fara argumente
     public SoundBarBox() {
-        this.Volume = 10; // setez volumul initial la 10
-        this.isPoweredOn = false; // soundbar-ul este oprit atunci cand este creat
     }
 
     // Constructor cu argumente

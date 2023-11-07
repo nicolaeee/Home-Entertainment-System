@@ -1,3 +1,5 @@
+package BogdanClasses;
+
 import BogdanClasses.TvWithSpeakers;
 
 import java.util.Scanner;

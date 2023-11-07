@@ -6,11 +6,8 @@ public class TvWithSpeakers {
     private int Channel = 1;
     private boolean isSpeakersOn = false;
 
-    //Construc fara argumente
+    //Constructor fara argumente
     public TvWithSpeakers() {
-        // Setez stare initiala Tv/Boxe
-        isPoweredOn = false;
-        isSpeakersOn = false;
     }
 
     // Constructor cu argumente

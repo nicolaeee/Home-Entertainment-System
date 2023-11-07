@@ -1,10 +1,8 @@
 //Importarea claselor
 
-import BogdanClasses.SoundBarBox;
-import BogdanClasses.TvWithSpeakers;
-import NicuClasses.SmartClimateControl;
+import BogdanClasses.SoundBarBoxMain;
+import BogdanClasses.TvWithSpeakersMain;
 import NicuClasses.SmartClimateControlMain;
-import NicuClasses.SmartIluminatingSystem;
 import NicuClasses.SmartIluminatingSystemMain;
 
 import java.util.Scanner;
@@ -26,10 +24,10 @@ public class HomeEntertainmentSystem {
 
             switch (choice) {
                 case "1":
-                    SoundBarBoxMain.main(null); // Apelez metoda main din clasa SoundBarBoxMain
+                    SoundBarBoxMain.main(null); // Apelez metoda main din clasa BogdanClasses.SoundBarBoxMain
                     break;
                 case "2":
-                    TvWithSpeakersMain.main(null); // Apelez metoda main din clasa TvWithSpeakersMain
+                    TvWithSpeakersMain.main(null); // Apelez metoda main din clasa BogdanClasses.TvWithSpeakersMain
                     break;
                 case "3":
                     SmartIluminatingSystemMain.main(null); // Apelez metoda main din clasa SmartIluminatingSystemMain
