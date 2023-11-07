@@ -6,9 +6,9 @@ public class SmartClimateControl {
     private boolean isCoolingOn;
 
     public SmartClimateControl() {
-        this.temperature = 20; // Set default temperature to 20 degrees Celsius
-        this.isHeatingOn = false; // Heating is off by default
-        this.isCoolingOn = false; // Cooling is off by default
+        this.temperature = 20; // Setam valoare initiala cu 20 grade C
+        this.isHeatingOn = false; // Incalzirea este off by default
+        this.isCoolingOn = false; // Racirea este off by default
     }
 
     public SmartClimateControl(int initialTemperature, boolean initialHeatingState, boolean initialCoolingState) {
@@ -20,39 +20,39 @@ public class SmartClimateControl {
     public void increaseTemperature() {
         if (temperature < 30) {
             temperature++;
-            System.out.println("Temperature increased to " + temperature + " degrees Celsius.");
+            System.out.println("Temperatura a crescut cu " + temperature + " grade Celsius.");
         } else {
-            System.out.println("Maximum temperature reached (30 degrees Celsius).");
+            System.out.println("Temperatura maxima atinsa (30 grade Celsius).");
         }
     }
 
     public void decreaseTemperature() {
         if (temperature > 10) {
             temperature--;
-            System.out.println("Temperature decreased to " + temperature + " degrees Celsius.");
+            System.out.println("Temperatura a scazut la " + temperature + " grade Celsius.");
         } else {
-            System.out.println("Minimum temperature reached (10 degrees Celsius).");
+            System.out.println("Temperatura minima atinsa (10 grade Celsius).");
         }
     }
 
     public void turnOnHeating() {
         isHeatingOn = true;
-        System.out.println("Heating turned on.");
+        System.out.println("Incalzirea este pornita");
     }
 
     public void turnOffHeating() {
         isHeatingOn = false;
-        System.out.println("Heating turned off.");
+        System.out.println("Incalzirea este oprita");
     }
 
     public void turnOnCooling() {
         isCoolingOn = true;
-        System.out.println("Cooling turned on.");
+        System.out.println("Racirea este pornita");
     }
 
     public void turnOffCooling() {
         isCoolingOn = false;
-        System.out.println("Cooling turned off.");
+        System.out.println("Racirea este oprita");
     }
 
     public int getTemperature() {
