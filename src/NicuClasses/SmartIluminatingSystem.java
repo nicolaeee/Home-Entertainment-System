@@ -43,6 +43,10 @@ public class SmartIluminatingSystem {
         }
     }
 
+    public void setState(boolean state){
+
+    }
+
     // Alte metode specifice funcționalităților sistemului de iluminat inteligent
 
     public int getIntensity() {

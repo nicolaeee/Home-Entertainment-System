@@ -13,25 +13,31 @@ public class SmartIluminatingSystemMain {
         System.out.print("Este sistemul pornit? (true/false): ");
         boolean initialOnState = IluminatingSystem.nextBoolean();
 
-        SmartIluminatingSystem system = new SmartIluminatingSystem(initialIntensity, initialOnState);
+        //Constructor cu 2 parametri test
+        SmartIluminatingSystem IluminatingSystemParameters = new SmartIluminatingSystem(initialIntensity, initialOnState);
 
-        System.out.println("Intensitatea luminii: " + system.getIntensity());
-        System.out.println("Este pornit: " + system.isTurnedOn());
+        System.out.println("Intensitatea luminii: " + IluminatingSystemParameters.getIntensity());
+        System.out.println("Este pornit: " + IluminatingSystemParameters.isTurnedOn());
 
-        // Testează metodele turnOn și turnOff
-        system.turnOn();
-        System.out.println("Este pornit: " + system.isTurnedOn());
-        system.turnOff();
-        System.out.println("Este pornit: " + system.isTurnedOn());
+        // Testeaza metodele turnOn si turnOff
+        IluminatingSystemParameters.turnOn();
+        System.out.println("Este pornit: " + IluminatingSystemParameters.isTurnedOn());
+        IluminatingSystemParameters.turnOff();
+        System.out.println("Este pornit: " + IluminatingSystemParameters.isTurnedOn());
 
-        // Testează metoda setIntensity
-        system.turnOn(); // Asigură-te că sistemul este pornit
+        // Testeazq metoda setIntensity
+        IluminatingSystemParameters.turnOn(); // Asigura că sistemul este pornit
 
         System.out.print("Introdu noua intensitate a luminii (0-100): ");
         int newIntensity = IluminatingSystem.nextInt();
-        system.setIntensity(newIntensity);
-        System.out.println("Intensitatea luminii: " + system.getIntensity());
+        IluminatingSystemParameters.setIntensity(newIntensity);
+        System.out.println("Intensitatea luminii: " + IluminatingSystemParameters.getIntensity());
 
         IluminatingSystem.close();
+
+        System.out.println("       ");
+
+
+
     }
 }
