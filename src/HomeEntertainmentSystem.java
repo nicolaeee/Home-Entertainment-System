@@ -2,6 +2,8 @@
 
 import BogdanClasses.SoundBarBox;
 import BogdanClasses.TvWithSpeakers;
+import NicuClasses.SmartClimateControl;
+import NicuClasses.SmartClimateControlMain;
 import NicuClasses.SmartIluminatingSystem;
 import NicuClasses.SmartIluminatingSystemMain;
 
@@ -16,7 +18,8 @@ public class HomeEntertainmentSystem {
             System.out.println("1. SoundBarBox");
             System.out.println("2. TvWithSpeakers");
             System.out.println("3. SmartIluminatingSystem");
-            System.out.println("4. Iesire");
+            System.out.println("4. SmartClimateControlMain");
+            System.out.println("5. Iesire");
 
             System.out.print("Introdu nr clasei: ");
             String choice = scanner.next();
@@ -29,9 +32,11 @@ public class HomeEntertainmentSystem {
                     TvWithSpeakersMain.main(null); // Apelez metoda main din clasa TvWithSpeakersMain
                     break;
                 case "3":
-                    SmartIluminatingSystemMain.main(null); // Apelez metoda main din clasa SmartIluminatingSystem
+                    SmartIluminatingSystemMain.main(null); // Apelez metoda main din clasa SmartIluminatingSystemMain
                     break;
                 case "4":
+                    SmartClimateControlMain.main(null); // Apelez metode main din clasa SmartClimateControlMain
+                case "5":
                     System.out.println("Inchide programul.");
                     scanner.close();
                     System.exit(0);
