@@ -1,5 +1,5 @@
 package NicuClasses;
-
+import java.util.Scanner;
 public class SmartClimateControlMain {
     public static void main(String[] args) {
         SmartClimateControl control = new SmartClimateControl();
@@ -32,5 +32,27 @@ public class SmartClimateControlMain {
         System.out.println("Racirea este pornita: " + control.isCoolingOn());
         control.turnOffCooling();
         System.out.println("Racirea este pornita: " + control.isCoolingOn());
+
+        //Testarea cu mod dinamic si introducere de la tastatura
+        Scanner ClimateControl = new Scanner(System.in);
+
+        System.out.print("Introdu temperatura initiala (10-30): ");
+        int initialTemperature = ClimateControl.nextInt();
+
+        System.out.print("Este incalzirea pornita? (true/false): ");
+        boolean initialHeatingState =   ClimateControl.nextBoolean();
+
+        System.out.print("Este racirea pornita? (true/false): ");
+        boolean initialCoolingState = ClimateControl.nextBoolean();
+
+        SmartClimateControl ClimateControlParameters = new SmartClimateControl(initialTemperature, initialHeatingState, initialCoolingState);
+
+        System.out.println("Temperatura: " + control.getTemperature());
+        System.out.println("Incalzirea este pornita: " + control.isHeatingOn());
+        System.out.println("Racirea este pornita: " + control.isCoolingOn());
+
+        // Other tests can go here
+
+        ClimateControl.close();
     }
 }

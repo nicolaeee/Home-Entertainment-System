@@ -34,7 +34,7 @@ public void AdjustVolume(int Volume){
         }
 }
 
-//Metoda pentru a ajusta nivelul bass-ului//
+    //Metoda pentru a ajusta nivelul bass-ului//
     public void AdjustBass(int Bass){
         if(Bass>=0&&Bass<=100) {
             this.Bass = Bass;
