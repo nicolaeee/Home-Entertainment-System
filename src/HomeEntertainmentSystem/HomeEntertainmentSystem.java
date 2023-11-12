@@ -1,4 +1,6 @@
-package HomeEntertainmentSystem;//Importarea claselor
+package HomeEntertainmentSystem;
+
+//Importarea claselor
 
 import BogdanClasses.SoundBarBox;
 import BogdanClasses.SoundBarBoxMain;
