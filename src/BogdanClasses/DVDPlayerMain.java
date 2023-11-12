@@ -1,20 +1,22 @@
 package BogdanClasses;
 
+//Importarea claselor
 import java.util.Scanner;
 
-public class SoundBarBoxMain {
+public class DVDPlayerMain {
     public static void main(String[] args) {
-        //Instanta pentru SoundBarBox
-        SoundBarBox soundBar = new SoundBarBox();
+        // Instanta pentru DVDPlayer
+        DVDPlayer dvdPlayer = new DVDPlayer();
 
-        //Meniu principal
+        // Meniu principal
         Scanner scanner = new Scanner(System.in);
         String choice;
 
+        // Executam operatiile
         do {
             System.out.println("\nMeniu principal:");
-            System.out.println("1. Control SoundBar");
-            System.out.println("2. Creare vector cu instanțe");
+            System.out.println("1. Control DVDPlayer");
+            System.out.println("2. Creare vector cu 10 instanțe");
             System.out.println("3. Iesire");
 
             System.out.print("Introdu optiunea: ");
@@ -22,20 +24,20 @@ public class SoundBarBoxMain {
 
             switch (choice) {
                 case "1":
-                    soundBar.ControlSpecifiedDevice();
+                    dvdPlayer.ControlSpecifiedDevice();
                     break;
                 case "2":
-                    //Creez un vector cu cele 10 instante din clasa SoundBarBox(22.11.2023)
-                    SoundBarBox[] soundBars = new SoundBarBox[10];
+                    // Creez un vector cu 10 instante de DVDPlayer(22.11.2023)
+                    DVDPlayer[] dvdPlayers = new DVDPlayer[10];
                     for (int i = 0; i < 10; i++) {
-                        soundBars[i] = new SoundBarBox(i * 10, i * 5, i % 2 == 0, i * 10 + 5);
+                        dvdPlayers[i] = new DVDPlayer(i % 2 == 0, i % 3 == 0, i % 4 == 0);
                     }
 
-                    //Afisez instantele pt fiecare clasa(22.11.2023)
-                    System.out.println("Instante din clasa SoundBarBox:");
+                    // Afisez informatiile pentru fiecare DVDPlayer(22.11.2023)
+                    System.out.println("Instante din clasa DVDPlayer:");
                     for (int i = 0; i < 10; i++) {
-                        System.out.println("SoundBar " + (i + 1) + ":");
-                        soundBars[i].infoSoundBar();
+                        System.out.println("DVDPlayer " + (i + 1) + ":");
+                        System.out.println(dvdPlayers[i].toString());
                         System.out.println("------------------------");
                     }
                     break;
@@ -43,7 +45,7 @@ public class SoundBarBoxMain {
                     System.out.println("Iesire");
                     break;
                 default:
-                    System.out.println("Optiunea nu este valida.");
+                    System.out.println("Optiunea nu este valida");
             }
         } while (!choice.equals("3"));
 

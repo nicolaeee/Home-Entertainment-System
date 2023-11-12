@@ -43,7 +43,7 @@ public class TvWithSpeakersMain {
                     System.out.println("Iesire");
                     break;
                 default:
-                    System.out.println("Optiunea nu este valida.");
+                    System.out.println("Optiunea nu este valida");
             }
         } while (!choice.equals("3"));
 

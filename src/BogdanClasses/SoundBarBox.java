@@ -32,9 +32,10 @@ public class SoundBarBox extends HomeEntertainmentSystem {
         this.balance = other.balance;
     }
 
-    //Constructor cu argumente(22.11.2023)
-    public SoundBarBox(int volume, int bass, boolean b, int i) {
+    public SoundBarBox(int i, int volume, boolean b, int balance) {//22.11.2023
+        super();
     }
+
 
     //Metoda pentru a porni soundbar-ul
     @Override
