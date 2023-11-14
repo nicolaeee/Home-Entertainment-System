@@ -1,3 +1,4 @@
+/*
 package BogdanClasses;
 
 import java.util.Scanner;
@@ -51,3 +52,5 @@ public class SoundBarBoxMain {
         scanner.close();
     }
 }
+
+*/

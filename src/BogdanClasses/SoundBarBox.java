@@ -32,11 +32,6 @@ public class SoundBarBox extends HomeEntertainmentSystem {
         this.balance = other.balance;
     }
 
-    public SoundBarBox(int i, int volume, boolean b, int balance) {//22.11.2023
-        super();
-    }
-
-
     //Metoda pentru a porni soundbar-ul
     @Override
     public void powerOn() {

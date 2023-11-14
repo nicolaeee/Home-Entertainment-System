@@ -1,4 +1,4 @@
-package BogdanClasses;
+/*package BogdanClasses;
 
 //Importarea claselor
 import java.util.Scanner;
@@ -53,3 +53,6 @@ public class DVDPlayerMain {
         scanner.close();
     }
 }
+
+
+ */

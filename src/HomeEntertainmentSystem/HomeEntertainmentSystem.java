@@ -2,9 +2,9 @@ package HomeEntertainmentSystem;
 
 //Importarea claselor
 
+import BogdanClasses.DVDPlayer;
 import BogdanClasses.SoundBarBox;
-import BogdanClasses.SoundBarBoxMain;
-import BogdanClasses.TvWithSpeakersMain;
+import BogdanClasses.TvWithSpeakers;
 import NicuClasses.SmartClimateControlMain;
 import NicuClasses.SmartIluminatingSystemMain;
 
@@ -32,7 +32,7 @@ public class HomeEntertainmentSystem {
     }
 
     //Metoda care afiseaza daca dispozitivul este pornit/oprit
-    public void displayStatus(){
+    public void displayStatus() {
         System.out.println("Starea sistemului:");
         System.out.println("Dispozitivul este " + (isPoweredOn ? "pornit" : "oprit") + ".");
 
@@ -46,11 +46,9 @@ public class HomeEntertainmentSystem {
 
         do {
             System.out.println("Alege una dintre urmatoarele optiuni:");
-            System.out.println("1. Porneste dispozitivul");
-            System.out.println("2. Opreste dispozitivul");
-            System.out.println("3. Starea dispozitivului");
-            System.out.println("4. Controleaza dispozitivul");
-            System.out.println("5. Iesire");
+            System.out.println("1. Starea dispozitivului");
+            System.out.println("2. Controleaza dispozitivul");
+            System.out.println("3. Iesire");
 
             System.out.println("Introdu optiunea:");
             choice = scanner.next();
@@ -58,39 +56,31 @@ public class HomeEntertainmentSystem {
             //Executam optiunile
             switch (choice) {
                 case "1":
-                    powerOn();
-                    break;
-                case "2":
-                    powerOff();
-                    break;
-                case "3":
                     displayStatus();
                     break;
-                case "4":
+                case "2":
                     ControlSpecifiedDevice();
                     break;
-                case "5":
-                    System.out.println("Iesire din program.");
+                case "3":
+                    System.out.println("Iesire din program");
                     break;
                 default:
-                    System.out.println("Optiunea nu este valida.");
+                    System.out.println("Optiunea nu este valida");
             }
-        } while (!choice.equals("5"));
+        } while (!choice.equals("3"));
     }
 
     //Aici cream o metoda goala si pe care o vom suprascrie ulterior in clasele pe care le avem
-    public void ControlSpecifiedDevice(){
+    public void ControlSpecifiedDevice() {
         System.out.println("Controlul dispozitivului");
     }
 
     //Aici este main-ul clasei HomeEntertainmentSystem
     public static void main(String[] args) {
-        //Declaram si initializam o instanta noua - system
-        HomeEntertainmentSystem system=new HomeEntertainmentSystem();
-        //Instanta care citeste datele de la tastatura
+        HomeEntertainmentSystem system = new HomeEntertainmentSystem();
         Scanner scanner = new Scanner(System.in);
 
-        //Cream un meniu pentru a putea accesa si testa cu usurinta fiecare clasa
+        // Cream un meniu pentru a putea accesa si testa cu usurinta fiecare clasa
         while (true) {
             System.out.println("Alege clasa pe care vrei sa o testezi:");
             System.out.println("1. SoundBarBox");
@@ -99,33 +89,43 @@ public class HomeEntertainmentSystem {
             System.out.println("4. SmartClimateControlMain");
             System.out.println("5. Iesire");
 
-            System.out.print("Introdu nr clasei: ");
+            System.out.print("Introdu numarul clasei: ");
             String choice = scanner.next();
 
-            //Executam optiunile
             switch (choice) {
                 case "1":
-                    SoundBarBoxMain.main(null); // Apelez metoda main din clasa BogdanClasses.SoundBarBoxMain
+                    testSoundBarBox();
                     break;
                 case "2":
-                    TvWithSpeakersMain.main(null); // Apelez metoda main din clasa BogdanClasses.TvWithSpeakersMain
+                    testTvWithSpeakers();
                     break;
                 case "3":
-                    SmartIluminatingSystemMain.main(null); // Apelez metoda main din clasa SmartIluminatingSystemMain
-                    break;
+                    testDVDPlayer();
                 case "4":
-                    SmartClimateControlMain.main(null); // Apelez metode main din clasa SmartClimateControlMain
-                case "5":
-                    System.out.println("Inchide programul.");
+                    System.out.println("Inchide programul");
                     scanner.close();
                     System.exit(0);
                 default:
-                    System.out.println("Optiunea este invalida.");
+                    System.out.println("Optiunea este invalida");
             }
         }
     }
-}
 
+    private static void testSoundBarBox() {
+        SoundBarBox soundBarBox = new SoundBarBox();
+        soundBarBox.ControlDevice();
+    }
+
+    private static void testTvWithSpeakers() {
+        TvWithSpeakers tvWithSpeakers = new TvWithSpeakers();
+        tvWithSpeakers.ControlDevice();
+    }
+
+    private static void testDVDPlayer() {
+        DVDPlayer dvdPlayer = new DVDPlayer();
+        dvdPlayer.ControlDevice();
+    }
+}
 /**/
 
 /**/

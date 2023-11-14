@@ -1,4 +1,4 @@
-package BogdanClasses;
+/*package BogdanClasses;
 
 //Importarea claselor
 import java.util.Scanner;
@@ -51,3 +51,5 @@ public class TvWithSpeakersMain {
         scanner.close();
     }
 }
+
+ */
