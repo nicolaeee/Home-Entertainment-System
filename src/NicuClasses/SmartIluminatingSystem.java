@@ -1,6 +1,8 @@
 package NicuClasses;
 
-public class SmartIluminatingSystem {
+import HomeEntertainmentSystem.HomeEntertainmentSystem;
+
+public class SmartIluminatingSystem extends HomeEntertainmentSystem {
     private int lightIntensity;
     private boolean isTurnedOn;
 
