@@ -1,6 +1,8 @@
 package NicuClasses;
 
-public class SmartClimateControl {
+import HomeEntertainmentSystem.HomeEntertainmentSystem;
+
+public class  SmartClimateControl extends HomeEntertainmentSystem {
     private int temperature;
     private boolean isHeatingOn;
     private boolean isCoolingOn;
