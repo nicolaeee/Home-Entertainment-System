@@ -8,11 +8,13 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
     private int lightIntensity;
     private boolean isTurnedOn;
 
+    //Constructor implicit
     public SmartIluminatingSystem() {
         this.lightIntensity = 50; // setează intensitatea luminoasă inițială la 50
         this.isTurnedOn = false; // sistemul de iluminat este oprit când este creat
     }
 
+    //Constructor cu parametri
     public SmartIluminatingSystem(int initialIntensity, boolean initialOnState) {
         if (initialIntensity >= 0 && initialIntensity <= 100) {
             this.lightIntensity = initialIntensity;
@@ -24,6 +26,20 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
         this.isTurnedOn = initialOnState;
     }
 
+    //Constructor de copiere
+    public SmartIluminatingSystem(SmartIluminatingSystem other) {
+        this.lightIntensity = other.lightIntensity; // setează intensitatea luminoasă inițială la 50
+        this.isTurnedOn = other.isTurnedOn; // sistemul de iluminat este oprit când este creat
+    }
+
+    //Rescriem metoda toString()
+    @Override
+    public String toString() {
+        return "SmartClimateControl{" +
+                "Intensitatea luminii: " + lightIntensity +
+                ", isTurnedOn=" + isTurnedOn +
+                '}';
+    }
     public void turnOn() {
         isTurnedOn = true;
         System.out.println("Sistemul de iluminat: Pornit");

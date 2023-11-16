@@ -10,17 +10,37 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
     private boolean isHeatingOn;
     private boolean isCoolingOn;
 
+    //Constructor implicit
     public SmartClimateControl() {
         this.temperature = 20; // Setam valoare initiala cu 20 grade C
         this.isHeatingOn = false; // Incalzirea este off by default
         this.isCoolingOn = false; // Racirea este off by default
     }
 
+    //Constructor cu toti parametrii
     public SmartClimateControl(int initialTemperature, boolean initialHeatingState, boolean initialCoolingState) {
         this.temperature = initialTemperature;
         this.isHeatingOn = initialHeatingState;
         this.isCoolingOn = initialCoolingState;
     }
+
+    //Constructor de copiere
+    public SmartClimateControl(SmartClimateControl other) {
+        this.temperature = other.temperature;
+        this.isHeatingOn = other.isHeatingOn;
+        this.isCoolingOn = other.isCoolingOn;
+    }
+
+    //Rescriem metoda toString()
+    @Override
+    public String toString() {
+        return "SmartClimateControl{" +
+                "temperature=" + temperature +
+                ", isHeatingOn=" + isHeatingOn +
+                ", isCoolingOn=" + isCoolingOn +
+                '}';
+    }
+
 
     public void increaseTemperature() {
         if (temperature < 30) {

@@ -39,6 +39,11 @@ public class HomeEntertainmentSystem {
 
     }
 
+    //Metoda de baza toString care e mostenita si apoi redifinita in alte clasele
+    public String toString() {
+        return " ";
+    }
+
     //Metoda ce va avea ca scop pornirea/oprirea,starea sistemului si controlarea dispozitivelor
     public void ControlDevice() {
         //Instanta care citeste datele de la tastatura
