@@ -125,5 +125,6 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
         // Other tests can go here
 
         ClimateControl.close();
+
     }
 }

@@ -28,6 +28,7 @@ public class HomeEntertainmentSystem {
 
     //Metoda pentru a returna starea dispozitivului(pornit/oprit)
     public boolean isPoweredOn() {
+
         return isPoweredOn;
     }
 
