@@ -5,8 +5,8 @@ package HomeEntertainmentSystem;
 import BogdanClasses.DVDPlayer;
 import BogdanClasses.SoundBarBox;
 import BogdanClasses.TvWithSpeakers;
-import NicuClasses.SmartClimateControlMain;
-import NicuClasses.SmartIluminatingSystemMain;
+import NicuClasses.SmartClimateControl;
+import NicuClasses.SmartIluminatingSystem;
 
 import java.util.Scanner;
 
@@ -86,7 +86,7 @@ public class HomeEntertainmentSystem {
             System.out.println("1. SoundBarBox");
             System.out.println("2. TvWithSpeakers");
             System.out.println("3. SmartIluminatingSystem");
-            System.out.println("4. SmartClimateControlMain");
+            System.out.println("4. SmartClimateControl");
             System.out.println("5. Iesire");
 
             System.out.print("Introdu numarul clasei: ");
