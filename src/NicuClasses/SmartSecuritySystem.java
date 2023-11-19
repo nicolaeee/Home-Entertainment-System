@@ -37,23 +37,24 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
 
     public void activateAlarm() {
         isAlarmActivated = true;
-        System.out.println("Alarm activated. Be cautious!");
+        System.out.println("Alarma activata. Fii precaut!");
     }
 
     public void deactivateAlarm() {
         isAlarmActivated = false;
-        System.out.println("Alarm deactivated. All clear.");
+        System.out.println("Alarma dezactivata. Totul in ordine.");
     }
 
     public void turnOnSurveillance() {
         isSurveillanceOn = true;
-        System.out.println("Surveillance system is now active.");
+        System.out.println("Sistemul de supraveghere este acum activ.");
     }
 
     public void turnOffSurveillance() {
         isSurveillanceOn = false;
-        System.out.println("Surveillance system is turned off.");
+        System.out.println("Sistemul de supraveghere este oprit.");
     }
+
 
     public boolean isAlarmActivated() {
         return isAlarmActivated;
@@ -67,16 +68,16 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
         Scanner scanner = new Scanner(System.in);
         String choice;
 
-        // Executam optiunile
+        // Executăm opțiunile
         do {
-            System.out.println("Choose an option for Smart Security System:");
-            System.out.println("1. Activate Alarm");
-            System.out.println("2. Deactivate Alarm");
-            System.out.println("3. Turn On Surveillance");
-            System.out.println("4. Turn Off Surveillance");
-            System.out.println("5. Exit");
+            System.out.println("Alege o opțiune pentru Smart Security System:");
+            System.out.println("1. Activează alarma");
+            System.out.println("2. Dezactivează alarma");
+            System.out.println("3. Porneste supravegherea");
+            System.out.println("4. Oprește supravegherea");
+            System.out.println("5. Ieșire");
 
-            System.out.print("Enter your choice: ");
+            System.out.print("Introdu opțiunea ta: ");
             choice = scanner.next();
 
             switch (choice) {
@@ -93,12 +94,13 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
                     turnOffSurveillance();
                     break;
                 case "5":
-                    System.out.println("Exit");
+                    System.out.println("Ieșire");
                     break;
                 default:
-                    System.out.println("Invalid choice");
+                    System.out.println("Opțiune invalidă");
             }
 
         } while (!choice.equals("5"));
     }
+
 }
