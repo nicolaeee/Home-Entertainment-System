@@ -13,7 +13,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
     public DVDPlayer() {
     }
 
-    // Constructor cu argumente
+    // Constructor cu toate argumentele
     public DVDPlayer(boolean isPoweredOn, boolean isDiscInserted, boolean isPlaying) {
         this.isPoweredOn = isPoweredOn;
         this.isDiscInserted = isDiscInserted;
@@ -83,11 +83,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
     //Redefinirea metodei toString pentru a afisa datele
     @Override
     public String toString() {
-        return "DVDPlayer { " +
-                "IsPoweredOn=" + isPoweredOn +
-                ", IsDiscInserted=" + isDiscInserted +
-                ", IsPlaying=" + isPlaying +
-                " }";
+        return "DVDPlayer { " +"IsPoweredOn=" + isPoweredOn +", IsDiscInserted=" + isDiscInserted +", IsPlaying=" + isPlaying + " }";
     }
 
     //Redefinirea metodei de control pentru DVDPlayer

@@ -105,12 +105,7 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
     // Redefinirea metodei toString pentru a afisa datele
     @Override
     public String toString() {
-        return "TvWithSpeakers { " +
-                "IsPoweredOn=" + isPoweredOn +
-                ", Volume=" + volume +
-                ", Channel=" + channel +
-                ", AreSpeakersOn=" + areSpeakersOn +
-                " }";
+        return "TvWithSpeakers { " +"IsPoweredOn=" + isPoweredOn +", Volume=" + volume +", Channel=" + channel +", AreSpeakersOn=" + areSpeakersOn +" }";
     }
 
     // Implementarea metodei de control pentru TvWithSpeakers
