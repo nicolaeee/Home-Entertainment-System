@@ -7,6 +7,7 @@ import BogdanClasses.SoundBarBox;
 import BogdanClasses.TvWithSpeakers;
 import NicuClasses.SmartClimateControl;
 import NicuClasses.SmartIluminatingSystem;
+import NicuClasses.SmartSecuritySystem;
 
 import java.util.Scanner;
 
@@ -95,7 +96,8 @@ public class HomeEntertainmentSystem {
             System.out.println("3. DVDPlayer");
             System.out.println("4. SmartClimateControl");
             System.out.println("5. SmartIluminatingSystem");
-            System.out.println("6. Iesire");
+            System.out.println("6. SmartSecuritySystem");
+            System.out.println("7. Iesire");
 
             System.out.print("Introdu numarul clasei: ");
             String choice = scanner.next();
@@ -117,6 +119,8 @@ public class HomeEntertainmentSystem {
                 case "5":
                     testSmartIluminatingSystem();
                 case "6":
+                    testSmartSecuritySystem();
+                case "7":
                     System.out.println("Inchide programul");
                     scanner.close();
                     System.exit(0);
@@ -154,12 +158,19 @@ public class HomeEntertainmentSystem {
         smartIluminatingSystem.ControlDevice();
     }
 
+<<<<<<< HEAD
     //Afisam instantele
     public static void displayInstances(Object[] instances) {
         System.out.println("Instantele clasei:");
         for (Object instance : instances) {
             System.out.println(instance.toString());
         }
+=======
+    private static void testSmartSecuritySystem(){
+        //Instanta pentru testare a clasei SmartClimateControl - 3
+        SmartSecuritySystem smartSecuritySystem = new SmartSecuritySystem();
+        smartSecuritySystem.ControlDevice();
+>>>>>>> 68c908155adecf06d6d50dee3746c39fe9188489
     }
 }
 /**/
