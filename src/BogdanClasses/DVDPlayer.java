@@ -149,7 +149,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
     }
 
     //Metoda care creaza un vector cu 10 instante
-    public static DVDPlayer[] createDVDPlayerInstances() {
+    public static DVDPlayer[] DVDPlayerInstances() {
         DVDPlayer[] dvdPlayerInst = new DVDPlayer[10];
         for (int i = 0; i < 10; i++) {
             dvdPlayerInst[i] = new DVDPlayer();

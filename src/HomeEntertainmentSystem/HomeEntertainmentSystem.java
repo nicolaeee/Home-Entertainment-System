@@ -109,11 +109,11 @@ public class HomeEntertainmentSystem {
                     break;
                 case "2":
                     testTvWithSpeakers();
-                    displayInstances(TvWithSpeakers.createTvWithSpeakersInstances());
+                    displayInstances(TvWithSpeakers.TvWithSpeakersInstances());
                     break;
                 case "3":
                     testDVDPlayer();
-                    displayInstances(DVDPlayer.createDVDPlayerInstances());
+                    displayInstances(DVDPlayer.DVDPlayerInstances());
                 case "4":
                     testSmartClimateControl();
                 case "5":
