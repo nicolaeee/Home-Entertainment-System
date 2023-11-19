@@ -62,13 +62,6 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
             System.out.println("Nu poți seta intensitatea când sistemul de iluminat este oprit");
         }
     }
-
-    public void setState(boolean state){
-
-    }
-
-    // Alte metode specifice funcționalităților sistemului de iluminat inteligent
-
     public int getIntensity() {
         return lightIntensity;
     }
@@ -153,6 +146,44 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
         iluminatingSystem.setIntensity(newIntensity);
         System.out.println("Intensitatea luminii: " + iluminatingSystem.getIntensity());
     }
+    public void ControlSpecifiedDevice(SmartIluminatingSystem iluminatingSystem) {
+        // Instanta pentru citirea datelor de la tastatura
+        Scanner scanner = new Scanner(System.in);
+        // Declaram
+        String choice;
 
+        // Executam optiunile
+        do {
+            System.out.println("Alege o opțiune pentru Smart Iluminating System:");
+            System.out.println("1. Porneste iluminatul");
+            System.out.println("2. Opreste iluminatul");
+            System.out.println("3. Seteaza intensitatea");
+            System.out.println("4. Iesire");
 
+            System.out.print("Introdu optiunea: ");
+            choice = scanner.next();
+
+            switch (choice) {
+                case "1":
+                    iluminatingSystem.turnOn();
+                    break;
+                case "2":
+                    iluminatingSystem.turnOff();
+                    break;
+                case "3":
+                    System.out.print("Introdu noua intensitate a luminii (0-100): ");
+                    int newIntensity = scanner.nextInt();
+                    iluminatingSystem.setIntensity(newIntensity);
+                    break;
+                case "4":
+                    System.out.println("Iesire");
+                    break;
+                default:
+                    System.out.println("Optiunea nu este valida");
+            }
+
+        } while (!choice.equals("4"));
     }
+
+
+}
