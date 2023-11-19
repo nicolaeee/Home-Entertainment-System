@@ -39,7 +39,7 @@ public class HomeEntertainmentSystem {
 
     }
 
-    //Metoda de baza toString care e mostenita si apoi redifinita in alte clasele
+    //Metoda de baza toString care e mostenita si apoi redifinita in alte clasele(comun)
     public String toString() {
         return " ";
     }
