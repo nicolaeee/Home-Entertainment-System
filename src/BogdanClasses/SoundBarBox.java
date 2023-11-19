@@ -122,12 +122,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
     // Redefinirea metodei toString pentru a afisa datele
     @Override
     public String toString() {
-        return "SoundBarBox { " +
-                "Volume=" + volume +
-                ", Bass=" + bass +
-                ", isPoweredOn=" + isPoweredOn +
-                ", Balance=" + balance +
-                " }";
+        return "SoundBarBox { " +"Volume=" + volume +", Bass=" + bass +", isPoweredOn=" + isPoweredOn +", Balance=" + balance +" }";
     }
 
     // Implementarea metodei de control pentru SoundBar
