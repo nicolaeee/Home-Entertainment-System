@@ -79,39 +79,80 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
 
     //Metoda main pentru testarea metodelor si initializarea instantelor
     public static void main(String[] args) {
-        Scanner IluminatingSystem = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        SmartIluminatingSystem iluminatingSystem = new SmartIluminatingSystem();
 
-        System.out.print("Introdu intensitatea inițială a luminii (0-100): ");
-        int initialIntensity = IluminatingSystem.nextInt();
+        int choice;
 
+        do {
+            System.out.println("\nMeniu de testare:");
+            System.out.println("1. Testare constructor de baza");
+            System.out.println("2. Testare constructor cu parametri");
+            System.out.println("3. Testare metode turnOn si turnOff");
+            System.out.println("4. Testare metoda setIntensity");
+            System.out.println("5. Iesire");
+
+            System.out.print("Alege optiunea: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    testConstructorDeBaza(iluminatingSystem);
+                    break;
+                case 2:
+                    testConstructorCuParametri(scanner);
+                    break;
+                case 3:
+                    testMetodeTurnOnSiTurnOff(iluminatingSystem);
+                    break;
+                case 4:
+                    testMetodaSetIntensity(scanner, iluminatingSystem);
+                    break;
+                case 5:
+                    System.out.println("La revedere!");
+                    break;
+                default:
+                    System.out.println("Optiune invalida. Te rog sa alegi din nou.");
+            }
+
+        } while (choice != 5);
+
+        scanner.close();
+    }
+
+    private static void testConstructorDeBaza(SmartIluminatingSystem iluminatingSystem) {
+        System.out.println("\nTestare constructor de baza:");
+        System.out.println("Intensitatea luminii: " + iluminatingSystem.getIntensity());
+        System.out.println("Este pornit: " + iluminatingSystem.isTurnedOn());
+    }
+
+    private static void testConstructorCuParametri(Scanner scanner) {
+        System.out.println("\nTestare constructor cu parametri:");
+        System.out.print("Introdu intensitatea initiala (0-100): ");
+        int intensity = scanner.nextInt();
         System.out.print("Este sistemul pornit? (true/false): ");
-        boolean initialOnState = IluminatingSystem.nextBoolean();
+        boolean isTurnedOn = scanner.nextBoolean();
+        SmartIluminatingSystem iluminatingSystem = new SmartIluminatingSystem(intensity, isTurnedOn);
+        System.out.println("Intensitatea luminii: " + iluminatingSystem.getIntensity());
+        System.out.println("Este pornit: " + iluminatingSystem.isTurnedOn());
+    }
 
-        //Constructor cu 2 parametri test
-        SmartIluminatingSystem IluminatingSystemParameters = new SmartIluminatingSystem(initialIntensity, initialOnState);
+    private static void testMetodeTurnOnSiTurnOff(SmartIluminatingSystem iluminatingSystem) {
+        System.out.println("\nTestare metode turnOn si turnOff:");
+        iluminatingSystem.turnOn();
+        System.out.println("Este pornit: " + iluminatingSystem.isTurnedOn());
+        iluminatingSystem.turnOff();
+        System.out.println("Este pornit: " + iluminatingSystem.isTurnedOn());
+    }
 
-        System.out.println("Intensitatea luminii: " + IluminatingSystemParameters.getIntensity());
-        System.out.println("Este pornit: " + IluminatingSystemParameters.isTurnedOn());
-
-        // Testeaza metodele turnOn si turnOff
-        IluminatingSystemParameters.turnOn();
-        System.out.println("Este pornit: " + IluminatingSystemParameters.isTurnedOn());
-        IluminatingSystemParameters.turnOff();
-        System.out.println("Este pornit: " + IluminatingSystemParameters.isTurnedOn());
-
-
-        IluminatingSystemParameters.turnOn(); // Asigura că sistemul este pornit
-
+    private static void testMetodaSetIntensity(Scanner scanner, SmartIluminatingSystem iluminatingSystem) {
+        System.out.println("\nTestare metoda setIntensity:");
+        iluminatingSystem.turnOn(); // Asigura că sistemul este pornit
         System.out.print("Introdu noua intensitate a luminii (0-100): ");
-        int newIntensity = IluminatingSystem.nextInt();
-        IluminatingSystemParameters.setIntensity(newIntensity);
-        System.out.println("Intensitatea luminii: " + IluminatingSystemParameters.getIntensity());
-
-        IluminatingSystem.close();
-
-        System.out.println("       ");
-
+        int newIntensity = scanner.nextInt();
+        iluminatingSystem.setIntensity(newIntensity);
+        System.out.println("Intensitatea luminii: " + iluminatingSystem.getIntensity());
+    }
 
 
     }
-}

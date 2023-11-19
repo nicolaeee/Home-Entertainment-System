@@ -50,11 +50,15 @@ public class HomeEntertainmentSystem {
         Scanner scanner = new Scanner(System.in);
         String choice;
 
+        //Instanta pentru controlul dispozitivului de tip SmartClimateControl - 1
+        SmartClimateControl climateControl = new SmartClimateControl();
+
         do {
             System.out.println("Alege una dintre urmatoarele optiuni:");
             System.out.println("1. Starea dispozitivului");
             System.out.println("2. Controleaza dispozitivul");
-            System.out.println("3. Iesire");
+            System.out.println("3. Controleaza dispozitivul de incalzire inteligenta");
+            System.out.println("4. Iesire");
 
             System.out.println("Introdu optiunea:");
             choice = scanner.next();
@@ -68,6 +72,9 @@ public class HomeEntertainmentSystem {
                     ControlSpecifiedDevice();
                     break;
                 case "3":
+                    climateControl.ControlSpecifiedDevice(climateControl);
+                    break;
+                case "4":
                     System.out.println("Iesire din program");
                     break;
                 default:
@@ -135,8 +142,15 @@ public class HomeEntertainmentSystem {
     }
 
     private static void testSmartClimateControl(){
+        //Instanta pentru testare a clasei SmartClimateControl - 2
         SmartClimateControl smartClimateControl = new SmartClimateControl();
         smartClimateControl.ControlDevice();
+    }
+
+    private static void testSmartIluminatingSystem(){
+        //Instanta pentru testare a clasei SmartClimateControl - 3
+        SmartIluminatingSystem smartIluminatingSystem = new SmartIluminatingSystem();
+        smartIluminatingSystem.ControlDevice();
     }
 }
 /**/
