@@ -158,20 +158,22 @@ public class HomeEntertainmentSystem {
         smartIluminatingSystem.ControlDevice();
     }
 
-<<<<<<< HEAD
+
     //Afisam instantele
     public static void displayInstances(Object[] instances) {
         System.out.println("Instantele clasei:");
         for (Object instance : instances) {
             System.out.println(instance.toString());
         }
-=======
+    }
+
     private static void testSmartSecuritySystem(){
         //Instanta pentru testare a clasei SmartClimateControl - 3
         SmartSecuritySystem smartSecuritySystem = new SmartSecuritySystem();
         smartSecuritySystem.ControlDevice();
->>>>>>> 68c908155adecf06d6d50dee3746c39fe9188489
+
     }
+
 }
 /**/
 
