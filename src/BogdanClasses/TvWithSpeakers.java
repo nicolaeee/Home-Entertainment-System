@@ -162,4 +162,13 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
 
         } while (!choice.equals("7"));
     }
+
+    //Metoda care creaza un vector cu 10 instante
+    public static TvWithSpeakers[] createTvWithSpeakersInstances() {
+        TvWithSpeakers[] tvWithSpeakersInst = new TvWithSpeakers[10];
+        for (int i = 0; i < 10; i++) {
+            tvWithSpeakersInst[i] = new TvWithSpeakers();
+        }
+        return tvWithSpeakersInst;
+    }
 }

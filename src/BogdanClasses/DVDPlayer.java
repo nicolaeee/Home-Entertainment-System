@@ -147,4 +147,13 @@ public class DVDPlayer extends HomeEntertainmentSystem {
 
         } while (!choice.equals("7"));
     }
+
+    //Metoda care creaza un vector cu 10 instante
+    public static DVDPlayer[] createDVDPlayerInstances() {
+        DVDPlayer[] dvdPlayerInst = new DVDPlayer[10];
+        for (int i = 0; i < 10; i++) {
+            dvdPlayerInst[i] = new DVDPlayer();
+        }
+        return dvdPlayerInst;
+    }
 }

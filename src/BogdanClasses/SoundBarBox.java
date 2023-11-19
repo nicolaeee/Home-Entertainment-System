@@ -187,4 +187,13 @@ public class SoundBarBox extends HomeEntertainmentSystem {
 
         } while (!choice.equals("8"));
     }
+
+    //Metoda care creaza un vector cu 10 instante
+    public static SoundBarBox[] SoundBarBoxInstances() {
+        SoundBarBox[] soundBarBoxInst = new SoundBarBox[10];
+        for (int i = 0; i < 10; i++) {
+            soundBarBoxInst[i] = new SoundBarBox();
+        }
+        return soundBarBoxInst;
+    }
 }

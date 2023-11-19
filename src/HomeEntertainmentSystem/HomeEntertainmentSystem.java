@@ -103,12 +103,15 @@ public class HomeEntertainmentSystem {
             switch (choice) {
                 case "1":
                     testSoundBarBox();
+                    displayInstances(SoundBarBox.SoundBarBoxInstances());
                     break;
                 case "2":
                     testTvWithSpeakers();
+                    displayInstances(TvWithSpeakers.createTvWithSpeakersInstances());
                     break;
                 case "3":
                     testDVDPlayer();
+                    displayInstances(DVDPlayer.createDVDPlayerInstances());
                 case "4":
                     testSmartClimateControl();
                 case "5":
@@ -123,6 +126,7 @@ public class HomeEntertainmentSystem {
         }
     }
 
+    //Cream instante si apelam metoda ControlDevice()
     private static void testSoundBarBox() {
         SoundBarBox soundBarBox = new SoundBarBox();
         soundBarBox.ControlDevice();
@@ -148,6 +152,14 @@ public class HomeEntertainmentSystem {
         //Instanta pentru testare a clasei SmartClimateControl - 3
         SmartIluminatingSystem smartIluminatingSystem = new SmartIluminatingSystem();
         smartIluminatingSystem.ControlDevice();
+    }
+
+    //Afisam instantele
+    public static void displayInstances(Object[] instances) {
+        System.out.println("Instantele clasei:");
+        for (Object instance : instances) {
+            System.out.println(instance.toString());
+        }
     }
 }
 /**/
