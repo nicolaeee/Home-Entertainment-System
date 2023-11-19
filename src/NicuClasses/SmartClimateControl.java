@@ -93,6 +93,8 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
     }
 
     public static void main(String[] args) {
+
+        //Menu de testare a clasei SmartClimateControl
         Scanner scanner = new Scanner(System.in);
         SmartClimateControl climateControl = new SmartClimateControl();
 
