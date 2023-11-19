@@ -93,58 +93,163 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
     }
 
     public static void main(String[] args) {
-        SmartClimateControl control = new SmartClimateControl();
+        Scanner scanner = new Scanner(System.in);
+        SmartClimateControl climateControl = new SmartClimateControl();
 
-        // Testarea consturctului de baza
+        int choice;
+
+        do {
+            System.out.println("\nMeniu de testare:");
+            System.out.println("1. Testare constructor de baza");
+            System.out.println("2. Testare constructor cu parametri");
+            System.out.println("3. Testare metode increaseTemperature si decreaseTemperature");
+            System.out.println("4. Testare metode turnOnHeating si turnOffHeating");
+            System.out.println("5. Testare metode turnOnCooling si turnOffCooling");
+            System.out.println("6. Testare cu mod dinamic si introducere de la tastatura");
+            System.out.println("0. Iesire");
+
+            System.out.print("Alege optiunea: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    testConstructorDeBaza(climateControl);
+                    break;
+                case 2:
+                    testConstructorCuParametri(scanner);
+                    break;
+                case 3:
+                    testMetodeIncreaseSiDecrease(climateControl);
+                    break;
+                case 4:
+                    testMetodeTurnOnSiTurnOffHeating(climateControl);
+                    break;
+                case 5:
+                    testMetodeTurnOnSiTurnOffCooling(climateControl);
+                    break;
+                case 6:
+                    testModDinamicSiIntroducere(scanner);
+                    break;
+                case 0:
+                    System.out.println("La revedere!");
+                    break;
+                default:
+                    System.out.println("Optiune invalida. Te rog sa alegi din nou.");
+            }
+
+        } while (choice != 0);
+
+        scanner.close();
+    }
+
+    private static void testConstructorDeBaza(SmartClimateControl control) {
+        System.out.println("\nTestare constructor de baza:");
         System.out.println("Temperatura: " + control.getTemperature());
         System.out.println("Incalzirea este pornita: " + control.isHeatingOn());
         System.out.println("Racirea este pornita: " + control.isCoolingOn());
+    }
 
-        // Testarea consturctului cu parametri
-        SmartClimateControl control2 = new SmartClimateControl(25, true, false);
-        System.out.println("Temperatura: " + control2.getTemperature());
-        System.out.println("Incalzirea este pornita: " + control2.isHeatingOn());
-        System.out.println("Racirea este pornita: " + control2.isCoolingOn());
+    private static void testConstructorCuParametri(Scanner scanner) {
+        System.out.println("\nTestare constructor cu parametri:");
+        System.out.print("Introdu temperatura (10-30): ");
+        int temperature = scanner.nextInt();
+        System.out.print("Este incalzirea pornita? (true/false): ");
+        boolean heating = scanner.nextBoolean();
+        System.out.print("Este racirea pornita? (true/false): ");
+        boolean cooling = scanner.nextBoolean();
+        SmartClimateControl control = new SmartClimateControl(temperature, heating, cooling);
+        System.out.println("Temperatura: " + control.getTemperature());
+        System.out.println("Incalzirea este pornita: " + control.isHeatingOn());
+        System.out.println("Racirea este pornita: " + control.isCoolingOn());
+    }
 
-        // Testarea metodelor increaseTemperature si decreaseTemperature
+    private static void testMetodeIncreaseSiDecrease(SmartClimateControl control) {
+        System.out.println("\nTestare metode increaseTemperature si decreaseTemperature:");
         control.increaseTemperature();
-        System.out.println("Temperatura: " + control.getTemperature());
+        System.out.println("Temperatura crescuta: " + control.getTemperature());
         control.decreaseTemperature();
-        System.out.println("Temperatura: " + control.getTemperature());
+        System.out.println("Temperatura scazuta: " + control.getTemperature());
+    }
 
-        // Testarea metodelor turnOnHeating si turnOffHeating
+    private static void testMetodeTurnOnSiTurnOffHeating(SmartClimateControl control) {
+        System.out.println("\nTestare metode turnOnHeating si turnOffHeating:");
         control.turnOnHeating();
         System.out.println("Incalzirea este pornita: " + control.isHeatingOn());
         control.turnOffHeating();
-        System.out.println("Incalzirea este pornita: " + control.isHeatingOn());
+        System.out.println("Incalzirea este oprita: " + control.isHeatingOn());
+    }
 
-        // Testarea metodelor turnOnHeating si turnOffHeating
+    private static void testMetodeTurnOnSiTurnOffCooling(SmartClimateControl control) {
+        System.out.println("\nTestare metode turnOnCooling si turnOffCooling:");
         control.turnOnCooling();
         System.out.println("Racirea este pornita: " + control.isCoolingOn());
         control.turnOffCooling();
-        System.out.println("Racirea este pornita: " + control.isCoolingOn());
-
-        //Testarea cu mod dinamic si introducere de la tastatura
-        Scanner ClimateControl = new Scanner(System.in);
-
-        System.out.print("Introdu temperatura initiala (10-30): ");
-        int initialTemperature = ClimateControl.nextInt();
-
-        System.out.print("Este incalzirea pornita? (true/false): ");
-        boolean initialHeatingState =   ClimateControl.nextBoolean();
-
-        System.out.print("Este racirea pornita? (true/false): ");
-        boolean initialCoolingState = ClimateControl.nextBoolean();
-
-        SmartClimateControl ClimateControlParameters = new SmartClimateControl(initialTemperature, initialHeatingState, initialCoolingState);
-
-        System.out.println("Temperatura: " + control.getTemperature());
-        System.out.println("Incalzirea este pornita: " + control.isHeatingOn());
-        System.out.println("Racirea este pornita: " + control.isCoolingOn());
-
-        // Other tests can go here
-
-        ClimateControl.close();
-
+        System.out.println("Racirea este oprita: " + control.isCoolingOn());
     }
+
+    private static void testModDinamicSiIntroducere(Scanner scanner) {
+        System.out.println("\nTestare cu mod dinamic si introducere de la tastatura:");
+        System.out.print("Introdu temperatura initiala (10-30): ");
+        int initialTemperature = scanner.nextInt();
+        System.out.print("Este incalzirea pornita? (true/false): ");
+        boolean initialHeatingState = scanner.nextBoolean();
+        System.out.print("Este racirea pornita? (true/false): ");
+        boolean initialCoolingState = scanner.nextBoolean();
+
+        SmartClimateControl climateControlParameters = new SmartClimateControl(initialTemperature, initialHeatingState, initialCoolingState);
+
+        System.out.println("Temperatura: " + climateControlParameters.getTemperature());
+        System.out.println("Incalzirea este pornita: " + climateControlParameters.isHeatingOn());
+        System.out.println("Racirea este pornita: " + climateControlParameters.isCoolingOn());
+    }
+    public void ControlSpecifiedDevice(SmartClimateControl climateControl) {
+        // Instanta pentru citirea datelor de la tastatura
+        Scanner scanner = new Scanner(System.in);
+        // Declaram
+        String choice;
+
+        // Executam optiunile
+        do {
+            System.out.println("Alege o opțiune pentru Smart Climate Control:");
+            System.out.println("1. Creste temperatura");
+            System.out.println("2. Scade temperatura");
+            System.out.println("3. Porneste incalzirea");
+            System.out.println("4. Opreste incalzirea");
+            System.out.println("5. Porneste racirea");
+            System.out.println("6. Opreste racirea");
+            System.out.println("7. Iesire");
+
+            System.out.print("Introdu optiunea: ");
+            choice = scanner.next();
+
+            switch (choice) {
+                case "1":
+                    climateControl.increaseTemperature();
+                    break;
+                case "2":
+                    climateControl.decreaseTemperature();
+                    break;
+                case "3":
+                    climateControl.turnOnHeating();
+                    break;
+                case "4":
+                    climateControl.turnOffHeating();
+                    break;
+                case "5":
+                    climateControl.turnOnCooling();
+                    break;
+                case "6":
+                    climateControl.turnOffCooling();
+                    break;
+                case "7":
+                    System.out.println("Iesire");
+                    break;
+                default:
+                    System.out.println("Optiunea nu este valida");
+            }
+
+        } while (!choice.equals("7"));
+    }
+
 }
+

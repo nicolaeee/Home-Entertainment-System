@@ -91,7 +91,7 @@ public class HomeEntertainmentSystem {
             System.out.println("Alege clasa pe care vrei sa o testezi:");
             System.out.println("1. SoundBarBox");
             System.out.println("2. TvWithSpeakers");
-            System.out.println("3. SmartIluminatingSystem");
+            System.out.println("3. DVDPlayer");
             System.out.println("4. SmartClimateControl");
             System.out.println("5. Iesire");
 
@@ -108,6 +108,8 @@ public class HomeEntertainmentSystem {
                 case "3":
                     testDVDPlayer();
                 case "4":
+                    testSmartClimateControl();
+                case "5":
                     System.out.println("Inchide programul");
                     scanner.close();
                     System.exit(0);
@@ -130,6 +132,11 @@ public class HomeEntertainmentSystem {
     private static void testDVDPlayer() {
         DVDPlayer dvdPlayer = new DVDPlayer();
         dvdPlayer.ControlDevice();
+    }
+
+    private static void testSmartClimateControl(){
+        SmartClimateControl smartClimateControl = new SmartClimateControl();
+        smartClimateControl.ControlDevice();
     }
 }
 /**/
