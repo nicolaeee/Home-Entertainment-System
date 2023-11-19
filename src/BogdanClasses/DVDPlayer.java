@@ -27,20 +27,6 @@ public class DVDPlayer extends HomeEntertainmentSystem {
         this.isPlaying = other.isPlaying;
     }
 
-    //Metoda pentru a porni DVDPlayer-ul
-    @Override
-    public void powerOn() {
-        super.powerOn(); //Apelez metoda powerOn din clasa parinte
-        System.out.println("DVDPlayer-ul a fost pornit");
-    }
-
-    //Metoda pentru a opri DVDPlayer-ul
-    @Override
-    public void powerOff() {
-        super.powerOff(); //Apelez metoda powerOff din clasa parinte
-        System.out.println("DVDPlayer-ul a fost oprit");
-    }
-
     // Metoda pentru a introduce un disc în DVDPlayer
     public void insertDisc() {
         if (isPoweredOn()) {

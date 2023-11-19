@@ -32,20 +32,6 @@ public class SoundBarBox extends HomeEntertainmentSystem {
         this.balance = other.balance;
     }
 
-    //Metoda pentru a porni soundbar-ul
-    @Override
-    public void powerOn() {
-        super.powerOn(); //Apelez metoda powerOn din clasa parinte
-        System.out.println("SoundBar-ul a fost pornit");
-    }
-
-    //Metoda pentru a opri soundbar-ul
-    @Override
-    public void powerOff() {
-        super.powerOff(); //Apelez metoda powerOff din clasa parinte
-        System.out.println("SoundBar-ul a fost oprit");
-    }
-
     //Metoda pentru a ajusta volumul soundbar-ului
     public void adjustVolume(int volume) {
         if (volume >= 0 && volume <= 100) {
