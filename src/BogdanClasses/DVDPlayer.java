@@ -36,7 +36,6 @@ public class DVDPlayer extends HomeEntertainmentSystem {
             System.out.println("DVDPlayer-ul trebuie sa fie pornit pentru a introduce un disc");
         }
     }
-
     // Metoda pentru a scoate discul din DVDPlayer
     public void ejectDisc() {
         if (isPoweredOn()) {
