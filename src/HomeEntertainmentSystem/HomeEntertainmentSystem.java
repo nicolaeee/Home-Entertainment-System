@@ -17,13 +17,13 @@ public class HomeEntertainmentSystem {
     //Metoda care indica daca dispozitivul nostru este pornit
     public void powerOn() {
         isPoweredOn = true;
-        System.out.println("Dispozitivul a fost pornit.");
+        System.out.println("Dispozitivul a fost pornit");
     }
 
     //Metoda care indica daca dispozitivul nostru este oprit
     public void powerOff() {
         isPoweredOn = false;
-        System.out.println("Dispozitivul a fost oprit.");
+        System.out.println("Dispozitivul a fost oprit");
     }
 
     //Metoda pentru a returna starea dispozitivului(pornit/oprit)
