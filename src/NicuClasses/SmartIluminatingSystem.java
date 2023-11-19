@@ -146,11 +146,13 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
         iluminatingSystem.setIntensity(newIntensity);
         System.out.println("Intensitatea luminii: " + iluminatingSystem.getIntensity());
     }
-    public void ControlSpecifiedDevice(SmartIluminatingSystem iluminatingSystem) {
+    @Override
+    public void ControlSpecifiedDevice() {
         // Instanta pentru citirea datelor de la tastatura
         Scanner scanner = new Scanner(System.in);
         // Declaram
         String choice;
+        SmartIluminatingSystem iluminatingSystem = new SmartIluminatingSystem();
 
         // Executam optiunile
         do {

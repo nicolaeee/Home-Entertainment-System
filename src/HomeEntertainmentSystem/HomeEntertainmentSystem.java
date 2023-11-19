@@ -50,19 +50,12 @@ public class HomeEntertainmentSystem {
         Scanner scanner = new Scanner(System.in);
         String choice;
 
-        //Instanta pentru controlul dispozitivului de tip SmartClimateControl
-        SmartClimateControl climateControl = new SmartClimateControl();
-
-        //Instanta pentru controlul dispozitivului de tip SmartIluminatingSystem
-        SmartIluminatingSystem iluminatingSystem = new SmartIluminatingSystem();
 
         do {
             System.out.println("Alege una dintre urmatoarele optiuni:");
             System.out.println("1. Starea dispozitivului");
             System.out.println("2. Controleaza dispozitivul");
-            System.out.println("3. Controleaza dispozitivul de incalzire inteligenta");
-            System.out.println("4. Controleaza dispozitivul de lumina inteligenta");
-            System.out.println("5. Iesire");
+            System.out.println("3. Iesire");
 
             System.out.println("Introdu optiunea:");
             choice = scanner.next();
@@ -76,17 +69,12 @@ public class HomeEntertainmentSystem {
                     ControlSpecifiedDevice();
                     break;
                 case "3":
-                    climateControl.ControlSpecifiedDevice(climateControl);
-                    break;
-                case "4":
-                    iluminatingSystem.ControlSpecifiedDevice(iluminatingSystem);
-                case "5":
                     System.out.println("Iesire din program");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
-        } while (!choice.equals("4"));
+        } while (!choice.equals("3"));
     }
 
     //Aici cream o metoda goala si pe care o vom suprascrie ulterior in clasele pe care le avem

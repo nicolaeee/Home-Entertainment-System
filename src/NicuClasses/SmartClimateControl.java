@@ -204,11 +204,14 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
         System.out.println("Incalzirea este pornita: " + climateControlParameters.isHeatingOn());
         System.out.println("Racirea este pornita: " + climateControlParameters.isCoolingOn());
     }
-    public void ControlSpecifiedDevice(SmartClimateControl climateControl) {
+   @Override
+    public void ControlSpecifiedDevice() {
         // Instanta pentru citirea datelor de la tastatura
         Scanner scanner = new Scanner(System.in);
         // Declaram
         String choice;
+        //Instanta pentru controlSpecifiedDevice
+        SmartClimateControl climateControl = new SmartClimateControl();
 
         // Executam optiunile
         do {
