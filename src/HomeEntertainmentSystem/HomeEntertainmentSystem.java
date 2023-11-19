@@ -7,6 +7,7 @@ import BogdanClasses.SoundBarBox;
 import BogdanClasses.TvWithSpeakers;
 import NicuClasses.SmartClimateControl;
 import NicuClasses.SmartIluminatingSystem;
+import NicuClasses.SmartSecuritySystem;
 
 import java.util.Scanner;
 
