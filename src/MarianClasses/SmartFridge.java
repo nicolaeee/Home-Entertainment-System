@@ -5,12 +5,13 @@ import HomeEntertainmentSystem.HomeEntertainmentSystem;
 import java.util.Scanner;
 
 public class SmartFridge {
-    private boolean isPoweredOn=false;
-    private float temperature;
-    private int numberOfDrinks;
-    private List<String> drinks;
-    private int foodQuantity;
-    private static final int restockThreshold = 10;
+    private boolean isPoweredOn=false;//Daca e pornit
+    private float temperature;//Temperature pe care o setam
+    private int numberOfDrinks;//Nr de bauturi
+    private List<String> drinks;//Lista de bauturi
+    private int foodQuantity;//Cantitatea de mancare
+    private static final int restockThreshold = 10;//Folosit pentru a detecta cand avem nevoie sa realimentam
+    //Constructor fara argumente
     public SmartFridge(){
         isPoweredOn=false;
         temperature=-4.0f;
@@ -18,6 +19,7 @@ public class SmartFridge {
         drinks= new ArrayList<>();
         foodQuantity=0;
     }
+    //Constructor cu argumente
     public SmartFridge(boolean Power, float temp, int nrDrinks,List<String> drinks, int foodQuant ){
         isPoweredOn = Power;
         temperature = temp;
@@ -25,6 +27,7 @@ public class SmartFridge {
         this.drinks = new ArrayList<>(drinks);
         foodQuantity = foodQuant;
     }
+    //Constructor de copiere
     public SmartFridge(SmartFridge other) {
         this.isPoweredOn = other.isPoweredOn;
         this.temperature = other.temperature;
@@ -40,6 +43,7 @@ public class SmartFridge {
         isPoweredOn = false;
         System.out.println("Frigiderul inteligent a fost oprit.");
     }
+    //Metoda prin care setam temperatura
     public void setTemperature(float newTemp) {
         if (isPoweredOn) {
             temperature = newTemp;
@@ -48,6 +52,7 @@ public class SmartFridge {
             System.out.println("Nu putem seta temperatura. Frigiderul nu este pornit.");
         }
     }
+    //Metoda prin care adugam bauturi
     public void addDrinks(List<String> newDrinks) {
         if (isPoweredOn) {
             drinks.addAll(newDrinks);
@@ -57,6 +62,7 @@ public class SmartFridge {
             System.out.println("Nu putem adauga bauturi. Frigiderul nu este pornit.");
         }
     }
+    //Metoda prin care ce bauturi avem
     public void displayDrinks() {
         if (isPoweredOn) {
             System.out.println("Bauturi valabile:");
@@ -67,6 +73,7 @@ public class SmartFridge {
             System.out.println("Nu putem afisa bauturi.Frigiderul este oprit");
         }
     }
+    //Metoda prin care adaugam mancare
     public void addFood(int quantity) {
         if (isPoweredOn) {
             foodQuantity += quantity;
@@ -75,14 +82,16 @@ public class SmartFridge {
             System.out.println("Nu putem adauga mancare. Frigiderul nu este pornit.");
         }
     }
+    //Metoda prin care aflam temperatura
     public float getTemperature() {
         return temperature;
     }
 
-    // Method to get the number of drinks in the fridge
+    // Metoda de a afla nr de bauturi
     public int getNumberOfDrinks() {
         return numberOfDrinks;
     }
+    //Metoda prin care verifica cantitatea de mancare
     public void checkRestockStatus() {
         if (foodQuantity <= restockThreshold) {
             System.out.println("Atentie: Re-alimenta-ti frigiderul cu mancare!");
