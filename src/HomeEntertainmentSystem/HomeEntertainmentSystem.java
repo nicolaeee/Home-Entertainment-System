@@ -116,19 +116,24 @@ public class HomeEntertainmentSystem {
                 case "3":
                     testDVDPlayer();
                     displayInstances(DVDPlayer.DVDPlayerInstances());
+                    break;
                 case "4":
                     testSmartClimateControl();
                     displayInstances(SmartClimateControl.SmartClimateControlInstances());
+                    break;
                 case "5":
                     testSmartIluminatingSystem();
                     displayInstances(SmartIluminatingSystem.SmartIluminatingSystemInstances());
+                    break;
                 case "6":
                     testSmartSecuritySystem();
                     displayInstances(SmartSecuritySystem.SmartSecuritySystemInstances());
+                    break;
                 case "7":
                     System.out.println("Inchide programul");
                     scanner.close();
                     System.exit(0);
+                    break;
                 default:
                     System.out.println("Optiunea este invalida");
             }
