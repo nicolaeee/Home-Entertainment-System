@@ -118,6 +118,7 @@ public class HomeEntertainmentSystem {
                     displayInstances(DVDPlayer.DVDPlayerInstances());
                 case "4":
                     testSmartClimateControl();
+                    displayInstances(SmartClimateControl.SmartClimateControlInstances());
                 case "5":
                     testSmartIluminatingSystem();
                 case "6":

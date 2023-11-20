@@ -1,6 +1,7 @@
 package NicuClasses;
 import java.util.Scanner;
 
+import BogdanClasses.SoundBarBox;
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
 import java.util.Scanner;
@@ -254,6 +255,15 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
             }
 
         } while (!choice.equals("7"));
+    }
+
+    //Metoda care creaza un vector cu 10 instante
+    public static SmartClimateControl[] SmartClimateControlInstances() {
+        SmartClimateControl[] smartClimateControls = new SmartClimateControl[10];
+        for (int i = 0; i < 10; i++) {
+            smartClimateControls[i] = new SmartClimateControl();
+        }
+        return smartClimateControls;
     }
 
 }
