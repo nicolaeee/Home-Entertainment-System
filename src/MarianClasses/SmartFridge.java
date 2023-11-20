@@ -4,7 +4,7 @@ import java.util.List;
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 import java.util.Scanner;
 
-public class SmartFridge {
+public class SmartFridge extends HomeEntertainmentSystem {
     private boolean isPoweredOn=false;//Daca e pornit
     private float temperature;//Temperature pe care o setam
     private int numberOfDrinks;//Nr de bauturi
@@ -130,5 +130,78 @@ public class SmartFridge {
         return String.format("Smart Fridge [Power: %b, Temp: %.1f°C, Bauturi: %d, Mancare: %d units]",
                 isPoweredOn, temperature, numberOfDrinks, foodQuantity);
     }
+    //Redefinirea metodei de control pentr SmartFridge
+    @Override
+    public void ControlSpecifiedDevice() {
+        Scanner scanner = new Scanner(System.in);
+        String choice;
 
+        do {
+            System.out.println("Alege o opțiune pentru Frigider:");
+            System.out.println("1. Pornire Frigider");
+            System.out.println("2. Oprire Frigider");
+            System.out.println("3. Setare Temperatura");
+            System.out.println("4. Adaugare Bauturi");
+            System.out.println("5. Stergere Bauturi");
+            System.out.println("6. Afisare Bauturi");
+            System.out.println("7. Adaugare Mancare");
+            System.out.println("8. Stergere Mancare");
+            System.out.println("9. Verificare Stare Re-alimentare");
+            System.out.println("10. Iesire");
+
+            System.out.print("Introdu opțiunea: ");
+            choice = scanner.next();
+
+            switch (choice) {
+                case "1":
+                    powerOn();
+                    break;
+                case "2":
+                    powerOff();
+                    break;
+                case "3":
+                    System.out.print("Introdu temperatura dorită: ");
+                    float newTemp = scanner.nextFloat();
+                    setTemperature(newTemp);
+                    break;
+                case "4":
+                    System.out.print("Introdu numărul de băuturi noi: ");
+                    int quantity = scanner.nextInt();
+                    List<String> newDrinks = new ArrayList<>();
+                    for (int i = 0; i < quantity; i++) {
+                        System.out.print("Introdu băutura #" + (i + 1) + ": ");
+                        newDrinks.add(scanner.next());
+                    }
+                    addDrinks(newDrinks);
+                    break;
+                case "5":
+                    System.out.print("Introdu cantitatea de băuturi de eliminat: ");
+                    int quantityToRemove = scanner.nextInt();
+                    removeDrinks(quantityToRemove);
+                    break;
+                case "6":
+                    displayDrinks();
+                    break;
+                case "7":
+                    System.out.print("Introdu cantitatea de mancare de adăugat: ");
+                    int foodQuantityToAdd = scanner.nextInt();
+                    addFood(foodQuantityToAdd);
+                    break;
+                case "8":
+                    System.out.print("Introdu cantitatea de mancare de eliminat: ");
+                    int foodQuantityToRemove = scanner.nextInt();
+                    removeFood(foodQuantityToRemove);
+                    break;
+                case "9":
+                    checkRestockStatus();
+                    break;
+                case "10":
+                    System.out.println("Iesire");
+                    break;
+                default:
+                    System.out.println("Optiunea nu este valida");
+            }
+
+        } while (!choice.equals("10"));
+    }
 }
