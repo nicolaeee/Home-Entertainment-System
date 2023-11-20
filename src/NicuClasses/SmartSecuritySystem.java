@@ -102,5 +102,12 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
 
         } while (!choice.equals("5"));
     }
+    public static SmartSecuritySystem[] SmartSecuritySystemInstances() {
+        SmartSecuritySystem[] smartSecuritySystems = new SmartSecuritySystem[10];
+        for (int i = 0; i < 10; i++) {
+            smartSecuritySystems[i] = new SmartSecuritySystem();
+        }
+        return smartSecuritySystems;
+    }
 
 }

@@ -121,8 +121,10 @@ public class HomeEntertainmentSystem {
                     displayInstances(SmartClimateControl.SmartClimateControlInstances());
                 case "5":
                     testSmartIluminatingSystem();
+                    displayInstances(SmartIluminatingSystem.SmartIluminatingSystemInstances());
                 case "6":
                     testSmartSecuritySystem();
+                    displayInstances(SmartSecuritySystem.SmartSecuritySystemInstances());
                 case "7":
                     System.out.println("Inchide programul");
                     scanner.close();

@@ -187,5 +187,14 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
         } while (!choice.equals("4"));
     }
 
+    public static SmartIluminatingSystem[] SmartIluminatingSystemInstances() {
+        SmartIluminatingSystem[] smartIluminatingSystems = new SmartIluminatingSystem[10];
+        for (int i = 0; i < 10; i++) {
+            smartIluminatingSystems[i] = new SmartIluminatingSystem();
+        }
+        return smartIluminatingSystems;
+    }
+
+
 
 }
