@@ -19,7 +19,7 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
         this.isPoweredOn = isPoweredOn;
         this.volume = volume;
         this.channel = channel;
-        this.areSpeakersOn = areSpeakersOn;
+        this.areSpeakersOn = isSpeakersOn;
     }
 
     // Constructor de copiere
@@ -53,8 +53,10 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
     // Metoda pentru a porni sau opri sistemul de boxe
     public void toggleSpeakers() {
         if (isPoweredOn()) {
-            System.out.println("Sistemul de boxe a fost pornit/oprit");
+            areSpeakersOn=true;
+            System.out.println("Sistemul de boxe a fost pornit");
         } else {
+            areSpeakersOn=false;
             System.out.println("Televizorul trebuie sa fie pornit pentru a controla sistemul de boxe");
         }
     }
