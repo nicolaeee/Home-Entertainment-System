@@ -69,6 +69,11 @@ public class Consola {
     public void setGame(String game){
         this.game = game;
     }
+    // Metoda pentru a opri jocul
+    public void quitGame() {
+        this.game = null;
+        System.out.println("Joc oprit. Nu este niciun joc în execuție.");
+    }
     @Override
     public String toString() {
         return "Console{" +

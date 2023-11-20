@@ -62,7 +62,20 @@ public class SmartFridge {
             System.out.println("Nu putem adauga bauturi. Frigiderul nu este pornit.");
         }
     }
-    //Metoda prin care ce bauturi avem
+    // Metoda pentru eliminarea băuturilor din frigider
+    public void removeDrinks(int quantity) {
+        if (isPoweredOn) {
+            if (numberOfDrinks >= quantity) {
+                numberOfDrinks -= quantity;
+                System.out.println(quantity + " bauturi luate din frigider. Bauturi ramase: " + numberOfDrinks);
+            } else {
+                System.out.println("Nr insuficient de bauturi.Nu mai sunt bauturi in frigider");
+            }
+        } else {
+            System.out.println("Frigiderul este oprit. Nu putem lua bauturi");
+        }
+    }
+    //Metoda prin care vedem ce bauturi avem
     public void displayDrinks() {
         if (isPoweredOn) {
             System.out.println("Bauturi valabile:");
@@ -80,6 +93,19 @@ public class SmartFridge {
             System.out.println(quantity + " de alimente au fost introduse. Cantitate totala: " + foodQuantity);
         } else {
             System.out.println("Nu putem adauga mancare. Frigiderul nu este pornit.");
+        }
+    }
+    // Metoda pentru eliminarea alimentelor din frigider
+    public void removeFood(int quantity) {
+        if (isPoweredOn) {
+            if (foodQuantity >= quantity) {
+                foodQuantity -= quantity;
+                System.out.println(quantity + " unitati de mancare luate. Cantitate de mancare ramasa: " + foodQuantity);
+            } else {
+                System.out.println("Mancare insuficienta.Frigiderul este gol");
+            }
+        } else {
+            System.out.println("Nu putem lua mancare. Frigiderul nu este pornit.");
         }
     }
     //Metoda prin care aflam temperatura
