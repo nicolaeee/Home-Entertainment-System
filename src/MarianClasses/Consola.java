@@ -1,6 +1,8 @@
 package MarianClasses;
 import java.util.ArrayList;
 import java.util.List;
+
+
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 import java.util.Scanner;
 public class Consola extends HomeEntertainmentSystem {
@@ -8,7 +10,9 @@ public class Consola extends HomeEntertainmentSystem {
     private boolean isControllerConnected=false; //Connectare Controller
     private boolean isControllerOn=false; //Pornire Controller
     private boolean isConsoleConnected=false;//Daca consola este connectata sau nu
-    private List<String> games;;//O consola poate sa aiba mai multe jocuri.
+    private boolean isPlaying;//Verifica daca un joc ruleaza
+    private List<String> games;//O consola poate sa aiba mai multe jocuri.
+    private int numberOfGames;//Nr de jocuri
 
     public Consola() {
         isPoweredOn = false;
@@ -16,14 +20,18 @@ public class Consola extends HomeEntertainmentSystem {
         isControllerOn = false;
         isConsoleConnected = false;
         games = new ArrayList<>();
+        numberOfGames=0;
+        isPlaying=false;
     }
 
-    public Consola(boolean power, boolean contConnect, boolean contOn, boolean consConnect, List<String> games) {
+    public Consola(boolean power, boolean contConnect, boolean contOn, boolean consConnect, boolean isplay, List<String> games, int nrGames) {
         this.isPoweredOn = power;
         this.isControllerConnected = contConnect;
         this.isControllerOn = contOn;
         this.isConsoleConnected = consConnect;
         this.games = new ArrayList<>(games);
+        this.numberOfGames=nrGames;
+        this.isPlaying=isplay;
     }
 
     public Consola(Consola other) {
@@ -32,6 +40,18 @@ public class Consola extends HomeEntertainmentSystem {
         this.isControllerConnected = other.isControllerConnected;
         this.isControllerOn = other.isControllerOn;
         this.games = new ArrayList<>(other.games);
+        this.numberOfGames=other.numberOfGames;
+        this.isPlaying=other.isPlaying;
+    }
+
+
+    public void powerOn() {
+        isPoweredOn=true;
+        System.out.println("Consola a fost pornita");
+    }
+    public void powerOff(){
+        isPoweredOn=false;
+        System.out.println("Consola a fost oprita");
     }
 
     public void consoleConnect(){
@@ -59,13 +79,16 @@ public class Consola extends HomeEntertainmentSystem {
         isControllerOn=false;
         System.out.println("Controller-ul a fost oprit");
     }
-    public List<String> getGame(){
-        return games;
-    }
+
     //Metoda prin care adaugam jocuri
-    public void addGame(String gameName) {
-        games.add(gameName);
-        System.out.println("Joc adăugat: " + gameName);
+    public void addGames(List<String> newGames) {
+        if (isPoweredOn) {
+            games.addAll(newGames);
+            numberOfGames = games.size();
+            System.out.println(newGames.size() + " games added. Total games: " + numberOfGames);
+        } else {
+            System.out.println("Cannot add games. Smart Fridge is not powered on.");
+        }
     }
     //Metoda prin care stergem jocul
 
@@ -76,9 +99,7 @@ public class Consola extends HomeEntertainmentSystem {
             System.out.println("Jocul " + gameName + " nu a fost gasit.");
         }
     }
-    public List<String> getGames() {
-        return games;
-    }
+
     //Metoda prin care vedem lista de jocuri
     public void displayGames() {
         System.out.println("Lista de jocuri:");
@@ -107,12 +128,15 @@ public class Consola extends HomeEntertainmentSystem {
                 ", isPoweredOn=" + isPoweredOn +
                 ", isControllerConnected=" + isControllerConnected +
                 "isControllerOn" + isControllerOn +
+                ", numberOfGames=" + numberOfGames +
+                ", isPlaying=" + isPlaying +
                 "games=" + games +
                 '}';
     }
 
     //Redefinirea metodei de control pentru Consola
-    {
+    @Override
+    public void ControlSpecifiedDevice(){
         Scanner scanner = new Scanner(System.in);
         String choice;
 
@@ -163,8 +187,9 @@ public class Consola extends HomeEntertainmentSystem {
                     break;
                 case "9":
                     System.out.println("Introdu jocul pe care vrei sa il instalezi");
-                    String newGame= scanner.next();
-                    addGame(newGame);
+                    List<String> newGame= new ArrayList<>();
+                    newGame.add(scanner.next());
+                    addGames(newGame);
                     break;
                 case "10":
                     System.out.println("Alege jocul pe care vrei sa il dezinstalezi");
@@ -189,5 +214,12 @@ public class Consola extends HomeEntertainmentSystem {
             }
 
         } while (!choice.equals("14"));
+    }
+    public static Consola[] ConsolaInstances() {
+        Consola[] consolaInst = new Consola[10];
+        for (int i = 0; i < 10; i++) {
+            consolaInst[i] = new Consola();
+        }
+        return consolaInst;
     }
 }

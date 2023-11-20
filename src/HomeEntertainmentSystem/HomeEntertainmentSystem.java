@@ -87,7 +87,7 @@ public class HomeEntertainmentSystem {
 
     //Aici este main-ul clasei HomeEntertainmentSystem
     public static void main(String[] args) {
-        HomeEntertainmentSystem system = new HomeEntertainmentSystem();
+
         Scanner scanner = new Scanner(System.in);
 
         // Cream un meniu pentru a putea accesa si testa cu usurinta fiecare clasa
@@ -99,7 +99,9 @@ public class HomeEntertainmentSystem {
             System.out.println("4. SmartClimateControl");
             System.out.println("5. SmartIluminatingSystem");
             System.out.println("6. SmartSecuritySystem");
-            System.out.println("7. Iesire");
+            System.out.println("7. Consola");
+            System.out.println("8. SmartFridge");
+            System.out.println("9. Iesire");
 
             System.out.print("Introdu numarul clasei: ");
             String choice = scanner.next();
@@ -130,6 +132,14 @@ public class HomeEntertainmentSystem {
                     displayInstances(SmartSecuritySystem.SmartSecuritySystemInstances());
                     break;
                 case "7":
+                    testConsola();
+                    displayInstances(Consola.ConsolaInstances());
+                    break;
+                case "8":
+                    testSmartFridge();
+                    displayInstances(SmartFridge.SmartFridgeInstances());
+                    break;
+                case "9":
                     System.out.println("Inchide programul");
                     scanner.close();
                     System.exit(0);
@@ -166,6 +176,14 @@ public class HomeEntertainmentSystem {
         //Instanta pentru testare a clasei SmartClimateControl - 3
         SmartIluminatingSystem smartIluminatingSystem = new SmartIluminatingSystem();
         smartIluminatingSystem.ControlDevice();
+    }
+    private static void testConsola(){
+        Consola consola=new Consola();
+        consola.ControlDevice();
+    }
+    private static void testSmartFridge(){
+        SmartFridge smartFridge= new SmartFridge();
+        smartFridge.ControlDevice();
     }
 
 
