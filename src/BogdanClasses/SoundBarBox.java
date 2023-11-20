@@ -36,7 +36,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
     public void adjustVolume(int volume) {
         if (volume >= 0 && volume <= 100) {
             this.volume = volume;
-            System.out.println("Volumul soundbar-ului a fost setat la:" + volume + ".");
+            System.out.println("Volumul soundbar-ului a fost setat la:" + volume);
         } else {
             System.out.println("Volumul soundbar-ului trebuie sa aibe valori intre 0 si 100");
         }
@@ -46,7 +46,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
     public void adjustBass(int bass) {
         if (bass >= 0 && bass <= 100) {
             this.bass = bass;
-            System.out.println("Volumul bass-ului a fost setat la:" + bass + ".");
+            System.out.println("Volumul bass-ului a fost setat la:" + bass);
         } else {
             System.out.println("Volumul bass-ului trebuie sa aibe valori intre 0 si 100");
         }
@@ -56,7 +56,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
     public void adjustBalance(int balance) {
         if (balance >= 0 && balance <= 100) {
             this.balance = balance;
-            System.out.println("Balanta a fost setata la:" + balance + ".");
+            System.out.println("Balanta a fost setata la:" + balance);
         } else {
             System.out.println("Balanta trebuie sa aibe valori intre 0 si 100");
         }
