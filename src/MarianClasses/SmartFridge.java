@@ -35,14 +35,7 @@ public class SmartFridge extends HomeEntertainmentSystem {
         this.drinks = new ArrayList<>(other.drinks);
         this.foodQuantity = other.foodQuantity;
     }
-    public void powerOn() {
-        isPoweredOn = true;
-        System.out.println("Frigiderul inteligent a fost pornit.");
-    }
-    public void powerOff() {
-        isPoweredOn = false;
-        System.out.println("Frigiderul inteligent a fost oprit.");
-    }
+
     //Metoda prin care setam temperatura
     public void setTemperature(float newTemp) {
         if (isPoweredOn) {

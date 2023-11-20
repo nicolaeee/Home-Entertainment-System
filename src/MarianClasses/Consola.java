@@ -42,14 +42,7 @@ public class Consola extends HomeEntertainmentSystem {
         isConsoleConnected=false;
         System.out.println("Consola a fost deconectata");
     }
-    public void powerOn() {
-        isPoweredOn = true;
-        System.out.println("Consola a fost pornita!");
-    }
-    public void powerOff() {
-        isPoweredOn=false;
-        System.out.println("Consola a fost oprita");
-    }
+
     public void controllerConectat() {
         isControllerConnected=true;
         System.out.println("Controller-ul a fost conectat");
@@ -93,6 +86,14 @@ public class Consola extends HomeEntertainmentSystem {
             System.out.println("- " + game);
         }
     }
+    //Metoda pentru a porni jocul
+    public void startGame(String gameName) {
+        if (games.contains(gameName)) {
+            System.out.println("Jocul " + gameName + " a început pe consolă.");
+        } else {
+            System.out.println("Jocul " + gameName + " nu există în lista de jocuri.");
+        }
+    }
     // Metoda pentru a opri jocul
     public void quitGame() {
         this.games = null;
@@ -128,8 +129,9 @@ public class Consola extends HomeEntertainmentSystem {
             System.out.println("9. Adaugare Joc");
             System.out.println("10. Stergere Joc");
             System.out.println("11. Afisare Jocuri");
-            System.out.println("12. Iesire Joc");
-            System.out.println("13. Iesire");
+            System.out.println("12. Pornire joc");
+            System.out.println("13. Iesire Joc");
+            System.out.println("14. Iesire");
 
             System.out.print("Introdu opțiunea: ");
             choice = scanner.next();
@@ -160,18 +162,32 @@ public class Consola extends HomeEntertainmentSystem {
                    controllerOff();
                     break;
                 case "9":
-                    addGame();
+                    System.out.println("Introdu jocul pe care vrei sa il instalezi");
+                    String newGame= scanner.next();
+                    addGame(newGame);
                     break;
                 case "10":
-                    removeGame();
+                    System.out.println("Alege jocul pe care vrei sa il dezinstalezi");
+                    String gameRemover=scanner.next();
+                    removeGame(gameRemover);
                     break;
                 case "11":
+                   displayGames();
+                    break;
+                case "12":
+                    System.out.print("Introdu numele jocului de început: ");
+                    String gameToStart = scanner.next();
+                    startGame(gameToStart);
+                    break;
+                case "13":
+                    quitGame();
+                case "14":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Opțiunea nu este valida");
             }
 
-        } while (!choice.equals("11"));
+        } while (!choice.equals("14"));
     }
 }
