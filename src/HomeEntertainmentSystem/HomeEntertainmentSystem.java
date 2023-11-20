@@ -8,6 +8,8 @@ import BogdanClasses.TvWithSpeakers;
 import NicuClasses.SmartClimateControl;
 import NicuClasses.SmartIluminatingSystem;
 import NicuClasses.SmartSecuritySystem;
+import MarianClasses.Consola;
+import MarianClasses.SmartFridge;
 
 import java.util.Scanner;
 
