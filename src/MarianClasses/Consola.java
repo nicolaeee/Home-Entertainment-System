@@ -1,11 +1,14 @@
 package MarianClasses;
 
+import HomeEntertainmentSystem.HomeEntertainmentSystem;
+import java.util.Scanner;
 public class Consola {
     private boolean isPoweredOn=false; //Pornire Consola
     private boolean isControllerConnected=false; //Connectare Controller
     private boolean isControllerOn=false; //Pornire Controller
     private boolean isConsoleConnected=false;//Daca consola este connectata sau nu
     private String game;//O consola poate sa aiba mai multe jocuri.
+
     public Consola(){         //Constructor fara parametri
         isPoweredOn=false;
         isControllerConnected=false;
@@ -28,35 +31,35 @@ public class Consola {
         this.game=other.game;
     }
 
-    public void ConsoleConnect(){
+    public void consoleConnect(){
         isConsoleConnected=true;
         System.out.println("Consola a fost conectata");
     }
-    public void ConsoleDisconnect(){
+    public void consoleDisconnect(){
         isConsoleConnected=false;
         System.out.println("Consola a fost deconectata");
     }
-    public void PowerOn() {
+    public void powerOn() {
         isPoweredOn = true;
         System.out.println("Consola a fost pornita!");
     }
-    public void PowerOff() {
+    public void powerOff() {
         isPoweredOn=false;
         System.out.println("Consola a fost oprita");
     }
-    public void ControllerConectat() {
+    public void controllerConectat() {
         isControllerConnected=true;
         System.out.println("Controller-ul a fost conectat");
     }
-    public void ControllerDeconectat(){
+    public void controllerDeconectat(){
         isControllerConnected=false;
         System.out.println("Controller-ul a fost deconectat");
     }
-    public void ControllerOn(){
+    public void controllerOn(){
         isControllerOn=true;
         System.out.println("Controller-ul a fost pornit");
     }
-    public void ControllerOff(){
+    public void controllerOff(){
         isControllerOn=false;
         System.out.println("Controller-ul a fost oprit");
     }
@@ -65,5 +68,15 @@ public class Consola {
     }
     public void setGame(String game){
         this.game = game;
+    }
+    @Override
+    public String toString() {
+        return "Console{" +
+                "connected" + isConsoleConnected +
+                ", isPoweredOn=" + isPoweredOn +
+                ", isControllerConnected=" + isControllerConnected +
+                "isControllerOn" + isControllerOn +
+                "game: " + game +
+                '}';
     }
 }
