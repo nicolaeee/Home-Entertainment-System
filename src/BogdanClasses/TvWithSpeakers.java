@@ -34,7 +34,7 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
     public void adjustVolume(int volume) {
         if (volume >= 0 && volume <= 100) {
             this.volume = volume;
-            System.out.println("Volumul televizorului a fost setat la " + volume + ".");
+            System.out.println("Volumul televizorului a fost setat la " + volume);
         } else {
             System.out.println("Volumul trebuie sa fie intre 0 si 100.");
         }
@@ -44,7 +44,7 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
     public void changeChannel(int channel) {
         if (channel > 0) {
             this.channel = channel;
-            System.out.println("Canalul a fost schimbat la " + channel + ".");
+            System.out.println("Canalul a fost schimbat la " + channel);
         } else {
             System.out.println("Canalul trebuie sa fie mai mare decat 0");
         }
