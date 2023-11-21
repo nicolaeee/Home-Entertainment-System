@@ -1,11 +1,13 @@
 package MarianClasses;
 import java.util.ArrayList;
 import java.util.List;
+
+
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 import java.util.Scanner;
 
 public class SmartFridge extends HomeEntertainmentSystem {
-    private boolean isPoweredOn=false;//Daca e pornit
+    private boolean isPoweredOn;//Daca e pornit
     private float temperature;//Temperature pe care o setam
     private int numberOfDrinks;//Nr de bauturi
     private List<String> drinks;//Lista de bauturi
@@ -13,19 +15,19 @@ public class SmartFridge extends HomeEntertainmentSystem {
     private static final int restockThreshold = 10;//Folosit pentru a detecta cand avem nevoie sa realimentam
     //Constructor fara argumente
     public SmartFridge(){
-        isPoweredOn=false;
-        temperature=-4.0f;
-        numberOfDrinks=0;
-        drinks= new ArrayList<>();
-        foodQuantity=0;
+        this.isPoweredOn=false;
+        this.temperature=-4.0f;
+        this.numberOfDrinks=0;
+        this.drinks= new ArrayList<>();
+        this.foodQuantity=0;
     }
     //Constructor cu argumente
-    public SmartFridge(boolean Power, float temp, int nrDrinks,List<String> drinks, int foodQuant ){
-        isPoweredOn = Power;
-        temperature = temp;
-        numberOfDrinks = nrDrinks;
+    public SmartFridge(boolean isPoweredOn, float temp, int nrDrinks,List<String> drinks, int foodQuant ){
+        this.isPoweredOn = isPoweredOn;
+        this.temperature = temp;
+        this.numberOfDrinks = nrDrinks;
         this.drinks = new ArrayList<>(drinks);
-        foodQuantity = foodQuant;
+        this.foodQuantity = foodQuant;
     }
     //Constructor de copiere
     public SmartFridge(SmartFridge other) {
@@ -35,17 +37,19 @@ public class SmartFridge extends HomeEntertainmentSystem {
         this.drinks = new ArrayList<>(other.drinks);
         this.foodQuantity = other.foodQuantity;
     }
-    public void powerOn() {
-        isPoweredOn = true;
-        System.out.println("Frigiderul inteligent a fost pornit.");
+    public void powerOn()
+    {
+        isPoweredOn=true;
+        System.out.println("Frigiderul a fost pornit");
     }
-    public void powerOff() {
-        isPoweredOn = false;
-        System.out.println("Frigiderul inteligent a fost oprit.");
+    public void powerOff(){
+        isPoweredOn=false;
+        System.out.println("Frigiderul a fost oprit");
     }
+
     //Metoda prin care setam temperatura
     public void setTemperature(float newTemp) {
-        if (isPoweredOn) {
+        if (isPoweredOn==true) {
             temperature = newTemp;
             System.out.println("Temperatura setata la " + temperature + " grade Celsius.");
         } else {
@@ -54,17 +58,15 @@ public class SmartFridge extends HomeEntertainmentSystem {
     }
     //Metoda prin care adugam bauturi
     public void addDrinks(List<String> newDrinks) {
-        if (isPoweredOn) {
-            drinks.addAll(newDrinks);
-            numberOfDrinks = drinks.size();
-            System.out.println(newDrinks.size() + " de bauturi. Bauturi totale: " + numberOfDrinks);
-        } else {
-            System.out.println("Nu putem adauga bauturi. Frigiderul nu este pornit.");
-        }
+
+        drinks.addAll(newDrinks);
+        numberOfDrinks = drinks.size();
+        System.out.println(newDrinks.size() + " drinks added. Total drinks: " + numberOfDrinks);
+
     }
     // Metoda pentru eliminarea băuturilor din frigider
     public void removeDrinks(int quantity) {
-        if (isPoweredOn) {
+        if (isPoweredOn==true) {
             if (numberOfDrinks >= quantity) {
                 numberOfDrinks -= quantity;
                 System.out.println(quantity + " bauturi luate din frigider. Bauturi ramase: " + numberOfDrinks);
@@ -77,7 +79,7 @@ public class SmartFridge extends HomeEntertainmentSystem {
     }
     //Metoda prin care vedem ce bauturi avem
     public void displayDrinks() {
-        if (isPoweredOn) {
+        if (isPoweredOn==true) {
             System.out.println("Bauturi valabile:");
             for (String drink : drinks) {
                 System.out.println("- " + drink);
@@ -88,7 +90,7 @@ public class SmartFridge extends HomeEntertainmentSystem {
     }
     //Metoda prin care adaugam mancare
     public void addFood(int quantity) {
-        if (isPoweredOn) {
+        if (isPoweredOn==true) {
             foodQuantity += quantity;
             System.out.println(quantity + " de alimente au fost introduse. Cantitate totala: " + foodQuantity);
         } else {
@@ -97,7 +99,7 @@ public class SmartFridge extends HomeEntertainmentSystem {
     }
     // Metoda pentru eliminarea alimentelor din frigider
     public void removeFood(int quantity) {
-        if (isPoweredOn) {
+        if (isPoweredOn==true) {
             if (foodQuantity >= quantity) {
                 foodQuantity -= quantity;
                 System.out.println(quantity + " unitati de mancare luate. Cantitate de mancare ramasa: " + foodQuantity);
@@ -168,11 +170,13 @@ public class SmartFridge extends HomeEntertainmentSystem {
                     System.out.print("Introdu numărul de băuturi noi: ");
                     int quantity = scanner.nextInt();
                     List<String> newDrinks = new ArrayList<>();
-                    for (int i = 0; i < quantity; i++) {
-                        System.out.print("Introdu băutura #" + (i + 1) + ": ");
-                        newDrinks.add(scanner.next());
-                    }
-                    addDrinks(newDrinks);
+                    if(isPoweredOn==true) {// Verifica daca frigiderul este pornit
+                        for (int i = 0; i < quantity; i++) {
+                            System.out.print("Introdu băutura #" + (i + 1) + ": ");
+                            newDrinks.add(scanner.next());
+                        }
+                        addDrinks(newDrinks);
+                    }else System.out.println("Frigiderul este oprit, nu se pot adauga bauturi");
                     break;
                 case "5":
                     System.out.print("Introdu cantitatea de băuturi de eliminat: ");
@@ -203,5 +207,13 @@ public class SmartFridge extends HomeEntertainmentSystem {
             }
 
         } while (!choice.equals("10"));
+    }
+
+    public static SmartFridge[] SmartFridgeInstances() {
+        SmartFridge[] smartFridgeInst = new SmartFridge[10];
+        for (int i = 0; i < 10; i++) {
+            smartFridgeInst[i] = new SmartFridge();
+        }
+        return smartFridgeInst;
     }
 }
