@@ -111,6 +111,7 @@ public class Consola extends HomeEntertainmentSystem {
     //Metoda pentru a porni jocul
     public void startGame(String gameName) {
         if (games.contains(gameName)) {
+            isPlaying=true;
             System.out.println("Jocul " + gameName + " a început pe consolă.");
         } else {
             System.out.println("Jocul " + gameName + " nu există în lista de jocuri.");
@@ -118,8 +119,10 @@ public class Consola extends HomeEntertainmentSystem {
     }
     // Metoda pentru a opri jocul
     public void quitGame() {
-        this.games = null;
-        System.out.println("Joc oprit. Nu este niciun joc în execuție.");
+        if(isPlaying==true) {
+            this.games = null;
+            System.out.println("Joc oprit. Nu este niciun joc în execuție.");
+        } else System.out.print("Nu este niciun joc in executie sau consola este oprita ");
     }
     //Redefinirea metodei toString pentru afisarea datelor
     @Override
