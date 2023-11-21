@@ -156,9 +156,11 @@ public class SmartFridge extends HomeEntertainmentSystem {
 
             switch (choice) {
                 case "1":
+                    super.powerOn();
                     powerOn();
                     break;
                 case "2":
+                    super.powerOff();
                     powerOff();
                     break;
                 case "3":
