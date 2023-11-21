@@ -49,6 +49,7 @@ public class Consola extends HomeEntertainmentSystem {
         isPoweredOn=true;
         System.out.println("Consola a fost pornita");
     }
+
     public void powerOff(){
         isPoweredOn=false;
         System.out.println("Consola a fost oprita");
@@ -87,7 +88,7 @@ public class Consola extends HomeEntertainmentSystem {
             numberOfGames = games.size();
             System.out.println(newGames.size() + " games added. Total games: " + numberOfGames);
         } else {
-            System.out.println("Cannot add games. Smart Fridge is not powered on.");
+            System.out.println("Cannot add games. Console is powered off.");
         }
     }
     //Metoda prin care stergem jocul
@@ -166,9 +167,11 @@ public class Consola extends HomeEntertainmentSystem {
 
             switch (choice) {
                 case "1":
+                    super.powerOn();
                     powerOn();
                     break;
                 case "2":
+                    super.powerOff();
                     powerOff();
                     break;
                 case "3":
