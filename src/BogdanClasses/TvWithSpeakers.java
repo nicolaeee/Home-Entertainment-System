@@ -30,6 +30,18 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
         this.areSpeakersOn = other.areSpeakersOn;
     }
 
+    @Override
+    public void powerOn() {
+        isPoweredOn=true;
+        System.out.println("TvWithSpeakers a fost pornit");
+    }
+
+    @Override
+    public void powerOff(){
+        isPoweredOn=false;
+        System.out.println("TvWithSpeakers a fost oprit");
+    }
+
     // Metoda pentru a ajusta volumul televizorului
     public void adjustVolume(int volume) {
         if (volume >= 0 && volume <= 100) {

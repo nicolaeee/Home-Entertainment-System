@@ -32,6 +32,18 @@ public class SoundBarBox extends HomeEntertainmentSystem {
         this.balance = other.balance;
     }
 
+    @Override
+    public void powerOn() {
+        isPoweredOn=true;
+        System.out.println("DVDPlayer-ul a fost pornit");
+    }
+
+    @Override
+    public void powerOff(){
+        isPoweredOn=false;
+        System.out.println("DVDPlayer-ul a fost oprit");
+    }
+
     //Metoda pentru a ajusta volumul soundbar-ului
     public void adjustVolume(int volume) {
         if (volume >= 0 && volume <= 100) {
