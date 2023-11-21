@@ -92,6 +92,14 @@ public class DVDPlayer extends HomeEntertainmentSystem {
         return isPlaying;
     }
 
+    // Metoda pentru a afisa informatiile despre TvWithSpeakers
+    public void dvdInfo() {
+        System.out.println("Info Televizor:");
+        System.out.println("Pornit/Oprit: " + (isPoweredOn ? "Pornit" : "Oprit"));
+        System.out.println("isDiscInserted: " + isDiscInserted);
+        System.out.println("isPlaying: " + isPlaying);
+    }
+
     //Redefinirea metodei toString pentru a afisa datele
     @Override
     public String toString() {
@@ -112,7 +120,8 @@ public class DVDPlayer extends HomeEntertainmentSystem {
             System.out.println("4. Scoatere disc");
             System.out.println("5. Redare");
             System.out.println("6. Oprire redare");
-            System.out.println("7. Iesire");
+            System.out.println("7. Afisare Informatii");
+            System.out.println("8. Iesire");
 
             System.out.print("Introdu opțiunea: ");
             choice = scanner.next();
@@ -136,14 +145,16 @@ public class DVDPlayer extends HomeEntertainmentSystem {
                 case "6":
                     stop();
                     break;
-                case "7":
+                case"7":
+                    dvdInfo();
+                case "8":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("7"));
+        } while (!choice.equals("8"));
     }
 
     //Metoda care creaza un vector cu 10 instante

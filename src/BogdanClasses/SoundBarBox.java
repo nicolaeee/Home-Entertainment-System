@@ -141,7 +141,8 @@ public class SoundBarBox extends HomeEntertainmentSystem {
             System.out.println("5. Ajustare echilibru");
             System.out.println("6. Redare audio");
             System.out.println("7. Oprire sunet");
-            System.out.println("8. Iesire");
+            System.out.println("8. Afisare Informatii");
+            System.out.println("9. Iesire");
 
             System.out.print("Introdu optiunea: ");
             choice = scanner.next();
@@ -177,13 +178,16 @@ public class SoundBarBox extends HomeEntertainmentSystem {
                     mute();
                     break;
                 case "8":
+                    infoSoundBar();
+                    break;
+                case "9":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("8"));
+        } while (!choice.equals("9"));
     }
 
     //Metoda care creaza un vector cu 10 instante
