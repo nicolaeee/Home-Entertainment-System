@@ -31,13 +31,13 @@ public class DVDPlayer extends HomeEntertainmentSystem {
 
     @Override
     public void powerOn() {
-        isPoweredOn=true;
+        isPoweredOn = true;
         System.out.println("DVDPlayer-ul a fost pornit");
     }
 
     @Override
-    public void powerOff(){
-        isPoweredOn=false;
+    public void powerOff() {
+        isPoweredOn = false;
         System.out.println("DVDPlayer-ul a fost oprit");
     }
 
@@ -105,7 +105,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
     //Redefinirea metodei toString pentru a afisa datele
     @Override
     public String toString() {
-        return "DVDPlayer { " +"isPoweredOn=" + isPoweredOn +", isDiscInserted=" + isDiscInserted +", isPlaying=" + isPlaying + " }";
+        return "DVDPlayer { " + "isPoweredOn=" + isPoweredOn + ", isDiscInserted=" + isDiscInserted + ", isPlaying=" + isPlaying + " }";
     }
 
     //Redefinirea metodei de control pentru DVDPlayer
@@ -125,7 +125,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
             System.out.println("7. Afisare Informatii");
             System.out.println("8. Afisare Instante");
             System.out.print("9. Afisare Instante Filtrate");
-            System.out.println("9. Iesire");
+            System.out.println("10. Iesire");
 
 
             System.out.print("Introdu opțiunea: ");
@@ -155,6 +155,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
                     break;
                 case "8":
                     displayInstances(DVDPlayer.DVDPlayerInstances());
+                    break;
                 case "9":
                     DVDPlayer.displayFilteredInstances();
                     break;
