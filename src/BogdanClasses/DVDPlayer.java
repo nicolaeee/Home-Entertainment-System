@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 public class DVDPlayer extends HomeEntertainmentSystem {
 
+    //Declar si initializez variabilele
     private boolean isDiscInserted;
     private boolean isPlaying;
+    private static DVDPlayer[] dvdPlayers = DVDPlayer.DVDPlayerInstances();
 
     // Constructor fara argumente
     public DVDPlayer() {
@@ -103,7 +105,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
     //Redefinirea metodei toString pentru a afisa datele
     @Override
     public String toString() {
-        return "DVDPlayer { " +"IsPoweredOn=" + isPoweredOn +", IsDiscInserted=" + isDiscInserted +", IsPlaying=" + isPlaying + " }";
+        return "DVDPlayer { " +"isPoweredOn=" + isPoweredOn +", isDiscInserted=" + isDiscInserted +", isPlaying=" + isPlaying + " }";
     }
 
     //Redefinirea metodei de control pentru DVDPlayer
@@ -121,7 +123,10 @@ public class DVDPlayer extends HomeEntertainmentSystem {
             System.out.println("5. Redare");
             System.out.println("6. Oprire redare");
             System.out.println("7. Afisare Informatii");
-            System.out.println("8. Iesire");
+            System.out.println("8. Afisare Instante");
+            System.out.print("9. Afisare Instante Filtrate");
+            System.out.println("9. Iesire");
+
 
             System.out.print("Introdu opțiunea: ");
             choice = scanner.next();
@@ -145,16 +150,22 @@ public class DVDPlayer extends HomeEntertainmentSystem {
                 case "6":
                     stop();
                     break;
-                case"7":
+                case "7":
                     dvdInfo();
+                    break;
                 case "8":
+                    displayInstances(DVDPlayer.DVDPlayerInstances());
+                case "9":
+                    DVDPlayer.displayFilteredInstances();
+                    break;
+                case "10":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("8"));
+        } while (!choice.equals("10"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -164,5 +175,17 @@ public class DVDPlayer extends HomeEntertainmentSystem {
             dvdPlayerInst[i] = new DVDPlayer();
         }
         return dvdPlayerInst;
+    }
+
+    //Metoda care afiseza instantele filtrate
+    public static void displayFilteredInstances() {
+        DVDPlayer[] dvdPlayers = DVDPlayerInstances();
+
+        System.out.println("Instantele clasei DVDPlayer filtrate");
+        for (DVDPlayer instance : dvdPlayers) {
+            if (!instance.isPoweredOn() && instance.isDiscInserted()) {
+                System.out.println(instance.toString());
+            }
+        }
     }
 }

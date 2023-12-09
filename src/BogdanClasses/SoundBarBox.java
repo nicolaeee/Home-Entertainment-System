@@ -2,6 +2,7 @@ package BogdanClasses;
 
 //Importarea claselor
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
+
 import java.util.Scanner;
 
 public class SoundBarBox extends HomeEntertainmentSystem {
@@ -10,7 +11,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
     private int volume = 35;
     private int bass = 22;
     private int balance = 50;
-
+    private static SoundBarBox[] soundBarBoxes = SoundBarBox.SoundBarBoxInstances();
 
     //Constructor fara argumente
     public SoundBarBox() {
@@ -18,7 +19,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
 
     //Constructor cu toate argumentele
     public SoundBarBox(boolean isPoweredOn,int volume, int bass, int balance) {
-        this.isPoweredOn=isPoweredOn;
+        this.isPoweredOn = true;
         this.volume = volume;
         this.bass = bass;
         this.balance = balance;
@@ -142,7 +143,10 @@ public class SoundBarBox extends HomeEntertainmentSystem {
             System.out.println("6. Redare audio");
             System.out.println("7. Oprire sunet");
             System.out.println("8. Afisare Informatii");
-            System.out.println("9. Iesire");
+            System.out.println("9. Afisare Instante");
+            System.out.println("10. Afisare Instante Filtrate");
+            System.out.println("11. Iesire");
+
 
             System.out.print("Introdu optiunea: ");
             choice = scanner.next();
@@ -181,13 +185,19 @@ public class SoundBarBox extends HomeEntertainmentSystem {
                     infoSoundBar();
                     break;
                 case "9":
+                    displayInstances(SoundBarBox.SoundBarBoxInstances());
+                    break;
+                case "10":
+                SoundBarBox.displayFilteredInstances();
+                break;
+                case "11":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("9"));
+        } while (!choice.equals("10"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -197,5 +207,17 @@ public class SoundBarBox extends HomeEntertainmentSystem {
             soundBarBoxInst[i] = new SoundBarBox();
         }
         return soundBarBoxInst;
+    }
+
+    //Metoda care afiseza instantele filtrate
+    public static void displayFilteredInstances() {
+        SoundBarBox[] soundBarBoxes = SoundBarBoxInstances();
+
+        System.out.println("Instantele clasei SoundBarBox filtrate");
+        for (SoundBarBox instance : soundBarBoxes) {
+            if (!instance.isPoweredOn && instance.volume > 20) {
+                System.out.println(instance.toString());
+            }
+        }
     }
 }

@@ -10,8 +10,8 @@ import NicuClasses.SmartIluminatingSystem;
 import NicuClasses.SmartSecuritySystem;
 import MarianClasses.Consola;
 import MarianClasses.SmartFridge;
-
 import java.util.Scanner;
+
 
 //Aici este clasa parinte
 public class HomeEntertainmentSystem {
@@ -59,7 +59,6 @@ public class HomeEntertainmentSystem {
             System.out.println("1. Starea dispozitivului");
             System.out.println("2. Controleaza dispozitivul");
             System.out.println("3. Iesire");
-
             System.out.println("Introdu optiunea:");
             choice = scanner.next();
 
@@ -88,6 +87,7 @@ public class HomeEntertainmentSystem {
     //Aici este main-ul clasei HomeEntertainmentSystem
     public static void main(String[] args) {
 
+
         Scanner scanner = new Scanner(System.in);
 
         // Cream un meniu pentru a putea accesa si testa cu usurinta fiecare clasa
@@ -109,35 +109,27 @@ public class HomeEntertainmentSystem {
             switch (choice) {
                 case "1":
                     testSoundBarBox();
-                    displayInstances(SoundBarBox.SoundBarBoxInstances());
                     break;
                 case "2":
                     testTvWithSpeakers();
-                    displayInstances(TvWithSpeakers.TvWithSpeakersInstances());
                     break;
                 case "3":
                     testDVDPlayer();
-                    displayInstances(DVDPlayer.DVDPlayerInstances());
                     break;
                 case "4":
                     testSmartClimateControl();
-                    displayInstances(SmartClimateControl.SmartClimateControlInstances());
                     break;
                 case "5":
                     testSmartIluminatingSystem();
-                    displayInstances(SmartIluminatingSystem.SmartIluminatingSystemInstances());
                     break;
                 case "6":
                     testSmartSecuritySystem();
-                    displayInstances(SmartSecuritySystem.SmartSecuritySystemInstances());
                     break;
                 case "7":
                     testConsola();
-                    displayInstances(Consola.ConsolaInstances());
                     break;
                 case "8":
                     testSmartFridge();
-                    displayInstances(SmartFridge.SmartFridgeInstances());
                     break;
                 case "9":
                     System.out.println("Inchide programul");
@@ -148,7 +140,9 @@ public class HomeEntertainmentSystem {
                     System.out.println("Optiunea este invalida");
             }
         }
+
     }
+
 
     //Cream instante si apelam metoda ControlDevice()
     private static void testSoundBarBox() {
@@ -166,36 +160,37 @@ public class HomeEntertainmentSystem {
         dvdPlayer.ControlDevice();
     }
 
-    private static void testSmartClimateControl(){
+    private static void testSmartClimateControl() {
         //Instanta pentru testare a clasei SmartClimateControl - 2
         SmartClimateControl smartClimateControl = new SmartClimateControl();
         smartClimateControl.ControlDevice();
     }
 
-    private static void testSmartIluminatingSystem(){
+    private static void testSmartIluminatingSystem() {
         //Instanta pentru testare a clasei SmartClimateControl - 3
         SmartIluminatingSystem smartIluminatingSystem = new SmartIluminatingSystem();
         smartIluminatingSystem.ControlDevice();
     }
-    private static void testConsola(){
-        Consola consola=new Consola();
+
+    private static void testConsola() {
+        Consola consola = new Consola();
         consola.ControlDevice();
     }
-    private static void testSmartFridge(){
-        SmartFridge smartFridge= new SmartFridge();
+
+    private static void testSmartFridge() {
+        SmartFridge smartFridge = new SmartFridge();
         smartFridge.ControlDevice();
     }
 
 
     //Afisam instantele
     public static void displayInstances(Object[] instances) {
-        System.out.println("Instantele clasei:");
         for (Object instance : instances) {
             System.out.println(instance.toString());
         }
     }
 
-    private static void testSmartSecuritySystem(){
+    private static void testSmartSecuritySystem() {
         //Instanta pentru testare a clasei SmartClimateControl - 3
         SmartSecuritySystem smartSecuritySystem = new SmartSecuritySystem();
         smartSecuritySystem.ControlDevice();
@@ -203,6 +198,7 @@ public class HomeEntertainmentSystem {
     }
 
 }
+
 /**/
 
 /**/
