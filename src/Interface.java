@@ -27,15 +27,15 @@ public class Interface extends JDialog {
                 String password = new String(pfPassword.getPassword());
 
                 if (username.equals(allowedUsername) && password.equals(allowedPassword)) {
-                    JOptionPane.showMessageDialog(Interface.this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(Interface.this, "Logare cu succes", "Succes", JOptionPane.INFORMATION_MESSAGE);
 
-                    // Deschideți a doua fereastră (Interface2)
+                    //Deschidem cea de-a doua fereastra cu dispozitivele
                     Interface2 interface2 = new Interface2(Interface.this);
                     interface2.setVisible(true);
 
-                    dispose(); // Închideți fereastra actuală după autentificare reușită
+                    dispose(); // Fereastra se inchide daca apasam cancel
                 } else {
-                    JOptionPane.showMessageDialog(Interface.this, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(Interface.this, "Username sau parola invalida", "Eroare", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
