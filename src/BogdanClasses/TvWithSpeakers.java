@@ -9,6 +9,7 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
     private int volume = 20;
     private int channel = 1;
     private boolean areSpeakersOn = false;
+    private static TvWithSpeakers[] tvWithSpeakers = TvWithSpeakers.TvWithSpeakersInstances();
 
     //Constructor fara argumente
     public TvWithSpeakers() {
@@ -28,6 +29,18 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
         this.volume = other.volume;
         this.channel = other.channel;
         this.areSpeakersOn = other.areSpeakersOn;
+    }
+
+    @Override
+    public void powerOn() {
+        isPoweredOn=true;
+        System.out.println("TvWithSpeakers a fost pornit");
+    }
+
+    @Override
+    public void powerOff(){
+        isPoweredOn=false;
+        System.out.println("TvWithSpeakers a fost oprit");
     }
 
     // Metoda pentru a ajusta volumul televizorului
@@ -113,7 +126,9 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
             System.out.println("4. Schimbare Canal");
             System.out.println("5. Pornire/Oprire Sistem de Boxe");
             System.out.println("6. Afisare Informatii Televizor");
-            System.out.println("7. Iesire");
+            System.out.println("7. Afisare Instante");
+            System.out.println("8. Afisare Instante Filtrate");
+            System.out.println("8. Iesire");
 
             System.out.print("Introdu optiunea: ");
             choice = scanner.next();
@@ -142,13 +157,18 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
                     tvInfo();
                     break;
                 case "7":
+                    displayInstances(TvWithSpeakers.TvWithSpeakersInstances());
+                case "8":
+                    TvWithSpeakers.displayFilteredInstances();
+                    break;
+                case "9":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("7"));
+        } while (!choice.equals("9"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -158,5 +178,17 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
             tvWithSpeakersInst[i] = new TvWithSpeakers();
         }
         return tvWithSpeakersInst;
+    }
+
+    //Metoda care afiseza instantele filtrate
+    public static void displayFilteredInstances() {
+        TvWithSpeakers[] tvWithSpeakers = TvWithSpeakersInstances();
+
+        System.out.println("Instantele clasei TvWithSpeakers filtrate");
+        for (TvWithSpeakers instance : tvWithSpeakers) {
+            if (!instance.isPoweredOn() && instance.getVolume() > 10) {
+                System.out.println(instance.toString());
+            }
+        }
     }
 }

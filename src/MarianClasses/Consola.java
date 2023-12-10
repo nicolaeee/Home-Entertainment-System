@@ -100,6 +100,9 @@ public class Consola extends HomeEntertainmentSystem {
             System.out.println("Jocul " + gameName + " nu a fost gasit.");
         }
     }
+    public List<String> getGames() {
+        return games;
+    }
 
     //Metoda prin care vedem lista de jocuri
     public void displayGames() {
@@ -124,6 +127,7 @@ public class Consola extends HomeEntertainmentSystem {
             System.out.println("Joc oprit. Nu este niciun joc în execuție.");
         } else System.out.print("Nu este niciun joc in executie sau consola este oprita ");
     }
+
     //Redefinirea metodei toString pentru afisarea datelor
     @Override
     public String toString() {
