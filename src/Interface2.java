@@ -1,6 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import BogdanClasses.SoundBarBox;
+import BogdanClasses.TvWithSpeakers;
+import BogdanClasses.DVDPlayer;
+import HomeEntertainmentSystem.HomeEntertainmentSystem;
 public class Interface2 extends JDialog {
     private JButton DVDPlayerButton;
     private JButton TvWithSpeakersButton;
@@ -10,62 +15,75 @@ public class Interface2 extends JDialog {
     private JTextField conditionFieldBalance;
     private JTextArea resultArea;
     private JButton filterButton;
+    private JButton filterAllButton;
+    private JPanel MainPanel;
 
     public Interface2(Interface parent) {
-        setTitle("Interface2");
-        setMinimumSize(new Dimension(400, 200));
+        setTitle("Devices");
+        setContentPane(MainPanel);
+        setMinimumSize(new Dimension(650,500));
         setModal(true);
         setLocationRelativeTo(parent);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        conditionFieldVolume = new JTextField(15);
-        conditionFieldBass = new JTextField(15);
-        conditionFieldBalance = new JTextField(15);
-        filterButton = new JButton("Filter Instances");
-        resultArea = new JTextArea(10, 30);
-        resultArea.setEditable(false);
+        DVDPlayerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        // Adăugare componente adiționale la panou
-        panel.add(new JLabel("Filter Conditions:"));
-        panel.add(new JLabel("Volume:"));
-        panel.add(conditionFieldVolume);
-        panel.add(new JLabel("Bass:"));
-        panel.add(conditionFieldBass);
-        panel.add(new JLabel("Balance:"));
-        panel.add(conditionFieldBalance);
-        panel.add(filterButton);
-        panel.add(new JScrollPane(resultArea));
+                updateFields();
+            }
+        });
 
+        TvWithSpeakersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                updateFields();
+            }
+        });
+
+        SoundBarBoxButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                updateFields();
+            }
+        });
+
+        // Adaugare ascultator pentru butonul de filtrare
+        filterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                filterInstances();
+            }
+        });
+
+        // Adaugare buton pentru filtrarea tuturor instanțelor
+        filterAllButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                filterAllInstances();
+            }
+        });
     }
 
-    private void filterAndDisplayInstances() {
-        try {
-            // citire conditii
-            int conditionVolume = Integer.parseInt(conditionFieldVolume.getText());
-            int conditionBass = Integer.parseInt(conditionFieldBass.getText());
-            int conditionBalance = Integer.parseInt(conditionFieldBalance.getText());
+    // Metoda care actualizeaza campurile in functie de clasa selectata
+    private void updateFields() {
+        conditionFieldVolume.setText("");
+        conditionFieldBass.setText("");
+        conditionFieldBalance.setText("");
+    }
 
-            // filtrare instante
-            SoundBarBox[] soundBarBoxes = SoundBarBox.SoundBarBoxInstances();
 
-            // Sterge rezultatele anterioare
-            resultArea.setText("");
+    private void filterInstances() {
+        // Implementare logica de filtrare specifica clasei selectate
+    }
 
-            // afisare care satisface conditiile
-            for (SoundBarBox instance : soundBarBoxes) {
-                if (instance.getVolume() > conditionVolume
-                        && instance.getBass() < conditionBass
-                        && instance.getBalance() == conditionBalance) {
-                    resultArea.append(instance.toString() + "\n");
-                }
-            }
-        } catch (NumberFormatException ex) {
-            // input-ul nu este un nr valid
-            JOptionPane.showMessageDialog(this, "Invalid", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    private void filterAllInstances() {
+        // Implementare logica de filtrare pentru toate clasele
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Interface2(null));
+        SwingUtilities.invokeLater(() -> new Interface2(null).setVisible(true));
     }
 }
