@@ -6,8 +6,8 @@ import java.util.List;
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 import java.util.Scanner;
 public class Consola extends HomeEntertainmentSystem {
-    private boolean isPoweredOn=false; //Pornire Consola
-    private boolean isControllerConnected=false; //Connectare Controller
+    private boolean isPoweredOn; //Pornire Consola
+    private boolean isControllerConnected; //Connectare Controller
     private boolean isControllerOn=false; //Pornire Controller
     private boolean isConsoleConnected=false;//Daca consola este connectata sau nu
     private boolean isPlaying;//Verifica daca un joc ruleaza
