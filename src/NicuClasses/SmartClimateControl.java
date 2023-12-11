@@ -1,7 +1,9 @@
 package NicuClasses;
 import java.util.Scanner;
 
+import BogdanClasses.DVDPlayer;
 import BogdanClasses.SoundBarBox;
+import BogdanClasses.TvWithSpeakers;
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
 import java.util.Scanner;
@@ -109,6 +111,7 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
             System.out.println("4. Testare metode turnOnHeating si turnOffHeating");
             System.out.println("5. Testare metode turnOnCooling si turnOffCooling");
             System.out.println("6. Testare cu mod dinamic si introducere de la tastatura");
+            System.out.println("7. Afisare 10  instante ");
             System.out.println("0. Iesire");
 
             System.out.print("Alege optiunea: ");
@@ -132,6 +135,10 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
                     break;
                 case 6:
                     testModDinamicSiIntroducere(scanner);
+                    break;
+                case 7:
+                    displayInstances(SmartClimateControl.SmartClimateControlInstances());
+                    ;
                     break;
                 case 0:
                     System.out.println("La revedere!");
@@ -223,7 +230,9 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
             System.out.println("4. Opreste incalzirea");
             System.out.println("5. Porneste racirea");
             System.out.println("6. Opreste racirea");
-            System.out.println("7. Iesire");
+            System.out.println("7. Afisare 10 instante");
+            System.out.println("8. Afisare instante filtrate");
+            System.out.println("9. Iesire");
 
             System.out.print("Introdu optiunea: ");
             choice = scanner.next();
@@ -248,13 +257,18 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
                     climateControl.turnOffCooling();
                     break;
                 case "7":
+                    displayInstances(SmartClimateControl.SmartClimateControlInstances());
+                    break;
+                case "8":
+                    SmartClimateControl.displayFilteredInstances();
+                case "9":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("7"));
+        } while (!choice.equals("9"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -264,6 +278,17 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
             smartClimateControls[i] = new SmartClimateControl();
         }
         return smartClimateControls;
+    }
+
+    public static void displayFilteredInstances() {
+        SmartClimateControl[] smartClimateControls = SmartClimateControlInstances();
+
+        System.out.println("Instantele clasei SmartClimateControl filtrate");
+        for (SmartClimateControl instance : smartClimateControls) {
+            if (!instance.isCoolingOn && !instance.isHeatingOn) {
+                System.out.println(instance.toString());
+            }
+        }
     }
 
 }

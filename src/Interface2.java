@@ -5,6 +5,10 @@ import java.awt.event.ActionListener;
 import BogdanClasses.TvWithSpeakers;
 import BogdanClasses.SoundBarBox;
 import BogdanClasses.DVDPlayer;
+import NicuClasses.SmartClimateControl;
+import NicuClasses.SmartIluminatingSystem;
+import NicuClasses.SmartSecuritySystem;
+
 public class Interface2 extends JDialog {
     private JButton dvdPlayerButton;
     private JButton soundBarBoxButton;
@@ -14,6 +18,9 @@ public class Interface2 extends JDialog {
     private JButton filterButton;
     private JPanel log;
     private JButton ft2;
+    private JButton smartClimateControlButton;
+    private JButton smartClimateControlButton1;
+    private JButton smartIluminatingSystemButton;
 
     public Interface2(Interface parent) {
         setTitle("Devices Interface");
@@ -48,6 +55,29 @@ public class Interface2 extends JDialog {
             }
         });
 
+        smartClimateControlButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SmartClimateControl smartClimateControl = new SmartClimateControl();
+                smartClimateControl.ControlSpecifiedDevice();
+            }
+        });
+
+        smartIluminatingSystemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SmartIluminatingSystem smartIluminatingSystem = new SmartIluminatingSystem();
+                smartIluminatingSystem.ControlSpecifiedDevice();
+            }
+        });
+
+        smartClimateControlButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SmartSecuritySystem smartSecuritySystem = new SmartSecuritySystem();
+                smartSecuritySystem.ControlSpecifiedDevice();
+            }
+        });
         filterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,6 +111,27 @@ public class Interface2 extends JDialog {
 
         for (TvWithSpeakers tvWithSpeakers : TvWithSpeakers.TvWithSpeakersInstances()) {
 
+        }
+
+        for (SmartClimateControl smartClimateControl : SmartClimateControl.SmartClimateControlInstances()) {
+            // Filtrare pentru SmartClimateControl
+            if (smartClimateControl.isPoweredOn() == boolCondition1 && (smartClimateControl.isCoolingOn() ? 1 : 0) == intCondition2) {
+                System.out.println(smartClimateControl.toString());
+            }
+        }
+
+        for (SmartIluminatingSystem smartIluminatingSystem : SmartIluminatingSystem.SmartIluminatingSystemInstances()) {
+            // Filtrare pentru SmartIluminatingSystem
+            if (smartIluminatingSystem.isPoweredOn() == boolCondition1 && (smartIluminatingSystem.isTurnedOn() ? 1 : 0) == intCondition2) {
+                System.out.println(smartIluminatingSystem.toString());
+            }
+        }
+
+        for (SmartSecuritySystem smartSecuritySystem: SmartSecuritySystem.SmartSecuritySystemInstances()) {
+            // Filtrare pentru SmartIluminatingSystem
+            if (smartSecuritySystem.isPoweredOn() == boolCondition1 && (smartSecuritySystem.isSurveillanceOn() ? 1 : 0) == intCondition2) {
+                System.out.println(smartSecuritySystem.toString());
+            }
         }
 
     }
