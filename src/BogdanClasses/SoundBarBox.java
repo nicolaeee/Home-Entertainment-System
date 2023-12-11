@@ -188,8 +188,8 @@ public class SoundBarBox extends HomeEntertainmentSystem {
                     displayInstances(SoundBarBox.SoundBarBoxInstances());
                     break;
                 case "10":
-                SoundBarBox.displayFilteredInstances();
-                break;
+                    SoundBarBox.displayFilteredInstances();
+                    break;
                 case "11":
                     System.out.println("Iesire");
                     break;
@@ -197,7 +197,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("10"));
+        } while (!choice.equals("11"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -210,6 +210,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
     }
 
     //Metoda care afiseza instantele filtrate
+
     public static void displayFilteredInstances() {
         SoundBarBox[] soundBarBoxes = SoundBarBoxInstances();
 

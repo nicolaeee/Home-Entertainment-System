@@ -124,7 +124,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
             System.out.println("6. Oprire redare");
             System.out.println("7. Afisare Informatii");
             System.out.println("8. Afisare Instante");
-            System.out.print("9. Afisare Instante Filtrate");
+            System.out.println("9. Afisare Instante Filtrate");
             System.out.println("10. Iesire");
 
 

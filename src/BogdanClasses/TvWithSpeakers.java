@@ -128,7 +128,7 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
             System.out.println("6. Afisare Informatii Televizor");
             System.out.println("7. Afisare Instante");
             System.out.println("8. Afisare Instante Filtrate");
-            System.out.println("8. Iesire");
+            System.out.println("9. Iesire");
 
             System.out.print("Introdu optiunea: ");
             choice = scanner.next();
@@ -158,6 +158,7 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
                     break;
                 case "7":
                     displayInstances(TvWithSpeakers.TvWithSpeakersInstances());
+                    break;
                 case "8":
                     TvWithSpeakers.displayFilteredInstances();
                     break;

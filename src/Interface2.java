@@ -2,88 +2,90 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import BogdanClasses.SoundBarBox;
 import BogdanClasses.TvWithSpeakers;
+import BogdanClasses.SoundBarBox;
 import BogdanClasses.DVDPlayer;
-import HomeEntertainmentSystem.HomeEntertainmentSystem;
 public class Interface2 extends JDialog {
-    private JButton DVDPlayerButton;
-    private JButton TvWithSpeakersButton;
-    private JButton SoundBarBoxButton;
-    private JTextField conditionFieldVolume;
-    private JTextField conditionFieldBass;
-    private JTextField conditionFieldBalance;
-    private JTextArea resultArea;
+    private JButton dvdPlayerButton;
+    private JButton soundBarBoxButton;
+    private JButton tvWithSpeakersButton;
+    private JTextField conditionField1;
+    private JTextField conditionField2;
     private JButton filterButton;
-    private JButton filterAllButton;
-    private JPanel MainPanel;
+    private JPanel log;
+    private JButton ft2;
 
     public Interface2(Interface parent) {
-        setTitle("Devices");
-        setContentPane(MainPanel);
-        setMinimumSize(new Dimension(650,500));
+        setTitle("Devices Interface");
+        setContentPane(log);
+        setMinimumSize(new Dimension(800,650));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        DVDPlayerButton.addActionListener(new ActionListener() {
+
+        dvdPlayerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                updateFields();
+                DVDPlayer dvdPlayer = new DVDPlayer();
+                dvdPlayer.ControlSpecifiedDevice();
             }
         });
 
-        TvWithSpeakersButton.addActionListener(new ActionListener() {
+        soundBarBoxButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                updateFields();
+                SoundBarBox soundBarBox = new SoundBarBox();
+                soundBarBox.ControlSpecifiedDevice();
             }
         });
 
-        SoundBarBoxButton.addActionListener(new ActionListener() {
+        tvWithSpeakersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                updateFields();
+                TvWithSpeakers tvWithSpeakers = new TvWithSpeakers();
+                tvWithSpeakers.ControlSpecifiedDevice();
             }
         });
 
-        // Adaugare ascultator pentru butonul de filtrare
         filterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                filterInstances();
+                String condition1 = conditionField1.getText();
+                String condition2 = conditionField2.getText();
+                filterInstances(condition1, condition2);
             }
         });
 
-        // Adaugare buton pentru filtrarea tuturor instanțelor
-        filterAllButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                filterAllInstances();
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private void filterInstances(String condition1, String condition2) {
+
+        boolean boolCondition1 = !condition1.isBlank();
+        int intCondition2 = condition2.isBlank() ? 0 : Integer.parseInt(condition2);
+        System.out.println("Filtrare dupa conditii:");
+
+        for (DVDPlayer dvdPlayer : DVDPlayer.DVDPlayerInstances()) {
+            // Filtrare pentru DVDPlayer
+            if (dvdPlayer.isPoweredOn() == boolCondition1 && (dvdPlayer.isDiscInserted() ? 1 : 0) == intCondition2) {
+                System.out.println(dvdPlayer.toString());
             }
-        });
-    }
+        }
 
-    // Metoda care actualizeaza campurile in functie de clasa selectata
-    private void updateFields() {
-        conditionFieldVolume.setText("");
-        conditionFieldBass.setText("");
-        conditionFieldBalance.setText("");
-    }
+        for (SoundBarBox soundBarBox : SoundBarBox.SoundBarBoxInstances()) {
 
+        }
 
-    private void filterInstances() {
-        // Implementare logica de filtrare specifica clasei selectate
-    }
+        for (TvWithSpeakers tvWithSpeakers : TvWithSpeakers.TvWithSpeakersInstances()) {
 
-    private void filterAllInstances() {
-        // Implementare logica de filtrare pentru toate clasele
+        }
+
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Interface2(null).setVisible(true));
+        SwingUtilities.invokeLater(() -> new Interface2(null));
     }
 }
