@@ -8,6 +8,7 @@ import BogdanClasses.DVDPlayer;
 import NicuClasses.SmartClimateControl;
 import NicuClasses.SmartIluminatingSystem;
 import NicuClasses.SmartSecuritySystem;
+import javax.swing.SwingUtilities;
 
 public class Interface2 extends JDialog {
     private JButton dvdPlayerButton;
@@ -21,11 +22,12 @@ public class Interface2 extends JDialog {
     private JButton smartClimateControlButton;
     private JButton smartClimateControlButton1;
     private JButton smartIluminatingSystemButton;
+    private JTextArea afisareRezultatTextArea;
 
     public Interface2(Interface parent) {
         setTitle("Devices Interface");
         setContentPane(log);
-        setMinimumSize(new Dimension(800,650));
+        setMinimumSize(new Dimension(800, 650));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -83,7 +85,7 @@ public class Interface2 extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 String condition1 = conditionField1.getText();
                 String condition2 = conditionField2.getText();
-                filterInstances(condition1, condition2);
+                filterAndDisplayResults(condition1, condition2);
             }
         });
 
@@ -92,48 +94,34 @@ public class Interface2 extends JDialog {
         setVisible(true);
     }
 
-    private void filterInstances(String condition1, String condition2) {
-
+    private void filterAndDisplayResults(String condition1, String condition2) {
         boolean boolCondition1 = !condition1.isBlank();
         int intCondition2 = condition2.isBlank() ? 0 : Integer.parseInt(condition2);
-        System.out.println("Filtrare dupa conditii:");
 
+        afisareRezultatTextArea.setText("Filtrare dupa conditii:\n");
+
+        // Filter and display results for DVDPlayer
         for (DVDPlayer dvdPlayer : DVDPlayer.DVDPlayerInstances()) {
             // Filtrare pentru DVDPlayer
             if (dvdPlayer.isPoweredOn() == boolCondition1 && (dvdPlayer.isDiscInserted() ? 1 : 0) == intCondition2) {
-                System.out.println(dvdPlayer.toString());
+                afisareRezultatTextArea.append(dvdPlayer.toString() + "\n");
             }
         }
+    }
 
-        for (SoundBarBox soundBarBox : SoundBarBox.SoundBarBoxInstances()) {
 
-        }
+    private void filterAndDisplayResults() {
+        afisareRezultatTextArea.append("Debug: Filtering DVDPlayer results\n");
 
-        for (TvWithSpeakers tvWithSpeakers : TvWithSpeakers.TvWithSpeakersInstances()) {
+        // Clear previous results
+        afisareRezultatTextArea.setText("");
 
-        }
-
-        for (SmartClimateControl smartClimateControl : SmartClimateControl.SmartClimateControlInstances()) {
-            // Filtrare pentru SmartClimateControl
-            if (smartClimateControl.isPoweredOn() == boolCondition1 && (smartClimateControl.isCoolingOn() ? 1 : 0) == intCondition2) {
-                System.out.println(smartClimateControl.toString());
+        for (DVDPlayer dvdPlayer : DVDPlayer.DVDPlayerInstances()) {
+            // Apply filtering conditions for DVDPlayer
+            if (dvdPlayer.isPoweredOn() && dvdPlayer.isDiscInserted()) {
+                afisareRezultatTextArea.append(dvdPlayer.toString() + "\n");
             }
         }
-
-        for (SmartIluminatingSystem smartIluminatingSystem : SmartIluminatingSystem.SmartIluminatingSystemInstances()) {
-            // Filtrare pentru SmartIluminatingSystem
-            if (smartIluminatingSystem.isPoweredOn() == boolCondition1 && (smartIluminatingSystem.isTurnedOn() ? 1 : 0) == intCondition2) {
-                System.out.println(smartIluminatingSystem.toString());
-            }
-        }
-
-        for (SmartSecuritySystem smartSecuritySystem: SmartSecuritySystem.SmartSecuritySystemInstances()) {
-            // Filtrare pentru SmartIluminatingSystem
-            if (smartSecuritySystem.isPoweredOn() == boolCondition1 && (smartSecuritySystem.isSurveillanceOn() ? 1 : 0) == intCondition2) {
-                System.out.println(smartSecuritySystem.toString());
-            }
-        }
-
     }
 
     public static void main(String[] args) {

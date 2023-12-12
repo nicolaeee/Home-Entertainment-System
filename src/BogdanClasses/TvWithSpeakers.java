@@ -2,6 +2,8 @@ package BogdanClasses;
 
 //Importarea claselor
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
+
+import java.util.Random;
 import java.util.Scanner;
 public class TvWithSpeakers extends HomeEntertainmentSystem {
 
@@ -33,13 +35,13 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
 
     @Override
     public void powerOn() {
-        isPoweredOn=true;
+        isPoweredOn = true;
         System.out.println("TvWithSpeakers a fost pornit");
     }
 
     @Override
-    public void powerOff(){
-        isPoweredOn=false;
+    public void powerOff() {
+        isPoweredOn = false;
         System.out.println("TvWithSpeakers a fost oprit");
     }
 
@@ -66,10 +68,10 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
     // Metoda pentru a porni sau opri sistemul de boxe
     public void toggleSpeakers() {
         if (isPoweredOn()) {
-            areSpeakersOn=true;
+            areSpeakersOn = true;
             System.out.println("Sistemul de boxe a fost pornit");
         } else {
-            areSpeakersOn=false;
+            areSpeakersOn = false;
             System.out.println("Televizorul trebuie sa fie pornit pentru a controla sistemul de boxe");
         }
     }
@@ -106,7 +108,7 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
     // Redefinirea metodei toString pentru a afisa datele
     @Override
     public String toString() {
-        return "TvWithSpeakers { " +"IsPoweredOn=" + isPoweredOn +", Volume=" + volume +", Channel=" + channel +", AreSpeakersOn=" + areSpeakersOn +" }";
+        return "TvWithSpeakers { " + "IsPoweredOn=" + isPoweredOn + ", Volume=" + volume + ", Channel=" + channel + ", AreSpeakersOn=" + areSpeakersOn + " }";
     }
 
     // Implementarea metodei de control pentru TvWithSpeakers
@@ -185,9 +187,17 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
     public static void displayFilteredInstances() {
         TvWithSpeakers[] tvWithSpeakers = TvWithSpeakersInstances();
 
-        System.out.println("Instantele clasei TvWithSpeakers filtrate");
+        Random random = new Random();
+
         for (TvWithSpeakers instance : tvWithSpeakers) {
-            if (!instance.isPoweredOn() && instance.getVolume() > 10) {
+            // conditii de filtrare
+            boolean condition1 = !instance.isPoweredOn();
+            boolean condition2 = instance.getVolume() > 10;
+
+            // conditie aleatoare
+            boolean randomCondition = random.nextBoolean();
+
+            if (condition1 && condition2 && randomCondition) {
                 System.out.println(instance.toString());
             }
         }
