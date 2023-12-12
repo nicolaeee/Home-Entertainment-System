@@ -117,14 +117,18 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
     }
 
     public static void displayFilteredInstances() {
-        SmartSecuritySystem[] smartClimateControls = SmartSecuritySystemInstances();
+        SmartSecuritySystem[] smartSecuritySystems = SmartSecuritySystemInstances();
 
         System.out.println("Instantele clasei SmartSecuritySystem filtrate");
-        for (SmartSecuritySystem instance : smartClimateControls) {
-            if (!instance.isAlarmActivated && !instance.isSurveillanceOn) {
+        for (SmartSecuritySystem instance : smartSecuritySystems) {
+            boolean condition1 = !instance.isAlarmActivated();
+            boolean condition2 = !instance.isSurveillanceOn();
+
+            if (condition1 && condition2) {
                 System.out.println(instance.toString());
             }
         }
     }
+
 
 }
