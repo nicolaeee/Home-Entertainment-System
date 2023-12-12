@@ -1,6 +1,7 @@
 package NicuClasses;
+import java.util.Random;
 import java.util.Scanner;
-
+import java.util.Random;
 import BogdanClasses.DVDPlayer;
 import BogdanClasses.SoundBarBox;
 import BogdanClasses.TvWithSpeakers;
@@ -282,14 +283,26 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
 
     public static void displayFilteredInstances() {
         SmartClimateControl[] smartClimateControls = SmartClimateControlInstances();
-
+        Random random = new Random();
         System.out.println("Instantele clasei SmartClimateControl filtrate");
+
+
         for (SmartClimateControl instance : smartClimateControls) {
-            if (!instance.isCoolingOn && !instance.isHeatingOn) {
+
+            boolean condition1 = !instance.isPoweredOn();
+            boolean condition2 = instance.isCoolingOn;
+
+            // conditie aleatoare
+            boolean randomCondition = random.nextBoolean();
+
+            if (condition1 && condition2 && randomCondition) {
                 System.out.println(instance.toString());
             }
         }
+
     }
+
+
 
 }
 
