@@ -136,7 +136,7 @@ public class Interface2 extends JDialog {
     }
 
     private void displayTvWithSpeakersInstances(String condition1, String condition2) {
-        afisareRezultatTextArea.setText(""); // Curăță TextArea
+        afisareRezultatTextArea.setText("");
 
         // filtrare si afisare
         for (TvWithSpeakers tvWithSpeakers : TvWithSpeakers.TvWithSpeakersInstances()) {
