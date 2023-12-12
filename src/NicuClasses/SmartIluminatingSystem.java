@@ -3,6 +3,8 @@ package NicuClasses;
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
 import java.util.Scanner;
+import java.util.Random;
+
 
 public class SmartIluminatingSystem extends HomeEntertainmentSystem {
     private int lightIntensity;
@@ -203,10 +205,17 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
 
     public static void displayFilteredInstances() {
         SmartIluminatingSystem[] smartIluminatingSystems = SmartIluminatingSystemInstances();
-
+        Random random = new Random();
         System.out.println("Instantele clasei SmartIluminatingSystem filtrate");
+
         for (SmartIluminatingSystem instance : smartIluminatingSystems) {
-            if (!instance.isTurnedOn && !instance.isPoweredOn) {
+            boolean condition1 = !instance.isTurnedOn();
+            boolean condition2 = !instance.isPoweredOn();
+
+            // conditie aleatoare
+            boolean randomCondition = random.nextBoolean();
+
+            if (condition1 && condition2 && randomCondition) {
                 System.out.println(instance.toString());
             }
         }
