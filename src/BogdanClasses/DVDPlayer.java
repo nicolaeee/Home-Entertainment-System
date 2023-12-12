@@ -11,6 +11,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
     private boolean isPlaying;
     private static DVDPlayer[] dvdPlayers = DVDPlayer.DVDPlayerInstances();
 
+
     // Constructor fara argumente
     public DVDPlayer() {
     }
@@ -124,7 +125,7 @@ public class DVDPlayer extends HomeEntertainmentSystem {
             System.out.println("6. Oprire redare");
             System.out.println("7. Afisare Informatii");
             System.out.println("8. Afisare Instante");
-            System.out.print("9. Afisare Instante Filtrate");
+            System.out.println("9. Afisare Instante Filtrate");
             System.out.println("10. Iesire");
 
 
@@ -184,9 +185,16 @@ public class DVDPlayer extends HomeEntertainmentSystem {
 
         System.out.println("Instantele clasei DVDPlayer filtrate");
         for (DVDPlayer instance : dvdPlayers) {
-            if (!instance.isPoweredOn() && instance.isDiscInserted()) {
+            // conditii de filtrare
+            boolean condition1 = !instance.isPoweredOn();
+            boolean condition2 = instance.isDiscInserted();
+
+            if (condition1 && condition2) {
                 System.out.println(instance.toString());
             }
         }
     }
+
+
+
 }

@@ -3,6 +3,8 @@ package NicuClasses;
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
 import java.util.Scanner;
+import java.util.Random;
+
 
 public class SmartIluminatingSystem extends HomeEntertainmentSystem {
     private int lightIntensity;
@@ -160,7 +162,9 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
             System.out.println("1. Porneste iluminatul");
             System.out.println("2. Opreste iluminatul");
             System.out.println("3. Seteaza intensitatea");
-            System.out.println("4. Iesire");
+            System.out.println("4. Afisare 10 instante");
+            System.out.println("5. Afisare instante filtrate");
+            System.out.println("6. Iesire");
 
             System.out.print("Introdu optiunea: ");
             choice = scanner.next();
@@ -178,13 +182,17 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
                     iluminatingSystem.setIntensity(newIntensity);
                     break;
                 case "4":
+                    displayInstances(SmartIluminatingSystem.SmartIluminatingSystemInstances());
+                case "5":
+                    SmartIluminatingSystem.displayFilteredInstances();
+                case "6":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("4"));
+        } while (!choice.equals("6"));
     }
 
     public static SmartIluminatingSystem[] SmartIluminatingSystemInstances() {
@@ -193,6 +201,24 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
             smartIluminatingSystems[i] = new SmartIluminatingSystem();
         }
         return smartIluminatingSystems;
+    }
+
+    public static void displayFilteredInstances() {
+        SmartIluminatingSystem[] smartIluminatingSystems = SmartIluminatingSystemInstances();
+        Random random = new Random();
+        System.out.println("Instantele clasei SmartIluminatingSystem filtrate");
+
+        for (SmartIluminatingSystem instance : smartIluminatingSystems) {
+            boolean condition1 = !instance.isTurnedOn();
+            boolean condition2 = !instance.isPoweredOn();
+
+            // conditie aleatoare
+            boolean randomCondition = random.nextBoolean();
+
+            if (condition1 && condition2 && randomCondition) {
+                System.out.println(instance.toString());
+            }
+        }
     }
 
 

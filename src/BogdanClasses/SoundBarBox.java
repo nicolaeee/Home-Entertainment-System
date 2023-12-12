@@ -3,6 +3,7 @@ package BogdanClasses;
 //Importarea claselor
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class SoundBarBox extends HomeEntertainmentSystem {
@@ -18,7 +19,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
     }
 
     //Constructor cu toate argumentele
-    public SoundBarBox(boolean isPoweredOn,int volume, int bass, int balance) {
+    public SoundBarBox(boolean isPoweredOn, int volume, int bass, int balance) {
         this.isPoweredOn = true;
         this.volume = volume;
         this.bass = bass;
@@ -35,13 +36,13 @@ public class SoundBarBox extends HomeEntertainmentSystem {
 
     @Override
     public void powerOn() {
-        isPoweredOn=true;
+        isPoweredOn = true;
         System.out.println("DVDPlayer-ul a fost pornit");
     }
 
     @Override
-    public void powerOff(){
-        isPoweredOn=false;
+    public void powerOff() {
+        isPoweredOn = false;
         System.out.println("DVDPlayer-ul a fost oprit");
     }
 
@@ -121,7 +122,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
     // Redefinirea metodei toString pentru a afisa datele
     @Override
     public String toString() {
-        return "SoundBarBox { " +"Volume=" + volume +", Bass=" + bass +", isPoweredOn=" + isPoweredOn +", Balance=" + balance +" }";
+        return "SoundBarBox { " + "Volume=" + volume + ", Bass=" + bass + ", isPoweredOn=" + isPoweredOn + ", Balance=" + balance + " }";
     }
 
     // Implementarea metodei de control pentru SoundBar
@@ -188,8 +189,8 @@ public class SoundBarBox extends HomeEntertainmentSystem {
                     displayInstances(SoundBarBox.SoundBarBoxInstances());
                     break;
                 case "10":
-                SoundBarBox.displayFilteredInstances();
-                break;
+                    SoundBarBox.displayFilteredInstances();
+                    break;
                 case "11":
                     System.out.println("Iesire");
                     break;
@@ -197,7 +198,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("10"));
+        } while (!choice.equals("11"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -210,12 +211,21 @@ public class SoundBarBox extends HomeEntertainmentSystem {
     }
 
     //Metoda care afiseza instantele filtrate
+
     public static void displayFilteredInstances() {
         SoundBarBox[] soundBarBoxes = SoundBarBoxInstances();
 
-        System.out.println("Instantele clasei SoundBarBox filtrate");
+        Random random = new Random();
+
         for (SoundBarBox instance : soundBarBoxes) {
-            if (!instance.isPoweredOn && instance.volume > 20) {
+            // verificare conditii de filtrare
+            boolean condition1 = !instance.isPoweredOn();
+            boolean condition2 = instance.getVolume() > 20;
+
+            //conditie aleatoare
+            boolean randomCondition = random.nextBoolean();
+
+            if (condition1 && condition2 && randomCondition) {
                 System.out.println(instance.toString());
             }
         }

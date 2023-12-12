@@ -75,7 +75,9 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
             System.out.println("2. Dezactivează alarma");
             System.out.println("3. Porneste supravegherea");
             System.out.println("4. Oprește supravegherea");
-            System.out.println("5. Ieșire");
+            System.out.println("5. Afisare 10 instante");
+            System.out.println("6. Afisare instante filtrate");
+            System.out.println("7. Ieșire");
 
             System.out.print("Introdu opțiunea ta: ");
             choice = scanner.next();
@@ -94,6 +96,10 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
                     turnOffSurveillance();
                     break;
                 case "5":
+                    displayInstances(SmartSecuritySystem.SmartSecuritySystemInstances());
+                case "6":
+                    SmartSecuritySystem.displayFilteredInstances();
+                case "7":
                     System.out.println("Ieșire");
                     break;
                 default:
@@ -109,5 +115,20 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
         }
         return smartSecuritySystems;
     }
+
+    public static void displayFilteredInstances() {
+        SmartSecuritySystem[] smartSecuritySystems = SmartSecuritySystemInstances();
+
+        System.out.println("Instantele clasei SmartSecuritySystem filtrate");
+        for (SmartSecuritySystem instance : smartSecuritySystems) {
+            boolean condition1 = !instance.isAlarmActivated();
+            boolean condition2 = !instance.isSurveillanceOn();
+
+            if (condition1 && condition2) {
+                System.out.println(instance.toString());
+            }
+        }
+    }
+
 
 }
