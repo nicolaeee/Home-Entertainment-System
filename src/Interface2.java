@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
 import BogdanClasses.TvWithSpeakers;
 import BogdanClasses.SoundBarBox;
 import BogdanClasses.DVDPlayer;
@@ -16,13 +18,12 @@ public class Interface2 extends JDialog {
     private JButton tvWithSpeakersButton;
     private JTextField conditionField1;
     private JTextField conditionField2;
-    private JButton filterButton;
     private JPanel log;
-    private JButton ft2;
     private JButton smartClimateControlButton;
     private JButton smartClimateControlButton1;
     private JButton smartIluminatingSystemButton;
     private JTextArea afisareRezultatTextArea;
+    private JButton showAllButton;
 
     public Interface2(Interface parent) {
         setTitle("Devices Interface");
@@ -36,24 +37,36 @@ public class Interface2 extends JDialog {
         dvdPlayerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DVDPlayer dvdPlayer = new DVDPlayer();
-                dvdPlayer.ControlSpecifiedDevice();
+                // conditii
+                String condition1 = conditionField1.getText().toLowerCase();
+                String condition2 = conditionField2.getText().toLowerCase();
+
+                // afisez rezultatele
+                displayDVDPlayerInstances(condition1, condition2);
             }
         });
 
         soundBarBoxButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SoundBarBox soundBarBox = new SoundBarBox();
-                soundBarBox.ControlSpecifiedDevice();
+                // conditii
+                String condition1 = conditionField1.getText().toLowerCase();
+                String condition2 = conditionField2.getText().toLowerCase();
+
+                // afisez rezultatele
+                displaySoundBarBoxInstances(condition1, condition2);
             }
         });
 
         tvWithSpeakersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TvWithSpeakers tvWithSpeakers = new TvWithSpeakers();
-                tvWithSpeakers.ControlSpecifiedDevice();
+                // conditii
+                String condition1 = conditionField1.getText().toLowerCase();
+                String condition2 = conditionField2.getText().toLowerCase();
+
+                // afisez rezultatele
+                displayTvWithSpeakersInstances(condition1, condition2);
             }
         });
 
@@ -80,12 +93,10 @@ public class Interface2 extends JDialog {
                 smartSecuritySystem.ControlSpecifiedDevice();
             }
         });
-        filterButton.addActionListener(new ActionListener() {
+        showAllButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String condition1 = conditionField1.getText();
-                String condition2 = conditionField2.getText();
-                filterAndDisplayResults(condition1, condition2);
+                displayAllDevicesInstances();
             }
         });
 
@@ -94,33 +105,67 @@ public class Interface2 extends JDialog {
         setVisible(true);
     }
 
-    private void filterAndDisplayResults(String condition1, String condition2) {
-        boolean boolCondition1 = !condition1.isBlank();
-        int intCondition2 = condition2.isBlank() ? 0 : Integer.parseInt(condition2);
+    private void displayDVDPlayerInstances(String condition1, String condition2) {
+        afisareRezultatTextArea.setText("");
 
-        afisareRezultatTextArea.setText("Filtrare dupa conditii:\n");
-
-        // Filter and display results for DVDPlayer
+        // filtrare si afisare
         for (DVDPlayer dvdPlayer : DVDPlayer.DVDPlayerInstances()) {
-            // Filtrare pentru DVDPlayer
-            if (dvdPlayer.isPoweredOn() == boolCondition1 && (dvdPlayer.isDiscInserted() ? 1 : 0) == intCondition2) {
+            // conditii
+            boolean guiCondition1 = !dvdPlayer.isPoweredOn() == condition1.equals("oprit");
+
+            // valoare aleatoare
+            boolean randomCondition = new Random().nextBoolean();
+
+            // afisez rezultatele
+            if (guiCondition1 || randomCondition) {
                 afisareRezultatTextArea.append(dvdPlayer.toString() + "\n");
             }
         }
     }
 
-
-    private void filterAndDisplayResults() {
-        afisareRezultatTextArea.append("Debug: Filtering DVDPlayer results\n");
-
-        // Clear previous results
+    private void displaySoundBarBoxInstances(String condition1, String condition2) {
         afisareRezultatTextArea.setText("");
 
-        for (DVDPlayer dvdPlayer : DVDPlayer.DVDPlayerInstances()) {
-            // Apply filtering conditions for DVDPlayer
-            if (dvdPlayer.isPoweredOn() && dvdPlayer.isDiscInserted()) {
-                afisareRezultatTextArea.append(dvdPlayer.toString() + "\n");
+        // filtrare si afisare
+        for (SoundBarBox soundBarBox : SoundBarBox.SoundBarBoxInstances()) {
+            // filtrare
+            if ((soundBarBox.isPoweredOn() == condition1.equals("pornit")) && (soundBarBox.getVolume() > Integer.parseInt(condition2))) {
+                afisareRezultatTextArea.append(soundBarBox.toString() + "\n");
             }
+        }
+    }
+
+    private void displayTvWithSpeakersInstances(String condition1, String condition2) {
+        afisareRezultatTextArea.setText(""); // Curăță TextArea
+
+        // filtrare si afisare
+        for (TvWithSpeakers tvWithSpeakers : TvWithSpeakers.TvWithSpeakersInstances()) {
+            // conditii
+            if ((tvWithSpeakers.isPoweredOn() == condition1.equals("pornit")) && (tvWithSpeakers.getVolume() > Integer.parseInt(condition2))) {
+                afisareRezultatTextArea.append(tvWithSpeakers.toString() + "\n");
+            }
+        }
+    }
+
+    private void displayAllDevicesInstances() {
+        afisareRezultatTextArea.setText("");
+
+        // Afiseaza toate instantele de DVDPlayer
+        afisareRezultatTextArea.append("DVDPlayer:\n");
+        for (DVDPlayer dvdPlayer : DVDPlayer.DVDPlayerInstances()) {
+            afisareRezultatTextArea.append(dvdPlayer.toString() + "\n");
+        }
+
+        // Afiseaza toate instantele de SoundBarBox
+        afisareRezultatTextArea.append("\nSoundBarBox:\n");
+        for (SoundBarBox soundBarBox : SoundBarBox.SoundBarBoxInstances()) {
+            afisareRezultatTextArea.append(soundBarBox.toString() + "\n");
+        }
+
+        // Afiseaza toate instantele de TvWithSpeakers
+        afisareRezultatTextArea.append("\nTvWithSpeakers:\n");
+        for (TvWithSpeakers tvWithSpeakers : TvWithSpeakers.TvWithSpeakersInstances()) {
+            afisareRezultatTextArea.append(tvWithSpeakers.toString() + "\n");
         }
     }
 

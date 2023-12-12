@@ -7,6 +7,7 @@
     </constraints>
     <properties>
       <background color="-16777216"/>
+      <foreground color="-1379841"/>
     </properties>
     <border type="none"/>
     <children>
@@ -25,9 +26,10 @@
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1379841"/>
+              <background color="-16777216"/>
               <enabled value="true"/>
-              <foreground color="-16777216"/>
+              <font name="Droid Sans Mono"/>
+              <foreground color="-1379841"/>
               <text value="SoundBarBox"/>
             </properties>
           </component>
@@ -36,9 +38,10 @@
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1379841"/>
+              <background color="-16777216"/>
               <enabled value="true"/>
-              <foreground color="-16777216"/>
+              <font name="Droid Sans Mono"/>
+              <foreground color="-1379841"/>
               <text value="DVDPlayer"/>
             </properties>
           </component>
@@ -47,9 +50,10 @@
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1379841"/>
+              <background color="-16777216"/>
               <enabled value="true"/>
-              <foreground color="-16777216"/>
+              <font name="Droid Sans Mono"/>
+              <foreground color="-1379841"/>
               <text value="TvWithSpeakers"/>
             </properties>
           </component>
@@ -58,8 +62,9 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1576193"/>
+              <background color="-16777216"/>
               <font name="Droid Sans Mono"/>
+              <foreground color="-1379841"/>
               <text value="SmartSecuritySystem"/>
             </properties>
           </component>
@@ -68,8 +73,9 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1576193"/>
+              <background color="-16777216"/>
               <font name="Droid Sans Mono"/>
+              <foreground color="-1379841"/>
               <text value="SmartIluminatingSystem"/>
             </properties>
           </component>
@@ -78,8 +84,9 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1576193"/>
+              <background color="-16777216"/>
               <font name="Droid Sans Mono"/>
+              <foreground color="-1379841"/>
               <text value="SmartClimateControl"/>
             </properties>
           </component>
@@ -102,8 +109,9 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-1379841"/>
-              <foreground color="-16777216"/>
+              <background color="-16777216"/>
+              <font name="Droid Sans Mono"/>
+              <foreground color="-1379841"/>
             </properties>
           </component>
           <vspacer id="b1891">
@@ -118,8 +126,9 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-1379841"/>
-              <foreground color="-16777216"/>
+              <background color="-16777216"/>
+              <font name="Droid Sans Mono"/>
+              <foreground color="-1379841"/>
             </properties>
           </component>
           <vspacer id="1eff1">
@@ -129,21 +138,14 @@
           </vspacer>
         </children>
       </grid>
-      <component id="23a5" class="javax.swing.JButton" binding="filterButton">
-        <constraints>
-          <grid row="7" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1379841"/>
-          <foreground color="-16777216"/>
-          <text value="filtter Instances"/>
-        </properties>
-      </component>
       <component id="8afea" class="javax.swing.JLabel">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-1379841"/>
+          <font name="Droid Sans Mono"/>
+          <foreground color="-1379841"/>
           <text value="Conditia 1"/>
         </properties>
       </component>
@@ -152,6 +154,9 @@
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-1379841"/>
+          <font name="Droid Sans Mono"/>
+          <foreground color="-1379841"/>
           <text value="Conditia 2"/>
         </properties>
       </component>
@@ -165,16 +170,6 @@
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="d5374" class="javax.swing.JButton" binding="ft2">
-        <constraints>
-          <grid row="8" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1379841"/>
-          <foreground color="-16777216"/>
-          <text value="fillter All Instances"/>
-        </properties>
-      </component>
       <component id="91697" class="javax.swing.JTextArea" binding="afisareRezultatTextArea" default-binding="true">
         <constraints>
           <grid row="9" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
@@ -182,7 +177,21 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-16777216"/>
+          <font name="Droid Sans Mono"/>
+          <foreground color="-1379841"/>
           <text value="Afisare rezultat:"/>
+        </properties>
+      </component>
+      <component id="ffdc" class="javax.swing.JButton" binding="showAllButton">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="Droid Sans Mono"/>
+          <foreground color="-1379841"/>
+          <text value="showAllButton"/>
         </properties>
       </component>
     </children>
