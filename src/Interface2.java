@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-
 import BogdanClasses.TvWithSpeakers;
 import BogdanClasses.SoundBarBox;
 import BogdanClasses.DVDPlayer;
@@ -20,7 +19,6 @@ public class Interface2 extends JDialog {
     private JTextField conditionField2;
     private JPanel log;
     private JButton smartClimateControlButton;
-    private JButton smartClimateControlButton1;
     private JButton smartIluminatingSystemButton;
     private JTextArea afisareRezultatTextArea;
     private JButton showAllButton;
@@ -73,8 +71,12 @@ public class Interface2 extends JDialog {
         smartClimateControlButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SmartClimateControl smartClimateControl = new SmartClimateControl();
-                smartClimateControl.ControlSpecifiedDevice();
+                // conditii
+                String condition1 = conditionField1.getText().toLowerCase();
+                String condition2 = conditionField2.getText().toLowerCase();
+
+                // afisez rezultatele
+                displaySmartClimateControlInstances(condition1, condition2);
             }
         });
 
@@ -86,13 +88,6 @@ public class Interface2 extends JDialog {
             }
         });
 
-        smartClimateControlButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SmartSecuritySystem smartSecuritySystem = new SmartSecuritySystem();
-                smartSecuritySystem.ControlSpecifiedDevice();
-            }
-        });
         showAllButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -143,6 +138,18 @@ public class Interface2 extends JDialog {
             // conditii
             if ((tvWithSpeakers.isPoweredOn() == condition1.equals("pornit")) && (tvWithSpeakers.getVolume() > Integer.parseInt(condition2))) {
                 afisareRezultatTextArea.append(tvWithSpeakers.toString() + "\n");
+            }
+        }
+    }
+
+    private void displaySmartClimateControlInstances(String condition1, String condition2) {
+        afisareRezultatTextArea.setText("");
+
+        // Filtrare si afisare
+        for (SmartClimateControl smartClimateControl : SmartClimateControl.SmartClimateControlInstances()) {
+            //conditii
+            if ((smartClimateControl.isHeatingOn() == condition1.equals("pornit")) && (smartClimateControl.getTemperature() > Integer.parseInt(condition2))) {
+                afisareRezultatTextArea.append(smartClimateControl.toString() + "\n");
             }
         }
     }
