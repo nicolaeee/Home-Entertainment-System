@@ -262,6 +262,7 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
                     break;
                 case "8":
                     SmartClimateControl.displayFilteredInstances();
+                    break;
                 case "9":
                     System.out.println("Iesire");
                     break;

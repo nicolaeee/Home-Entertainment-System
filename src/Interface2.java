@@ -3,13 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-
 import BogdanClasses.TvWithSpeakers;
 import BogdanClasses.SoundBarBox;
 import BogdanClasses.DVDPlayer;
 import NicuClasses.SmartClimateControl;
 import NicuClasses.SmartIluminatingSystem;
 import NicuClasses.SmartSecuritySystem;
+
 import javax.swing.SwingUtilities;
 
 public class Interface2 extends JDialog {
@@ -20,10 +20,11 @@ public class Interface2 extends JDialog {
     private JTextField conditionField2;
     private JPanel log;
     private JButton smartClimateControlButton;
-    private JButton smartClimateControlButton1;
     private JButton smartIluminatingSystemButton;
     private JTextArea afisareRezultatTextArea;
     private JButton showAllButton;
+    private JScrollBar scrollBar1;
+    private JButton SmartSecuritySystemButton;
 
     public Interface2(Interface parent) {
         setTitle("Devices Interface");
@@ -73,37 +74,53 @@ public class Interface2 extends JDialog {
         smartClimateControlButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SmartClimateControl smartClimateControl = new SmartClimateControl();
-                smartClimateControl.ControlSpecifiedDevice();
+                // conditii
+                String condition1 = conditionField1.getText().toLowerCase();
+                String condition2 = conditionField2.getText().toLowerCase();
+
+                // afisez rezultatele
+                displaySmartClimateControlInstances(condition1, condition2);
             }
         });
 
         smartIluminatingSystemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SmartIluminatingSystem smartIluminatingSystem = new SmartIluminatingSystem();
-                smartIluminatingSystem.ControlSpecifiedDevice();
+                String condition1 = conditionField1.getText().toLowerCase();
+                String condition2 = conditionField2.getText().toLowerCase();
+                displaySmartIluminatingSystemInstances(condition1, condition2);
             }
         });
 
-        smartClimateControlButton1.addActionListener(new ActionListener() {
+        SmartSecuritySystemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SmartSecuritySystem smartSecuritySystem = new SmartSecuritySystem();
-                smartSecuritySystem.ControlSpecifiedDevice();
+                String condition1 = conditionField1.getText().toLowerCase();
+                String condition2 = conditionField2.getText().toLowerCase();
+                displaySmartIluminatingSystemInstances(condition1, condition2);
             }
         });
+
+        SmartSecuritySystemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String condition1 = conditionField1.getText().toLowerCase();
+                String condition2 = conditionField2.getText().toLowerCase();
+                displaySmartSecuritySystemInstances(condition1, condition2);
+            }
+        });
+
         showAllButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                displayAllDevicesInstances();
+                updateTextAreaAndScrollBar();
             }
         });
-
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
 
     private void displayDVDPlayerInstances(String condition1, String condition2) {
         afisareRezultatTextArea.setText("");
@@ -136,7 +153,7 @@ public class Interface2 extends JDialog {
     }
 
     private void displayTvWithSpeakersInstances(String condition1, String condition2) {
-        afisareRezultatTextArea.setText(""); // Curăță TextArea
+        afisareRezultatTextArea.setText("");
 
         // filtrare si afisare
         for (TvWithSpeakers tvWithSpeakers : TvWithSpeakers.TvWithSpeakersInstances()) {
@@ -147,27 +164,87 @@ public class Interface2 extends JDialog {
         }
     }
 
-    private void displayAllDevicesInstances() {
+    private void displaySmartClimateControlInstances(String condition1, String condition2) {
         afisareRezultatTextArea.setText("");
 
-        // Afiseaza toate instantele de DVDPlayer
-        afisareRezultatTextArea.append("DVDPlayer:\n");
-        for (DVDPlayer dvdPlayer : DVDPlayer.DVDPlayerInstances()) {
-            afisareRezultatTextArea.append(dvdPlayer.toString() + "\n");
-        }
-
-        // Afiseaza toate instantele de SoundBarBox
-        afisareRezultatTextArea.append("\nSoundBarBox:\n");
-        for (SoundBarBox soundBarBox : SoundBarBox.SoundBarBoxInstances()) {
-            afisareRezultatTextArea.append(soundBarBox.toString() + "\n");
-        }
-
-        // Afiseaza toate instantele de TvWithSpeakers
-        afisareRezultatTextArea.append("\nTvWithSpeakers:\n");
-        for (TvWithSpeakers tvWithSpeakers : TvWithSpeakers.TvWithSpeakersInstances()) {
-            afisareRezultatTextArea.append(tvWithSpeakers.toString() + "\n");
+        // Filtrare si afisare
+        for (SmartClimateControl smartClimateControl : SmartClimateControl.SmartClimateControlInstances()) {
+            //conditii
+            if ((smartClimateControl.isHeatingOn() == condition1.equals("pornit")) && (smartClimateControl.getTemperature() > Integer.parseInt(condition2))) {
+                afisareRezultatTextArea.append(smartClimateControl.toString() + "\n");
+            }
         }
     }
+
+    private void displaySmartIluminatingSystemInstances(String condition1, String condition2) {
+        afisareRezultatTextArea.setText("");
+        for (SmartIluminatingSystem iluminatingSystem : SmartIluminatingSystem.SmartIluminatingSystemInstances()) {
+            if ((iluminatingSystem.isTurnedOn() == condition1.equals("oprit") && (iluminatingSystem.getIntensity() > Integer.parseInt(condition2)))) {
+                afisareRezultatTextArea.append(iluminatingSystem.toString() + "\n");
+            }
+        }
+    }
+
+    private void displaySmartSecuritySystemInstances(String condition1, String condition2) {
+        afisareRezultatTextArea.setText("");
+        int condition2Value = Integer.parseInt(condition2);
+        // Filtrare și afișare
+        for (SmartSecuritySystem smartSecuritySystem : SmartSecuritySystem.SmartSecuritySystemInstances()) {
+            if (!smartSecuritySystem.isAlarmActivated() == condition1.equals("dezactivat") && smartSecuritySystem.isSurveillanceOn()) {
+                // Comparare cu o valoare întreagă
+                if (condition2Value > 0) {
+                    afisareRezultatTextArea.append(smartSecuritySystem.toString() + "\n");
+                }
+            }
+        }
+    }
+
+    private void updateTextAreaAndScrollBar() {
+        SwingUtilities.invokeLater(() -> {
+            int maxValue = scrollBar1.getMaximum();
+            afisareRezultatTextArea.setText("");
+            // Adauga text în JTextArea pentru DVDPlayer
+            afisareRezultatTextArea.append("DVDPlayer:\n");
+            for (DVDPlayer dvdPlayer : DVDPlayer.DVDPlayerInstances()) {
+                afisareRezultatTextArea.append(dvdPlayer.toString() + "\n");
+            }
+
+            // Afiseaza toate instantele de SoundBarBox
+            afisareRezultatTextArea.append("\nSoundBarBox:\n");
+            for (SoundBarBox soundBarBox : SoundBarBox.SoundBarBoxInstances()) {
+                afisareRezultatTextArea.append(soundBarBox.toString() + "\n");
+            }
+
+            // Afiseaza toate instantele de TvWithSpeakers
+            afisareRezultatTextArea.append("\nTvWithSpeakers:\n");
+            for (TvWithSpeakers tvWithSpeakers : TvWithSpeakers.TvWithSpeakersInstances()) {
+                afisareRezultatTextArea.append(tvWithSpeakers.toString() + "\n");
+            }
+
+            // Afiseaza toate instantele de SmartClimateControl
+            afisareRezultatTextArea.append("\nSmartClimateControl:\n");
+            for (SmartClimateControl smartClimateControl : SmartClimateControl.SmartClimateControlInstances()) {
+                afisareRezultatTextArea.append(smartClimateControl.toString() + "\n");
+            }
+
+            // Afiseaza toate instantele de SmartIluminatingSystem
+            afisareRezultatTextArea.append("\nSmartIluminatingSystem:\n");
+            for (SmartIluminatingSystem iluminatingSystem : SmartIluminatingSystem.SmartIluminatingSystemInstances()) {
+                afisareRezultatTextArea.append(iluminatingSystem.toString() + "\n");
+            }
+
+            // Afiseaza toate instantele de SmartSecuritySystem
+            afisareRezultatTextArea.append("\nSmartSecuritySystem:\n");
+            for (SmartSecuritySystem smartSecuritySystem : SmartSecuritySystem.SmartSecuritySystemInstances()) {
+                afisareRezultatTextArea.append(smartSecuritySystem.toString() + "\n");
+            }
+
+            // seteaza scrollbar-ul in functie de inaltimea textului
+            scrollBar1.setMaximum(afisareRezultatTextArea.getHeight());
+            scrollBar1.setValue(maxValue);
+        });
+    }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Interface2(null));

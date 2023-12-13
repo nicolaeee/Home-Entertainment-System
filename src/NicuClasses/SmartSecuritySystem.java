@@ -98,7 +98,7 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
                 case "5":
                     displayInstances(SmartSecuritySystem.SmartSecuritySystemInstances());
                 case "6":
-                    SmartSecuritySystem.displayFilteredInstances();
+                    displayFilteredInstances();
                 case "7":
                     System.out.println("Ieșire");
                     break;
@@ -107,6 +107,7 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
             }
 
         } while (!choice.equals("5"));
+
     }
     public static SmartSecuritySystem[] SmartSecuritySystemInstances() {
         SmartSecuritySystem[] smartSecuritySystems = new SmartSecuritySystem[10];
