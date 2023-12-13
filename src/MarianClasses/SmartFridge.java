@@ -4,6 +4,8 @@ import java.util.List;
 
 
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
+
+import java.util.Random;
 import java.util.Scanner;
 
 public class SmartFridge extends HomeEntertainmentSystem {
@@ -127,6 +129,11 @@ public class SmartFridge extends HomeEntertainmentSystem {
             System.out.println("Cantitate suficienta de mancare");
         }
     }
+
+    public int getFoodQuantity() {
+        return foodQuantity;
+    }
+
     @Override
     public String toString() {
         return String.format("Smart Fridge [Power: %b, Temp: %.1f°C, Bauturi: %d, Mancare: %d units]",
@@ -149,7 +156,9 @@ public class SmartFridge extends HomeEntertainmentSystem {
             System.out.println("7. Adaugare Mancare");
             System.out.println("8. Stergere Mancare");
             System.out.println("9. Verificare Stare Re-alimentare");
-            System.out.println("10. Iesire");
+            System.out.println("10. Afisare Instante");
+            System.out.println("11. Afisare Instante filtrate");
+            System.out.println("12. Iesire");
 
             System.out.print("Introdu opțiunea: ");
             choice = scanner.next();
@@ -202,20 +211,46 @@ public class SmartFridge extends HomeEntertainmentSystem {
                     checkRestockStatus();
                     break;
                 case "10":
+                    displayInstances(SmartFridge.SmartFridgeInstances());
+                    break;
+                case"11":
+                    SmartFridge.displayFilteredInstances();
+                    break;
+                case "12":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("10"));
+        } while (!choice.equals("12"));
     }
 
     public static SmartFridge[] SmartFridgeInstances() {
-        SmartFridge[] smartFridgeInst = new SmartFridge[10];
+        SmartFridge[] fridgeInst = new SmartFridge[10];
+        Random random = new Random();
+
         for (int i = 0; i < 10; i++) {
-            smartFridgeInst[i] = new SmartFridge();
+            boolean power = random.nextBoolean();
+            float temp = random.nextFloat() * 10 + 1;
+            int nrDrinks = random.nextInt(20);
+            List<String> drinks = new ArrayList<>(List.of("Coca-Cola", "Pepsi", "Sprite"));
+            int foodQuant = random.nextInt(50);
+
+            fridgeInst[i] = new SmartFridge(power, temp, nrDrinks, drinks, foodQuant);
         }
-        return smartFridgeInst;
+
+        return fridgeInst;
+    }
+
+    public static void displayFilteredInstances() {
+        SmartFridge[] fridgeInstances = SmartFridgeInstances();
+
+        System.out.println("Instantele clasei SmartFridge filtrate");
+        for (SmartFridge instance : fridgeInstances) {
+            if (!instance.isPoweredOn && instance.foodQuantity <= SmartFridge.restockThreshold) {
+                System.out.println(instance.toString());
+            }
+        }
     }
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
+
+import java.util.Random;
 import java.util.Scanner;
 public class Consola extends HomeEntertainmentSystem {
     private boolean isPoweredOn; //Pornire Consola
@@ -141,6 +143,9 @@ public class Consola extends HomeEntertainmentSystem {
                 "games=" + games +
                 '}';
     }
+    public boolean getIsConsoleConnected() {
+        return isConsoleConnected;
+    }
 
     //Redefinirea metodei de control pentru Consola
     @Override
@@ -163,7 +168,9 @@ public class Consola extends HomeEntertainmentSystem {
             System.out.println("11. Afisare Jocuri");
             System.out.println("12. Pornire joc");
             System.out.println("13. Iesire Joc");
-            System.out.println("14. Iesire");
+            System.out.println("14. Afisare Instante");
+            System.out.println("15. Afisare Instante Filtrate");
+            System.out.println("16. Iesire");
 
             System.out.print("Introdu opțiunea: ");
             choice = scanner.next();
@@ -190,10 +197,10 @@ public class Consola extends HomeEntertainmentSystem {
                     controllerDeconectat();
                     break;
                 case "7":
-                   controllerOn();
+                    controllerOn();
                     break;
                 case "8":
-                   controllerOff();
+                    controllerOff();
                     break;
                 case "9":
                     System.out.println("Introdu jocul pe care vrei sa il instalezi");
@@ -207,7 +214,7 @@ public class Consola extends HomeEntertainmentSystem {
                     removeGame(gameRemover);
                     break;
                 case "11":
-                   displayGames();
+                    displayGames();
                     break;
                 case "12":
                     System.out.print("Introdu numele jocului de început: ");
@@ -216,20 +223,49 @@ public class Consola extends HomeEntertainmentSystem {
                     break;
                 case "13":
                     quitGame();
-                case "14":
+                    break;
+                case"14":
+                    displayInstances(Consola.ConsolaInstances());
+                    break;
+                case"15":
+                    Consola.displayFilteredInstances();
+                    break;
+                case "16":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Opțiunea nu este valida");
             }
 
-        } while (!choice.equals("14"));
+        } while (!choice.equals("16"));
     }
     public static Consola[] ConsolaInstances() {
         Consola[] consolaInst = new Consola[10];
+        Random random = new Random();
+
         for (int i = 0; i < 10; i++) {
-            consolaInst[i] = new Consola();
+            boolean power = random.nextBoolean();
+            boolean contConnect = random.nextBoolean();
+            boolean contOn = random.nextBoolean();
+            boolean consConnect = random.nextBoolean();
+            boolean isplay = random.nextBoolean();
+            List<String> games = new ArrayList<>(List.of("Zelda", "DOOM", "Halo")); // Use List.of
+            int nrGames = games.size();
+
+            consolaInst[i] = new Consola(power, contConnect, contOn, consConnect, isplay, games, nrGames);
         }
+
         return consolaInst;
+    }
+    public static void displayFilteredInstances() {
+        Consola[] consoleInstances = ConsolaInstances();
+
+        System.out.println("Instantele clasei Consola filtrate");
+        for (Consola instance : consoleInstances) {
+            // Add your combined conditions here
+            if (!instance.isPoweredOn && instance.isConsoleConnected) {
+                System.out.println(instance.toString());
+            }
+        }
     }
 }

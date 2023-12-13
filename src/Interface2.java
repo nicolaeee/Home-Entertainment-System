@@ -9,6 +9,8 @@ import BogdanClasses.DVDPlayer;
 import NicuClasses.SmartClimateControl;
 import NicuClasses.SmartIluminatingSystem;
 import NicuClasses.SmartSecuritySystem;
+import MarianClasses.Consola;
+import MarianClasses.SmartFridge;
 
 import javax.swing.SwingUtilities;
 
@@ -25,6 +27,8 @@ public class Interface2 extends JDialog {
     private JButton showAllButton;
     private JScrollBar scrollBar1;
     private JButton SmartSecuritySystemButton;
+    private JButton consolaButton;
+    private JButton smartFridgeButton;
 
     public Interface2(Interface parent) {
         setTitle("Devices Interface");
@@ -92,6 +96,17 @@ public class Interface2 extends JDialog {
             }
         });
 
+        smartFridgeButton= new JButton("SmartFridge");
+        smartFridgeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String condition1=conditionField1.getText().toLowerCase();
+                String condition2=conditionField2.getText().toLowerCase();
+
+                displaySmartFridgeInstances(condition1, condition2);
+            }
+        });
+
         SmartSecuritySystemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -119,6 +134,16 @@ public class Interface2 extends JDialog {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+        consolaButton = new JButton("Consola");
+        consolaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String condition1=conditionField1.getText().toLowerCase();
+                String condition2=conditionField2.getText().toLowerCase();
+
+                displayConsolaInstances(condition1, condition2);
+            }
+        });
     }
 
 
@@ -136,6 +161,31 @@ public class Interface2 extends JDialog {
             // afisez rezultatele
             if (guiCondition1 || randomCondition) {
                 afisareRezultatTextArea.append(dvdPlayer.toString() + "\n");
+            }
+        }
+    }
+
+    private void displayConsolaInstances(String condition1, String condition2) {
+        afisareRezultatTextArea.setText("");
+
+        // filtrare si afisare
+        for (Consola consola : Consola.ConsolaInstances()) {
+            // filtrare
+            if ((consola.isPoweredOn() == condition1.equals("pornit")) && (consola.getIsConsoleConnected())) {
+                afisareRezultatTextArea.append(consola.toString() + "\n");
+            }
+        }
+    }
+
+    private void displaySmartFridgeInstances(String condition1, String condition2) {
+        afisareRezultatTextArea.setText("");
+
+        // filtrare si afisare
+        for (SmartFridge smartFridge : SmartFridge.SmartFridgeInstances()) {
+            // filtrare
+            if ((smartFridge.isPoweredOn() == condition1.equals("pornit")) && (smartFridge.getFoodQuantity() > Integer.parseInt(condition2))
+                    && (smartFridge.getTemperature() >= 2.0 && smartFridge.getTemperature() <= 8.0)) {
+                afisareRezultatTextArea.append(smartFridge.toString() + "\n");
             }
         }
     }
@@ -237,6 +287,17 @@ public class Interface2 extends JDialog {
             afisareRezultatTextArea.append("\nSmartSecuritySystem:\n");
             for (SmartSecuritySystem smartSecuritySystem : SmartSecuritySystem.SmartSecuritySystemInstances()) {
                 afisareRezultatTextArea.append(smartSecuritySystem.toString() + "\n");
+            }
+
+            afisareRezultatTextArea.append("\nSmartFridge:\n");
+            for (SmartFridge smartFridge : SmartFridge.SmartFridgeInstances()) {
+                afisareRezultatTextArea.append(smartFridge.toString() + "\n");
+            }
+
+            // Afiseaza toate instantele de Consola
+            afisareRezultatTextArea.append("\nConsola:\n");
+            for (Consola consola : Consola.ConsolaInstances()) {
+                afisareRezultatTextArea.append(consola.toString() + "\n");
             }
 
             // seteaza scrollbar-ul in functie de inaltimea textului
