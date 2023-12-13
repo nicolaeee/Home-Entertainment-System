@@ -290,13 +290,12 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
 
         for (SmartClimateControl instance : smartClimateControls) {
 
-            boolean condition1 = !instance.isPoweredOn();
-            boolean condition2 = instance.isCoolingOn;
+            boolean condition1 = !instance.isCoolingOn;
 
             // conditie aleatoare
             boolean randomCondition = random.nextBoolean();
 
-            if (condition1 && condition2 && randomCondition) {
+            if (condition1 && randomCondition) {
                 System.out.println(instance.toString());
             }
         }

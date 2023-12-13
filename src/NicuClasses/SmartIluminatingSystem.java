@@ -210,7 +210,7 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
 
         for (SmartIluminatingSystem instance : smartIluminatingSystems) {
             boolean condition1 = !instance.isTurnedOn();
-            boolean condition2 = instance.getIntensity() > 50;
+            boolean condition2 = instance.getIntensity() > 20;
 
             // conditie aleatoare
             boolean randomCondition = random.nextBoolean();

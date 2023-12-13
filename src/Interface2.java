@@ -183,8 +183,7 @@ public class Interface2 extends JDialog {
         // filtrare si afisare
         for (SmartFridge smartFridge : SmartFridge.SmartFridgeInstances()) {
             // filtrare
-            if ((smartFridge.isPoweredOn() == condition1.equals("pornit")) && (smartFridge.getFoodQuantity() > Integer.parseInt(condition2))
-                    && (smartFridge.getTemperature() >= 2.0 && smartFridge.getTemperature() <= 8.0)) {
+            if ((smartFridge.isPoweredOn() == condition1.equals("pornit")) && (smartFridge.getFoodQuantity() > Integer.parseInt(condition2))) {
                 afisareRezultatTextArea.append(smartFridge.toString() + "\n");
             }
         }
