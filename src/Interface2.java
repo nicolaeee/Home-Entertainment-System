@@ -239,7 +239,7 @@ public class Interface2 extends JDialog {
                 afisareRezultatTextArea.append(smartSecuritySystem.toString() + "\n");
             }
 
-            // Setează scrollbar-ul în funcție de înălțimea JTextArea
+            // seteaza scrollbar-ul in functie de inaltimea textului
             scrollBar1.setMaximum(afisareRezultatTextArea.getHeight());
             scrollBar1.setValue(maxValue);
         });
