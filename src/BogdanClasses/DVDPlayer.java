@@ -2,6 +2,8 @@ package BogdanClasses;
 
 //Importarea claselor
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
+
+import java.util.Random;
 import java.util.Scanner;
 
 public class DVDPlayer extends HomeEntertainmentSystem {
@@ -183,18 +185,19 @@ public class DVDPlayer extends HomeEntertainmentSystem {
     public static void displayFilteredInstances() {
         DVDPlayer[] dvdPlayers = DVDPlayerInstances();
 
-        System.out.println("Instantele clasei DVDPlayer filtrate");
-        for (DVDPlayer instance : dvdPlayers) {
-            // conditii de filtrare
-            boolean condition1 = !instance.isPoweredOn();
-            boolean condition2 = instance.isDiscInserted();
+        Random random = new Random();
 
-            if (condition1 && condition2) {
+        for (DVDPlayer instance : dvdPlayers) {
+
+            boolean condition = !instance.isPoweredOn();
+
+            boolean randomCondition = random.nextBoolean();
+
+            if (condition && randomCondition) {
                 System.out.println(instance.toString());
             }
         }
     }
-
 
 
 }
