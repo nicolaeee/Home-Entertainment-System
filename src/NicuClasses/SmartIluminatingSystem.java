@@ -37,7 +37,7 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
     //Rescriem metoda toString()
     @Override
     public String toString() {
-        return "SmartClimateControl{" +
+        return "SmartIluminatingSystem{" +
                 "Intensitatea luminii: " + lightIntensity +
                 ", isTurnedOn=" + isTurnedOn +
                 '}';

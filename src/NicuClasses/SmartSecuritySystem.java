@@ -98,7 +98,7 @@ public class SmartSecuritySystem extends HomeEntertainmentSystem {
                 case "5":
                     displayInstances(SmartSecuritySystem.SmartSecuritySystemInstances());
                 case "6":
-                    displayFilteredInstances();
+                    SmartSecuritySystem.displayFilteredInstances();
                 case "7":
                     System.out.println("Ieșire");
                     break;
