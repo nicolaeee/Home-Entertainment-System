@@ -12,7 +12,6 @@ import MarianClasses.Consola;
 import MarianClasses.SmartFridge;
 import java.util.Scanner;
 
-
 //Aici este clasa parinte
 public class HomeEntertainmentSystem {
     protected boolean isPoweredOn;
@@ -49,10 +48,9 @@ public class HomeEntertainmentSystem {
 
     //Metoda ce va avea ca scop pornirea/oprirea,starea sistemului si controlarea dispozitivelor
     public void ControlDevice() {
-        //Instanta care citeste datele de la tastatura
+
         Scanner scanner = new Scanner(System.in);
         String choice;
-
 
         do {
             System.out.println("Alege una dintre urmatoarele optiuni:");
@@ -62,7 +60,6 @@ public class HomeEntertainmentSystem {
             System.out.println("Introdu optiunea:");
             choice = scanner.next();
 
-            //Executam optiunile
             switch (choice) {
                 case "1":
                     displayStatus();
@@ -86,7 +83,6 @@ public class HomeEntertainmentSystem {
 
     //Aici este main-ul clasei HomeEntertainmentSystem
     public static void main(String[] args) {
-
 
         Scanner scanner = new Scanner(System.in);
 
@@ -196,7 +192,6 @@ public class HomeEntertainmentSystem {
         smartSecuritySystem.ControlDevice();
 
     }
-
 }
 
 /**/

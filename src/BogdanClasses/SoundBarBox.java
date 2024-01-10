@@ -5,8 +5,9 @@ import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.io.*;
 
-public class SoundBarBox extends HomeEntertainmentSystem {
+public class SoundBarBox extends HomeEntertainmentSystem implements Serializable {
 
     //Declar si initializez variabile
     private int volume = 35;
@@ -125,6 +126,7 @@ public class SoundBarBox extends HomeEntertainmentSystem {
         return "SoundBarBox { " + "Volume=" + volume + ", Bass=" + bass + ", isPoweredOn=" + isPoweredOn + ", Balance=" + balance + " }";
     }
 
+
     // Implementarea metodei de control pentru SoundBar
     @Override
     public void ControlSpecifiedDevice() {
@@ -146,7 +148,8 @@ public class SoundBarBox extends HomeEntertainmentSystem {
             System.out.println("8. Afisare Informatii");
             System.out.println("9. Afisare Instante");
             System.out.println("10. Afisare Instante Filtrate");
-            System.out.println("11. Iesire");
+            System.out.println("11. Scriere");
+            System.out.println("12. Iesire");
 
 
             System.out.print("Introdu optiunea: ");
@@ -192,13 +195,17 @@ public class SoundBarBox extends HomeEntertainmentSystem {
                     SoundBarBox.displayFilteredInstances();
                     break;
                 case "11":
+                    writeToFile("instances.txt", soundBarBoxes);
+                    System.out.println("Instantele au fost scrise in fisier");
+                    break;
+                case "12":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("11"));
+        } while (!choice.equals("12"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -230,4 +237,28 @@ public class SoundBarBox extends HomeEntertainmentSystem {
             }
         }
     }
+
+    public static void writeToFile(String fileName, SoundBarBox[] instances) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            for (SoundBarBox instance : instances) {
+                writer.println(instance.toString());
+            }
+            System.out.println("Datele au fost scrise in fisier ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Metoda pentru a citi instanțe dintr-un fișier
+    public static DVDPlayer[] readFromFile(String fileName) {
+        DVDPlayer[] instances = null;
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            instances = (DVDPlayer[]) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return instances;
+    }
+
+
 }

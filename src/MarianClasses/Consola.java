@@ -259,13 +259,13 @@ public class Consola extends HomeEntertainmentSystem {
     }
     public static void displayFilteredInstances() {
         Consola[] consoleInstances = ConsolaInstances();
-
-        System.out.println("Instantele clasei Consola filtrate");
-        for (Consola instance : consoleInstances) {
-            // Add your combined conditions here
-            if (!instance.isPoweredOn && instance.isConsoleConnected) {
-                System.out.println(instance.toString());
-            }
-        }
+       if(consoleInstances.length == 10) {
+           System.out.println("Instantele clasei Consola filtrate");
+           for (Consola instance : consoleInstances) {
+               if (!instance.isPoweredOn && instance.isConsoleConnected) {
+                   System.out.println(instance.toString());
+               }
+           }
+       }
     }
 }

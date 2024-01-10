@@ -1,0 +1,10 @@
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }
+SoundBarBox { Volume=35, Bass=22, isPoweredOn=false, Balance=50 }

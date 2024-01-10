@@ -5,7 +5,9 @@ import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
 import java.util.Random;
 import java.util.Scanner;
-public class TvWithSpeakers extends HomeEntertainmentSystem {
+import java.io.*;
+
+public class TvWithSpeakers extends HomeEntertainmentSystem implements Serializable {
 
     //Declar si initializez variabilele
     private int volume = 20;
@@ -130,7 +132,8 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
             System.out.println("6. Afisare Informatii Televizor");
             System.out.println("7. Afisare Instante");
             System.out.println("8. Afisare Instante Filtrate");
-            System.out.println("9. Iesire");
+            System.out.println("9.Scriere");
+            System.out.println("10. Iesire");
 
             System.out.print("Introdu optiunea: ");
             choice = scanner.next();
@@ -165,13 +168,17 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
                     TvWithSpeakers.displayFilteredInstances();
                     break;
                 case "9":
+                    writeToFile("instances.txt", tvWithSpeakers);
+                    System.out.println("Instantele au fost scrise in fisier");
+                    break;
+                case "10":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("9"));
+        } while (!choice.equals("10"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -202,4 +209,28 @@ public class TvWithSpeakers extends HomeEntertainmentSystem {
             }
         }
     }
+
+    //Metoda pentru a scrie in fisier
+    public static void writeToFile(String fileName, TvWithSpeakers[] instances) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            for (TvWithSpeakers instance : instances) {
+                writer.println(instance.toString());
+            }
+            System.out.println("Datele au fost scrise in fisier ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Metoda pentru a citi instanțe dintr-un fisier
+    public static DVDPlayer[] readFromFile(String fileName) {
+        DVDPlayer[] instances = null;
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            instances = (DVDPlayer[]) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return instances;
+    }
+
 }
