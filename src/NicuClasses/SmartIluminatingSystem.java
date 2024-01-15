@@ -2,6 +2,7 @@ package NicuClasses;
 
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
+import java.io.*;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -85,7 +86,8 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
             System.out.println("2. Testare constructor cu parametri");
             System.out.println("3. Testare metode turnOn si turnOff");
             System.out.println("4. Testare metoda setIntensity");
-            System.out.println("5. Iesire");
+            System.out.println("5: Scrie instantele in fișier");
+            System.out.println("6. Iesire");
 
             System.out.print("Alege optiunea: ");
             choice = scanner.nextInt();
@@ -102,6 +104,10 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
                     break;
                 case 4:
                     testMetodaSetIntensity(scanner, iluminatingSystem);
+                    break;
+                case 8:
+                    writeToFile("instances.txt", SmartIluminatingSystemInstances());
+                    System.out.println("Instantele au fost scrise in fisier");
                     break;
                 case 5:
                     System.out.println("La revedere!");
@@ -219,6 +225,28 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
                 System.out.println(instance.toString());
             }
         }
+    }
+
+    public static void writeToFile(String fileName, SmartIluminatingSystem[] instances) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            for (SmartIluminatingSystem instance : instances) {
+                writer.println(instance.toString());
+            }
+            System.out.println("Datele au fost scrise in fisier ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Metoda pentru a citi instanțe dintr-un fișier
+    public static SmartIluminatingSystem[] readFromFile(String fileName) {
+        SmartIluminatingSystem[] instances = null;
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            instances = (SmartIluminatingSystem[]) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return instances;
     }
 
 

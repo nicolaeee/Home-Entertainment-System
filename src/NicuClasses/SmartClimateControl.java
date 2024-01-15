@@ -1,4 +1,5 @@
 package NicuClasses;
+import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Random;
@@ -113,6 +114,7 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
             System.out.println("5. Testare metode turnOnCooling si turnOffCooling");
             System.out.println("6. Testare cu mod dinamic si introducere de la tastatura");
             System.out.println("7. Afisare 10  instante ");
+            System.out.println("8: Scrie instantele in fișier");
             System.out.println("0. Iesire");
 
             System.out.print("Alege optiunea: ");
@@ -140,6 +142,10 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
                 case 7:
                     displayInstances(SmartClimateControl.SmartClimateControlInstances());
                     ;
+                    break;
+                case 8:
+                    writeToFile("instances.txt", SmartClimateControlInstances());
+                    System.out.println("Instantele au fost scrise in fisier");
                     break;
                 case 0:
                     System.out.println("La revedere!");
@@ -264,13 +270,17 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
                     SmartClimateControl.displayFilteredInstances();
                     break;
                 case "9":
+                    writeToFile("instances.txt", SmartClimateControlInstances());
+                    System.out.println("Instantele au fost scrise in fisier");
+                    break;
+                case "10":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("9"));
+        } while (!choice.equals("10"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -301,6 +311,28 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
         }
 
     }
+    public static void writeToFile(String fileName, SmartClimateControl[] instances) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            for (SmartClimateControl instance : instances) {
+                writer.println(instance.toString());
+            }
+            System.out.println("Datele au fost scrise in fisier ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Metoda pentru a citi instanțe dintr-un fișier
+    public static SmartClimateControl[] readFromFile(String fileName) {
+        SmartClimateControl[] instances = null;
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            instances = (SmartClimateControl[]) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return instances;
+    }
+
 
 
 
