@@ -232,7 +232,7 @@ public class TvWithSpeakers extends HomeEntertainmentSystem implements Serializa
         }
     }
 
-    // Metoda pentru a citi instanțe dintr-un fisier
+    // Metoda pentru a citi instante dintr-un fisier
     public static TvWithSpeakers[] readFromFile(String fileName) {
         TvWithSpeakers[] instances = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {

@@ -259,7 +259,7 @@ public class SoundBarBox extends HomeEntertainmentSystem implements Serializable
         }
     }
 
-    // Metoda pentru a citi instanțe dintr-un fișier
+    // Metoda pentru a citi instante dintr-un fișier
     public static SoundBarBox[] readFromFile(String fileName) {
         SoundBarBox[] instances = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {

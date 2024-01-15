@@ -227,7 +227,7 @@ public class DVDPlayer extends HomeEntertainmentSystem implements Serializable {
         }
     }
 
-    // Metoda pentru a citi instanțe dintr-un fișier
+    // Metoda pentru a citi instante dintr-un fișier
     public static DVDPlayer[] readFromFile(String fileName) {
         DVDPlayer[] instances = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
