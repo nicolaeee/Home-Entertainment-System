@@ -133,7 +133,8 @@ public class TvWithSpeakers extends HomeEntertainmentSystem implements Serializa
             System.out.println("7. Afisare Instante");
             System.out.println("8. Afisare Instante Filtrate");
             System.out.println("9.Scriere");
-            System.out.println("10. Iesire");
+            System.out.println("10. Citire");
+            System.out.println("11. Iesire");
 
             System.out.print("Introdu optiunea: ");
             choice = scanner.next();
@@ -172,13 +173,24 @@ public class TvWithSpeakers extends HomeEntertainmentSystem implements Serializa
                     System.out.println("Instantele au fost scrise in fisier");
                     break;
                 case "10":
-                    System.out.println("Iesire");
+                    TvWithSpeakers[] readInstances = readFromFile("instances.txt");
+                    if (readInstances != null) {
+                        System.out.println("Instantele citite din fisier sunt:");
+                        for (TvWithSpeakers instance : readInstances) {
+                            System.out.println(instance.toString());
+                        }
+                    } else {
+                        System.out.println("Nu s-au putut citi instantele din fisier");
+                    }
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
+                    break;
+                case "11":
+                    System.out.println("Iesire");
             }
 
-        } while (!choice.equals("10"));
+        } while (!choice.equals("11"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -212,10 +224,8 @@ public class TvWithSpeakers extends HomeEntertainmentSystem implements Serializa
 
     //Metoda pentru a scrie in fisier
     public static void writeToFile(String fileName, TvWithSpeakers[] instances) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
-            for (TvWithSpeakers instance : instances) {
-                writer.println(instance.toString());
-            }
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            outputStream.writeObject(instances);
             System.out.println("Datele au fost scrise in fisier ");
         } catch (IOException e) {
             e.printStackTrace();
@@ -223,10 +233,10 @@ public class TvWithSpeakers extends HomeEntertainmentSystem implements Serializa
     }
 
     // Metoda pentru a citi instanțe dintr-un fisier
-    public static DVDPlayer[] readFromFile(String fileName) {
-        DVDPlayer[] instances = null;
+    public static TvWithSpeakers[] readFromFile(String fileName) {
+        TvWithSpeakers[] instances = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-            instances = (DVDPlayer[]) inputStream.readObject();
+            instances = (TvWithSpeakers[]) inputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

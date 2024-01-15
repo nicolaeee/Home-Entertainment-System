@@ -130,7 +130,8 @@ public class DVDPlayer extends HomeEntertainmentSystem implements Serializable {
             System.out.println("8. Afisare Instante");
             System.out.println("9. Afisare Instante Filtrate");
             System.out.println("10. Scriere");
-            System.out.println("11. Iesire");
+            System.out.println("11. Citire");
+            System.out.println("12. Iesire");
 
 
             System.out.print("Introdu opțiunea: ");
@@ -169,13 +170,24 @@ public class DVDPlayer extends HomeEntertainmentSystem implements Serializable {
                 System.out.println("Instantele au fost scrise in fisier");
                     break;
                 case "11":
+                    DVDPlayer[] readInstances = readFromFile("instances.txt");
+                    if (readInstances != null) {
+                        System.out.println("Instantele citite din fisier sunt:");
+                        for (DVDPlayer instance : readInstances) {
+                            System.out.println(instance.toString());
+                        }
+                    } else {
+                        System.out.println("Nu s-au putut citi instantele din fisier");
+                    }
+                    break;
+                case "12":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("11"));
+        } while (!choice.equals("12"));
     }
 
     //Metoda care creaza un vector cu 10 instante
@@ -207,10 +219,8 @@ public class DVDPlayer extends HomeEntertainmentSystem implements Serializable {
 
     //Metoda pentru a scrie in fisier
     public static void writeToFile(String fileName, DVDPlayer[] instances) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
-            for (DVDPlayer instance : instances) {
-                writer.println(instance.toString());
-            }
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            outputStream.writeObject(instances);
             System.out.println("Datele au fost scrise in fisier ");
         } catch (IOException e) {
             e.printStackTrace();
@@ -221,7 +231,7 @@ public class DVDPlayer extends HomeEntertainmentSystem implements Serializable {
     public static DVDPlayer[] readFromFile(String fileName) {
         DVDPlayer[] instances = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-            instances = (DVDPlayer[]) inputStream.readObject();
+            instances = (DVDPlayer []) inputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
