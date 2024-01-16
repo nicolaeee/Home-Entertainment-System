@@ -1,20 +1,24 @@
 package MarianClasses;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
+import BogdanClasses.SoundBarBox;
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.io.*;
 
-public class SmartFridge extends HomeEntertainmentSystem {
+public class SmartFridge extends HomeEntertainmentSystem implements Serializable {
     private boolean isPoweredOn;//Daca e pornit
     private float temperature;//Temperature pe care o setam
     private int numberOfDrinks;//Nr de bauturi
     private List<String> drinks;//Lista de bauturi
     private int foodQuantity;//Cantitatea de mancare
     private static final int restockThreshold = 10;//Folosit pentru a detecta cand avem nevoie sa realimentam
+    private static SmartFridge[] fridgeInstances = SmartFridge.SmartFridgeInstances();
     //Constructor fara argumente
     public SmartFridge(){
         this.isPoweredOn=false;
@@ -158,7 +162,9 @@ public class SmartFridge extends HomeEntertainmentSystem {
             System.out.println("9. Verificare Stare Re-alimentare");
             System.out.println("10. Afisare Instante");
             System.out.println("11. Afisare Instante filtrate");
-            System.out.println("12. Iesire");
+            System.out.println("12. Scriere");
+            System.out.println("13. Afisare");
+            System.out.println("14. Iesire");
 
             System.out.print("Introdu opțiunea: ");
             choice = scanner.next();
@@ -217,13 +223,28 @@ public class SmartFridge extends HomeEntertainmentSystem {
                     SmartFridge.displayFilteredInstances();
                     break;
                 case "12":
+                    writeToFile("instances.txt", fridgeInstances);
+                    System.out.println("Instantele au fost scrise in fisier");
+                    break;
+                case "13":
+                    SmartFridge[] readInstances = readFromFile("instances.txt");
+                    if (readInstances != null) {
+                        System.out.println("Instantele citite din fisier sunt:");
+                        for (SmartFridge instance : readInstances) {
+                            System.out.println(instance.toString());
+                        }
+                    } else {
+                        System.out.println("Nu s-au putut citi instantele din fisier");
+                    }
+                    break;
+                case "14":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Optiunea nu este valida");
             }
 
-        } while (!choice.equals("12"));
+        } while (!choice.equals("14"));
     }
 
     public static SmartFridge[] SmartFridgeInstances() {
@@ -253,4 +274,23 @@ public class SmartFridge extends HomeEntertainmentSystem {
             }
         }
     }
+    public static void writeToFile(String fileName, SmartFridge[] instances) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            outputStream.writeObject(instances);
+            System.out.println("Datele au fost scrise in fisier");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static SmartFridge[] readFromFile(String fileName) {
+        SmartFridge[] instances = null;
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            instances = (SmartFridge[]) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return instances;
+    }
+
 }

@@ -3,11 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import BogdanClasses.SoundBarBox;
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
 import java.util.Random;
 import java.util.Scanner;
-public class Consola extends HomeEntertainmentSystem {
+import java.io.*;
+public class Consola extends HomeEntertainmentSystem implements Serializable{
     private boolean isPoweredOn; //Pornire Consola
     private boolean isControllerConnected; //Connectare Controller
     private boolean isControllerOn=false; //Pornire Controller
@@ -15,6 +17,7 @@ public class Consola extends HomeEntertainmentSystem {
     private boolean isPlaying;//Verifica daca un joc ruleaza
     private List<String> games;//O consola poate sa aiba mai multe jocuri.
     private int numberOfGames;//Nr de jocuri
+    private static Consola[] consoleInstances = Consola.ConsolaInstances();
 
     public Consola() {
         isPoweredOn = false;
@@ -170,7 +173,9 @@ public class Consola extends HomeEntertainmentSystem {
             System.out.println("13. Iesire Joc");
             System.out.println("14. Afisare Instante");
             System.out.println("15. Afisare Instante Filtrate");
-            System.out.println("16. Iesire");
+            System.out.println("16. Scriere");
+            System.out.println("17. Afisare");
+            System.out.println("18. Iesire");
 
             System.out.print("Introdu opțiunea: ");
             choice = scanner.next();
@@ -231,13 +236,28 @@ public class Consola extends HomeEntertainmentSystem {
                     Consola.displayFilteredInstances();
                     break;
                 case "16":
+                    writeToFile("instances.txt", consoleInstances);
+                    System.out.println("Instantele au fost scrise in fisier");
+                    break;
+                case "17":
+                    Consola[] readInstances = readFromFile("instances.txt");
+                    if (readInstances != null) {
+                        System.out.println("Instantele citite din fisier sunt:");
+                        for (Consola instance : readInstances) {
+                            System.out.println(instance.toString());
+                        }
+                    } else {
+                        System.out.println("Nu s-au putut citi instantele din fisier");
+                    }
+                    break;
+                case "18":
                     System.out.println("Iesire");
                     break;
                 default:
                     System.out.println("Opțiunea nu este valida");
             }
 
-        } while (!choice.equals("16"));
+        } while (!choice.equals("18"));
     }
     public static Consola[] ConsolaInstances() {
         Consola[] consolaInst = new Consola[10];
@@ -268,4 +288,23 @@ public class Consola extends HomeEntertainmentSystem {
            }
        }
     }
+    public static void writeToFile(String fileName, Consola[] instances) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            outputStream.writeObject(instances);
+            System.out.println("Datele au fost scrise in fisier");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Consola[] readFromFile(String fileName) {
+        Consola[] instances = null;
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            instances = (Consola[]) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return instances;
+    }
+
 }
