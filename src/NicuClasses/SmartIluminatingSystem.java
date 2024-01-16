@@ -3,8 +3,14 @@ package NicuClasses;
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 
 public class SmartIluminatingSystem extends HomeEntertainmentSystem {
@@ -87,7 +93,8 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
             System.out.println("3. Testare metode turnOn si turnOff");
             System.out.println("4. Testare metoda setIntensity");
             System.out.println("5: Scrie instantele in fișier");
-            System.out.println("6. Iesire");
+            System.out.println("6: Citirea instantele in fișier");
+            System.out.println("7. Iesire");
 
             System.out.print("Alege optiunea: ");
             choice = scanner.nextInt();
@@ -105,18 +112,30 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
                 case 4:
                     testMetodaSetIntensity(scanner, iluminatingSystem);
                     break;
+
                 case 5:
                     writeToFile("instances.txt", SmartIluminatingSystemInstances());
                     System.out.println("Instantele au fost scrise in fisier");
                     break;
                 case 6:
+                    SmartIluminatingSystem[] readInstances = readFromFile("instances.txt");
+                    if (readInstances != null) {
+                        System.out.println("Instantele citite din fisier sunt:");
+                        for (SmartIluminatingSystem instance : readInstances) {
+                            System.out.println(instance.toString());
+                        }
+                    } else {
+                        System.out.println("Nu s-au putut citi instantele din fisier");
+                    }
+                    break;
+                case 7:
                     System.out.println("La revedere!");
                     break;
                 default:
                     System.out.println("Optiune invalida. Te rog sa alegi din nou.");
             }
 
-        } while (choice != 6);
+        } while (choice != 7);
 
         scanner.close();
     }
@@ -227,6 +246,11 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
         }
     }
 
+    public SmartIluminatingSystem(String strValue1, String strValue2) {
+        this.lightIntensity = Integer.parseInt(strValue1);
+        this.isTurnedOn = Boolean.parseBoolean(strValue2);
+    }
+
     public static void writeToFile(String fileName, SmartIluminatingSystem[] instances) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             for (SmartIluminatingSystem instance : instances) {
@@ -240,13 +264,37 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
 
     // Metoda pentru a citi instanțe dintr-un fișier
     public static SmartIluminatingSystem[] readFromFile(String fileName) {
-        SmartIluminatingSystem[] instances = null;
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-            instances = (SmartIluminatingSystem[]) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        List<SmartIluminatingSystem> instancesList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println("Read line: " + line); // Adaugă acest mesaj
+                SmartIluminatingSystem instance = constructInstanceFromLine(line);
+                if (instance != null) {
+                    instancesList.add(instance);
+                }
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return instances;
+
+        // Converteste lista de instante in array si returneaza
+        return instancesList.toArray(new SmartIluminatingSystem[0]);
+    }
+
+    private static SmartIluminatingSystem constructInstanceFromLine(String line) {
+        // Implementeaza logica pentru a construi un obiect dintr-o linie
+        // Exemplu: separa valorile din linie si construieste un obiect
+
+        // Exemplu simplu pentru linii de forma "param1:param2:param3"
+        String[] values = line.split(":");
+        if (values.length == 3) {
+            // Construieste obiectul SmartIluminatingSystem cu valorile respective
+            return new SmartIluminatingSystem(values[0], values[1]);
+        } else {
+            // In caz contrar, nu se poate construi un obiect valid
+            return null;
+        }
     }
 
 

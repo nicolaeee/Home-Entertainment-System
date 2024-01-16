@@ -324,9 +324,7 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
 
     }
 
-    private int intValue;  // Schimbă tipul în funcție de ce reprezintă prima valoare în obiectul SmartClimateControl
-    private boolean boolValue1;  // Schimbă tipul în funcție de ce reprezintă a doua valoare în obiectul SmartClimateControl
-    private boolean boolValue2;  // Schimbă tipul în funcție de ce reprezintă a treia valoare în obiectul SmartClimateControl
+
 
     public SmartClimateControl(String strValue1, String strValue2, String strValue3) {
         // Conversii de la String la tipurile corecte
