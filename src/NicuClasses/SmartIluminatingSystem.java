@@ -105,18 +105,18 @@ public class SmartIluminatingSystem extends HomeEntertainmentSystem {
                 case 4:
                     testMetodaSetIntensity(scanner, iluminatingSystem);
                     break;
-                case 8:
+                case 5:
                     writeToFile("instances.txt", SmartIluminatingSystemInstances());
                     System.out.println("Instantele au fost scrise in fisier");
                     break;
-                case 5:
+                case 6:
                     System.out.println("La revedere!");
                     break;
                 default:
                     System.out.println("Optiune invalida. Te rog sa alegi din nou.");
             }
 
-        } while (choice != 5);
+        } while (choice != 6);
 
         scanner.close();
     }

@@ -2,11 +2,13 @@ package NicuClasses;
 import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Random;
-import BogdanClasses.DVDPlayer;
-import BogdanClasses.SoundBarBox;
-import BogdanClasses.TvWithSpeakers;
+
 import HomeEntertainmentSystem.HomeEntertainmentSystem;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Scanner;
 
@@ -38,13 +40,11 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
 
     //Rescriem metoda toString()
     @Override
+
     public String toString() {
-        return "SmartClimateControl{" +
-                "temperature=" + temperature +
-                ", isHeatingOn=" + isHeatingOn +
-                ", isCoolingOn=" + isCoolingOn +
-                '}';
+        return "SmartClimateControl [Temperatura=" + temperature + ", Incalzirea=" + isHeatingOn + ", Racirea=" + isCoolingOn+ "]";
     }
+
 
 
     public void increaseTemperature() {
@@ -115,6 +115,7 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
             System.out.println("6. Testare cu mod dinamic si introducere de la tastatura");
             System.out.println("7. Afisare 10  instante ");
             System.out.println("8: Scrie instantele in fișier");
+            System.out.println("9: Citeste instantele in fișier");
             System.out.println("0. Iesire");
 
             System.out.print("Alege optiunea: ");
@@ -146,6 +147,17 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
                 case 8:
                     writeToFile("instances.txt", SmartClimateControlInstances());
                     System.out.println("Instantele au fost scrise in fisier");
+                    break;
+                case 9:
+                    SmartClimateControl[] readInstances = readFromFile("instances.txt");
+                    if (readInstances != null) {
+                        System.out.println("Instantele citite din fisier sunt:");
+                        for (SmartClimateControl instance : readInstances) {
+                            System.out.println(instance.toString());
+                        }
+                    } else {
+                        System.out.println("Nu s-au putut citi instantele din fisier");
+                    }
                     break;
                 case 0:
                     System.out.println("La revedere!");
@@ -311,6 +323,18 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
         }
 
     }
+
+    private int intValue;  // Schimbă tipul în funcție de ce reprezintă prima valoare în obiectul SmartClimateControl
+    private boolean boolValue1;  // Schimbă tipul în funcție de ce reprezintă a doua valoare în obiectul SmartClimateControl
+    private boolean boolValue2;  // Schimbă tipul în funcție de ce reprezintă a treia valoare în obiectul SmartClimateControl
+
+    public SmartClimateControl(String strValue1, String strValue2, String strValue3) {
+        // Conversii de la String la tipurile corecte
+        this.temperature = Integer.parseInt(strValue1);
+        this.isHeatingOn = Boolean.parseBoolean(strValue2);
+        this.isCoolingOn = Boolean.parseBoolean(strValue3);
+    }
+
     public static void writeToFile(String fileName, SmartClimateControl[] instances) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             for (SmartClimateControl instance : instances) {
@@ -324,14 +348,40 @@ public class  SmartClimateControl extends HomeEntertainmentSystem {
 
     // Metoda pentru a citi instanțe dintr-un fișier
     public static SmartClimateControl[] readFromFile(String fileName) {
-        SmartClimateControl[] instances = null;
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-            instances = (SmartClimateControl[]) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        List<SmartClimateControl> instancesList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println("Read line: " + line); // Adaugă acest mesaj
+                SmartClimateControl instance = constructInstanceFromLine(line);
+                if (instance != null) {
+                    instancesList.add(instance);
+                }
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return instances;
+
+        // Converteste lista de instante in array si returneaza
+        return instancesList.toArray(new SmartClimateControl[0]);
     }
+
+    private static SmartClimateControl constructInstanceFromLine(String line) {
+        // Implementeaza logica pentru a construi un obiect dintr-o linie
+        // Exemplu: separa valorile din linie si construieste un obiect
+
+        // Exemplu simplu pentru linii de forma "param1:param2:param3"
+        String[] values = line.split(":");
+        if (values.length == 3) {
+            // Construieste obiectul SmartIluminatingSystem cu valorile respective
+            return new SmartClimateControl(values[0], values[1], values[2]);
+        } else {
+            // In caz contrar, nu se poate construi un obiect valid
+            return null;
+        }
+    }
+
+
 
 
 
